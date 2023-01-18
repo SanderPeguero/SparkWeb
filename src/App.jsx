@@ -18,10 +18,9 @@ function App() {
         <Navbar/>
         <Hero/>
         <Analytics/>
-        <Cards/>
         <Newsletter/>
+        <Cards/>
         <Footer/>
-
       </main>
     </div>
   )
