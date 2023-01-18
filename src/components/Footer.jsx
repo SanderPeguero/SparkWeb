@@ -6,12 +6,14 @@ import {
   FaInstagram,
   FaTwitterSquare,
 } from 'react-icons/fa';
+import Logo from '../assets/Logo.svg'
 
 const Footer = () => {
   return (
     <div className='max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-300'>
       <div>
-        <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT.</h1>
+        {/* <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT.</h1> */}
+        <img className='w-[7rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
         <p className='py-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste repellat consequatur libero reiciendis, blanditiis accusantium.</p>
         <div className='flex justify-between md:w-[75%] my-6'>
             <FaFacebookSquare size={30} />
