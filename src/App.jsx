@@ -13,9 +13,8 @@ import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/NavBar/Navbar'
 import Newsletter from './components/Newsletter'
+import Contacto from './components/Contactos/Contacto';
 
-//components
-import Home from './components/Home/Home';
 
 function App() {
 
@@ -25,19 +24,22 @@ function App() {
         <header>
           <Navbar />
         </header>
-        <main>
-          <Hero />
-          <Analytics />
+        <main className=''>
+          {/* <Hero /> */}
+          {/* <Contacto /> */}
+          {/* <Analytics />
           <Newsletter />
-          <Cards />
-          <Footer />
+          <Cards /> */}
+          {/* <Footer /> */}
           <Routes>
-            {/* <Route exact path='/' element={<Home />}/>
+            <Route exact path='/' element={<Hero />} />
+            <Route exact path='/contacto' element={<Contacto />} />
+            {/*
             <Route exact path='/Analytics' element={<Analytics />}/>
             <Route exact path='/Newsletter' element={<Newsletter />}/>
             <Route exact path='/Cards' element={<Cards />}/> */}
           </Routes>
-          {/* <Footer />  */}
+          <Footer /> 
         </main>
       </Router>
     </div>
