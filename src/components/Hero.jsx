@@ -1,5 +1,6 @@
 import React from 'react';
-import Typed from 'react-typed';
+// import Typed from 'react-typed';
+import TypeAnimation from './TypeAnimation';
 
 const Hero = () => {
   return (
@@ -21,14 +22,24 @@ const Hero = () => {
           <p className='md:text-3xl sm:text-2xl text-xl font-bold py-4 text-[rgb(25,137,252)]'>
             {"{"}
           </p>
-          <Typed
+          <TypeAnimation 
+            className='md:text-3xl sm:text-2xl text-xl font-bold md:pl-4 pl-2' 
+            text={"Unicos"}
+            strings={['Unicos' , 'Innovadores', 'Competitivos']}
+            typeSpeed={140}
+            backSpeed={120}
+            backSpeedDelay={2000}
+            space
+          />
+            
+          {/* <Typed
           className='md:text-3xl sm:text-2xl text-xl font-bold md:pl-4 pl-2'
-            strings={['Unicos ', 'Innovadores ', 'Competitivos ']}
+            strings={['Unicos , 'Innovadores ', 'Competitivos ']}
             typeSpeed={70}
             backSpeed={60}
             loop
             showCursor
-          />
+          /> */}
           <p className='md:text-3xl sm:text-2xl text-xl font-bold py-4 text-[rgb(25,137,252)]'>
               {"}"}
           </p>
