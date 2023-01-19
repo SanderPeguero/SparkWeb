@@ -26,11 +26,11 @@ function App() {
           <Navbar />
         </header>
         <main>
-          {/* <Hero />
+          <Hero />
           <Analytics />
           <Newsletter />
-          <Cards /> */}
-          <MapComponent />
+          <Cards />
+          {/* <MapComponent /> */}
           <Footer /> 
           <Routes>
             {/* <Route exact path='/' element={<Home />}/>
