@@ -16,7 +16,7 @@ import Newsletter from './components/Newsletter'
 import Contacto from './components/Contactos/Contacto';
 import MapComponent from './components/Maps/MapComponent';
 //components
-import Home from './components/Initial/Home';
+import Home from './components/Initial/home';
 
 function App() {
 
