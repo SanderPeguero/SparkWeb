@@ -14,7 +14,9 @@ import Hero from './components/Hero'
 import Navbar from './components/NavBar/Navbar'
 import Newsletter from './components/Newsletter'
 import Contacto from './components/Contactos/Contacto';
-
+import MapComponent from './components/Maps/MapComponent';
+//components
+import Home from './components/Home/Home';
 
 function App() {
 
@@ -31,6 +33,9 @@ function App() {
           <Newsletter />
           <Cards /> */}
           {/* <Footer /> */}
+          <Cards />
+          {/* <MapComponent /> */}
+          <Footer /> 
           <Routes>
             <Route exact path='/' element={<Hero />} />
             <Route exact path='/contacto' element={<Contacto />} />
