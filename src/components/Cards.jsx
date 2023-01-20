@@ -15,7 +15,7 @@ const Cards = () => {
           </h1>
           <p>Solicite soporte personalizado.</p>
         </div>
-      <div className='max-w-[1240px] mx-auto grid md:grid-cols-4 gap-8'>
+      <div className='max-w-[1240px] mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-2'>
           <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300'>
               <img className='w-20 mx-auto mt-[-3rem] bg-white' src={Single} alt="/" />
               <h2 className='text-2xl font-bold text-center py-8'>1 hora</h2>
