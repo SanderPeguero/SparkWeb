@@ -5,10 +5,10 @@ import TypeAnimation from './TypeAnimation';
 const Hero = () => {
   return (
     <div className='text-white'>
-      <div className='max-w-[950px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
+      <div className='max-w-[950px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center md:px-4'>
         <p className='text-[#00df9a] font-bold p-2'>
         </p>
-        <h1 className='md:text-[5rem] sm:text-[3rem] text-[2rem] font-bold md:py-6'>
+        <h1 className='md:text-[5rem] sm:text-[3rem] text-[2rem] font-bold md:py-6 '>
           Soluciones Almonte Gil
         </h1>
         <p className='md:text-2xl text-xl font-bold text-gray-500'>Somos especialistas en el desarrollo de soluciones para la gestión de su empresa. <br/> Desarrollamos el software necesario a la medida de sus necesidades concretas.</p>
