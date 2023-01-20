@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaTwitterSquare,
 } from 'react-icons/fa';
-import Logo from '../assets/Logo.svg'
+import Logo from '../assets/ColorLogo.svg'
 
 const Footer = () => {
   return (
