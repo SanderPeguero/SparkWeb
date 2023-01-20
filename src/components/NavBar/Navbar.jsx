@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import Logo from '../../assets/ColorLogo.svg'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -20,7 +21,11 @@ const Navbar = () => {
           <li className='p-4'><a className='text-white' href='/'>Servicios</a></li>
           <li className='p-4'><a className='text-white' href='/'>Soporte</a></li>
           <li className='p-4'><a className='text-white' href='/'>Nosotros</a></li>
-          <li className='p-4'><a className='text-white' href='/contacto'>Contacto</a></li>
+          <li className='p-4'>
+            <Link className='text-white' to='/contacto'>
+              Contacto
+            </Link>
+          </li>
         </ul>
         <div onClick={handleNav} className='block md:hidden'>
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}

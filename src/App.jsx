@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // import './App.css'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route, Routes
 } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ function App() {
           {/* <Footer />  */}
           <Routes>
             <Route exact path='/' element={<Home/>} />
-            <Route exact path='/contacto' element={<MapComponent />} />
+            <Route exact path='contacto' element={<MapComponent />} />
             {/*
             <Route exact path='/Analytics' element={<Analytics />}/>
             <Route exact path='/Newsletter' element={<Newsletter />}/>
