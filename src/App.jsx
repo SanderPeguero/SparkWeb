@@ -16,7 +16,7 @@ import Newsletter from './components/Newsletter'
 import Contacto from './components/Contactos/Contacto';
 import MapComponent from './components/Maps/MapComponent';
 //components
-import Home from './components/Home/Home';
+import Home from './components/Initial/Home';
 
 function App() {
 
@@ -33,18 +33,18 @@ function App() {
           <Newsletter />
           <Cards /> */}
           {/* <Footer /> */}
-          <Cards />
+          {/* <Cards /> */}
           {/* <MapComponent /> */}
-          <Footer /> 
+          {/* <Footer />  */}
           <Routes>
-            <Route exact path='/' element={<Hero />} />
-            <Route exact path='/contacto' element={<Contacto />} />
+            <Route exact path='/' element={<Home/>} />
+            <Route exact path='/contacto' element={<MapComponent />} />
             {/*
             <Route exact path='/Analytics' element={<Analytics />}/>
             <Route exact path='/Newsletter' element={<Newsletter />}/>
             <Route exact path='/Cards' element={<Cards />}/> */}
           </Routes>
-          <Footer /> 
+          {/* <Footer />  */}
         </main>
       </Router>
     </div>

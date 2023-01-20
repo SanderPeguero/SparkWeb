@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Typed from 'react-typed';
+// import Typed from 'react-typed';
 
 import { Card } from 'react-bootstrap';
 
@@ -25,14 +25,14 @@ const Home = () => {
                         <p className='md:text-3xl sm:text-2xl text-xl font-bold py-4 text-[rgb(25,137,252)]'>
                             {"{"}
                         </p>
-                        <Typed
+                        {/* <Typed
                             className='md:text-3xl sm:text-2xl text-xl font-bold md:pl-4 pl-2'
                             strings={['Unicos ', 'Innovadores ', 'Competitivos ']}
                             typeSpeed={70}
                             backSpeed={60}
                             loop
                             showCursor
-                        />
+                        /> */}
                         <p className='md:text-3xl sm:text-2xl text-xl font-bold py-4 text-[rgb(25,137,252)]'>
                             {"}"}
                         </p>

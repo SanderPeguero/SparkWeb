@@ -15,8 +15,8 @@ const center = {
 const MapComponent = (props) => {
     
     const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyCKBdleKDEtF_PKbCON9NOrwl2iX6SrYnE"
+        id: 'sagrd-375317',
+        googleMapsApiKey: "AIzaSyD3XAtcsIVvtjCYHqOS5yy8aRSMNYqF1DQ"
     })
 
     const [map, setMap] = React.useState(null)
@@ -33,15 +33,17 @@ const MapComponent = (props) => {
     }, [])
 
     return isLoaded ? (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={18}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
-        >
-            <Marker position={center} />
-        </GoogleMap>
+        <div className="px-[1rem] md:px-[6rem] lg:px-[20rem]">
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={15}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+                >
+                <Marker position={center} />
+            </GoogleMap>
+        </div>
     ) : <></>
 };
 

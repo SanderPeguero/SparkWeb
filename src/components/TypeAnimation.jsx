@@ -30,9 +30,7 @@ function TypeAnimation({ strings, className, space, typeSpeed, backSpeed, backSp
                 }
             }, typeSpeed)
             
-        }
-        
-        if(complete){
+        }else if(complete){
 
             if(index == text.length){
                 setTimeout(() => {
