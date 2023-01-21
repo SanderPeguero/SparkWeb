@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Newsletter = () => {
   return (
@@ -17,13 +18,13 @@ const Newsletter = () => {
               type='email'
               placeholder='Email'
             />
-            <button className='bg-[#00df9a] text-black rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3'>
+            <button className='bg-[#3aaa36] text-black rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3'>
               Notificame
             </button>
           </div>
           <p>
             Nos preocupamos por la proteccion de tus datos. Lee nuestra{' '}
-            <span className='text-[#00df9a]'>Politica de Privacidad.</span>
+            <Link className='text-[#3aaa36]'>Politica de Privacidad.</Link>
           </p>
         </div>
       </div>

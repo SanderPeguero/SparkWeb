@@ -13,7 +13,9 @@ const Navbar = () => {
   return (
     <div className='  bg-[#00000080]'>{/*Fijar NavBar */}
       <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
-        <img className='w-[7rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
+        <Link to='/'>
+          <img className='w-[7rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
+        </Link>
         {/* <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT.</h1> */}
         <ul className='hidden md:flex'>
           <li className='p-4'><a className='text-white' href='/'>Inicio</a></li>

@@ -9,6 +9,7 @@ import P3 from '../../assets/p 3.png'
 import P4 from '../../assets/p 4.png'
 import Backgraphics from '../../assets/backgraphics.png'
 
+
 function Hero() {
   const [elementIsVisible, setElementIsVisible] = useState(false);
   const bg = {
@@ -48,7 +49,7 @@ function Hero() {
       onChange={(isVisible) => setElementIsVisible(isVisible)}
       minTopValue={300}
     >
-      <div className="wrapper bg-[#081730] flex md:flex-row flex-col items-center justify-between md:px-[5rem] px-[1rem] rounded-b-[5rem] w-[100%] md:h-[35rem] h-[80rem] relative">
+      <div className="wrapper flex md:flex-row flex-col items-center justify-between md:px-[5rem] px-[1rem] rounded-b-[5rem] w-[100%] md:h-[35rem] h-[80rem] relative">
         {/* left side */}
         <div className="headings flex flex-col items-start justify-center h-[100%] md:pl-[10rem] md:text-[3rem] text-[2rem]  text-white">
           <span>Experience The</span>{" "}
@@ -67,15 +68,7 @@ function Hero() {
           </div>
         </div>
         {/* right side */}
-        <div className="images relative w-[50rem]">
-          {/* <motion.img
-            variants={bg}
-            animate={`${elementIsVisible}`}
-            transition={{ duration: 1, type: "ease-out" }}
-            src={Backgraphics}
-            alt=""
-            className="absolute top-[-8rem] left-[19rem]"
-          /> */}
+        {/* <div className="images relative w-[50rem]">
           <img
             src={P1}
             alt=""
@@ -114,7 +107,7 @@ function Hero() {
             alt=""
             className="absolute w-[5rem] left-[12.5rem] top-[12rem]"
           />
-        </div>
+        </div> */}
       </div>
     </VisibilitySensor>
   );

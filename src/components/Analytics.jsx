@@ -19,7 +19,7 @@ const Analytics = () => {
             <br/>
             Permite generar sus reportes fiscales: 606, 607 y 608. Este sistema ha sido Desarrollado en Visual Studio con SQL Server y está homologado por la Dirección General de Impuestos Internos (DGII) para trabajar con impresoras fiscales.
           </p>
-          <button className='bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3'>Solicitar</button>
+          <button className='bg-[#375aa5] text-[#ffffff] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3'>Solicitar</button>
         </div>
       </div>
     </div>
