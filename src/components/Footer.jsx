@@ -8,13 +8,39 @@ import {
 } from 'react-icons/fa';
 import Logo from '../assets/ColorLogo.svg'
 import { Link } from 'react-router-dom'
+import instagram from '../assets/instagram.svg'
+import facebook from '../assets/facebook.svg'
+import twitter from '../assets/twitter.svg'
+import linkedin from '../assets/linkedin.svg'
 
+const socialMedia = [
+  {
+    id: "social-media-1",
+    icon: instagram,
+    link: "https://www.instagram.com/sag.rd/",
+  },
+  {
+    id: "social-media-2",
+    icon: facebook,
+    link: "https://www.facebook.com/SolucionesAlmonteGil",
+  },
+  {
+    id: "social-media-3",
+    icon: twitter,
+    link: "https://twitter.com/SolucionAlmGil",
+  },
+  {
+    id: "social-media-4",
+    icon: linkedin,
+    link: "https://www.linkedin.com/",
+  },
+];
 
 
 const Footer = () => {
   return (
     <>
-      <div className='max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 md:gap-32 lg:gap-32 text-gray-300'>
+      <div className='max-w-[1240px] mx-auto py-12 px-4 grid lg:grid-cols-3 gap-8 md:gap-32 lg:gap-32 text-gray-300 border-t-[0.5px] border-t-[#3f3E45]'>
         <div>
           <img className='w-[7rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
           <p className='py-4'>
@@ -32,11 +58,11 @@ const Footer = () => {
           <p className='py-2'>
             Dirección:<Link to='/contacto' className='bg-[#f4bc23] text-black rounded-md text-[0.7rem] w-[100px] ml-4 my-3 px-3 py-2'>Ver en Mapa</Link>
           </p>
-          <div className='flex justify-between md:w-[75%] pt-4'>
+          {/* <div className='flex justify-between md:w-[75%] pt-4'>
             <FaFacebookSquare size={30} />
             <FaInstagram size={30} />
             <FaTwitterSquare size={30} />
-          </div>
+          </div> */}
         </div>
         
         <div className='lg:col-span-2 flex justify-between pt-8'>
@@ -75,6 +101,25 @@ const Footer = () => {
               <li className='py-3 text-sm'>Terms</li>
             </ul>
           </div>
+        </div>
+      </div>
+      <div className='max-w-[1240px] mx-auto sm:py-16 py-3'>
+        <div className='w-full flex justify-between items-center md:flex-row flex-col pt-6  border-t-[0.5px] border-t-[#3f3E45]'>
+            <p className='font-poppins font-normal text-center text-[13px] leading-[27px] text-white'>
+              © 2022 Copyright Quantum Republica Dominicana
+            </p>
+
+            <div className='flex flex-row md:mt-0 mt-6'>
+                {socialMedia.map((social, index) => (
+                  <img
+                  key={social.id} 
+                  src={social.icon} 
+                  alt={social.id} 
+                  className={`w-[21px] h-[21px] object-contain cursor-pointer ${index !== socialMedia.length - 1 ? 'mr-6' : 'mr-0'}`}
+                  onClick={() => window.open(social.link)}
+                  />
+                  ))}
+            </div>
         </div>
       </div>
     </>

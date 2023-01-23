@@ -8,6 +8,7 @@ import P2 from '../../assets/p 2.png'
 import P3 from '../../assets/p 3.png'
 import P4 from '../../assets/p 4.png'
 import Backgraphics from '../../assets/backgraphics.png'
+import graphics from '../../assets/graphics.png'
 
 
 function Hero() {
@@ -22,10 +23,10 @@ function Hero() {
   };
   const musicPlayer = {
     true: {
-      left: "295px",
+      left: "-30px",
     },
     false: {
-      left: "235px",
+      left: "15px",
     },
   };
   const rect = {
@@ -47,33 +48,33 @@ function Hero() {
   return (
     <VisibilitySensor
       onChange={(isVisible) => setElementIsVisible(isVisible)}
-      minTopValue={300}
+      minTopValue={400}
     >
-      <div className="wrapper flex md:flex-row flex-col items-center justify-between md:px-[5rem] px-[1rem] rounded-b-[5rem] w-[100%] md:h-[35rem] h-[80rem] relative">
+      <div className="wrapper flex md:flex-row flex-col items-center justify-between md:px-[5rem] px-[1rem] rounded-b-[5rem] w-[100%] md:h-[55rem] h-[55rem] relative">
         {/* left side */}
-        <div className="headings flex flex-col items-start justify-center h-[100%] md:pl-[10rem] md:text-[3rem] text-[2rem]  text-white">
-          <span>Experience The</span>{" "}
+        <div className="headings flex flex-col items-start md:justify-center pb-[15rem] lg:pb-[5rem] justify-end h-[100%] md:pl-[10rem] md:text-[3rem] text-[2rem]  text-white">
+          {/* <span>Experience The</span>{" "} */}
           <span>
-            <b>Best Qulaity Music</b>
+            <b>Soluciones Almonte Gil</b>
           </span>
           <span className="text-[15px] text-[#525D6E]">
-            Donec laoreet nec velit vitae aliquam. Ut quis tincidunt purus.
-            <br />
-            Suspendisse in leo non risus tincidunt lobortis.
+          Especialistas en el desarrollo de soluciones para la gestión de su empresa. 
+          <br/> Desarrollamos el software necesario a la medida de las necesidades de nuestros clientes.
           </span>
           {/* download ads */}
           <div>
-            <span className="text-[13px]">Download now on IOS and Android</span>
-            <DownloadAds />
+            <button className='bg-[#3aaa36] text-white w-[150px] rounded-md text-[1rem] my-6 mx-auto px-6 py-3'>Contactanos</button>
+            {/* <span className="text-[13px]">Download now on IOS and Android</span> */}
+            {/* <DownloadAds /> */}
           </div>
         </div>
         {/* right side */}
-        {/* <div className="images relative w-[50rem]">
-          <img
+        <div className="images relative w-[20rem] md:w-[50rem]">
+          {/* <img
             src={P1}
             alt=""
             className="absolute top-[-15rem] h-[34rem] left-[13rem]"
-          />
+          /> */}
           <motion.img
             variants={musicPlayer}
             animate={`${elementIsVisible}`}
@@ -81,11 +82,11 @@ function Hero() {
               duration: 1,
               type: "ease-out",
             }}
-            src={P2}
+            src={graphics}
             alt=""
-            className="absolute left-[235px] top-[94px] w-[175px]"
+            className="absolute left-[-30px] sm:top-[-50rem] top-[-50rem] md:top-[-18rem] w-[675px]"
           />
-          <motion.img
+          {/* <motion.img
             variants={rect}
             animate={`${elementIsVisible}`}
             transition={{
@@ -95,8 +96,8 @@ function Hero() {
             src={P3}
             alt=""
             className="absolute w-[5rem] left-[13rem] top-[12rem]"
-          />
-          <motion.img
+          /> */}
+          {/* <motion.img
             variants={heart}
             animate={`${elementIsVisible}`}
             transition={{
@@ -106,8 +107,8 @@ function Hero() {
             src={P4}
             alt=""
             className="absolute w-[5rem] left-[12.5rem] top-[12rem]"
-          />
-        </div> */}
+          /> */}
+        </div>
       </div>
     </VisibilitySensor>
   );

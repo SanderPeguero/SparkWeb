@@ -33,7 +33,7 @@ const MapComponent = (props) => {
     }, [])
 
     return isLoaded ? (
-        <div className="px-[1rem] md:px-[6rem] lg:px-[30rem]">
+        <div className="px-[1rem] md:px-[6rem] lg:px-[30rem] py-[12rem]">
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}

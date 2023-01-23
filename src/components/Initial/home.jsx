@@ -23,7 +23,7 @@ function home(){
             <Newsletter />
             <Cards />
             {/* <MapComponent /> */}
-            <Footer /> 
+            {/* <Footer />  */}
         </>
     )
 }
