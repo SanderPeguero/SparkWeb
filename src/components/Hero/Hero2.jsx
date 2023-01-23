@@ -3,7 +3,7 @@ import DownloadAds from "./DownloadAds";
 import VisibilitySensor from "react-visibility-sensor";
 import { motion } from "framer-motion";
 
-import P1 from '../../assets/p 1.png'
+//import P1 from '../../assets/p 1.png'
 import P2 from '../../assets/p 2.png'
 import P3 from '../../assets/p 3.png'
 import P4 from '../../assets/p 4.png'
