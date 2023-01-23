@@ -8,7 +8,7 @@ import P2 from '../../assets/p 2.png'
 import P3 from '../../assets/p 3.png'
 import P4 from '../../assets/p 4.png'
 import Backgraphics from '../../assets/backgraphics.png'
-import graphics from '../../assets/graphics.png'
+import graphics from '../../assets/graphics.svg'
 
 
 function Hero() {
