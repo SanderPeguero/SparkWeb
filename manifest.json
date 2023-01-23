@@ -1,0 +1,16 @@
+{
+    "background_color": "#000000",
+    "description": "Soluciones Almonte GIl",
+    "display": "fullscreen",
+    "icons": [
+        {
+        "src": "./src/assets/ColorLogo.svg",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/png"
+        }
+    ],
+    "name": "SCoin",
+    "short_name": "SCoin",
+    "start_url": "/",
+    "theme_color": "#000000"
+}
