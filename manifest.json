@@ -1,5 +1,5 @@
 {
-    "background_color": "#000000",
+    "background_color": "#050f22",
     "description": "Soluciones Almonte GIl",
     "display": "fullscreen",
     "icons": [
@@ -9,8 +9,8 @@
         "type": "image/png"
         }
     ],
-    "name": "SCoin",
-    "short_name": "SCoin",
+    "name": "Soluciones Almonte Gil",
+    "short_name": "SAG",
     "start_url": "/",
-    "theme_color": "#000000"
+    "theme_color": "#050f22"
 }
