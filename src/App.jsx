@@ -3,7 +3,7 @@ import {HashRouter as Router, Route, Routes} from 'react-router-dom'
 //components
 import Footer from './components/Footer'
 import MapComponent from './components/Maps/MapComponent'
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/NavBar/Navbar'
 import Home from './components/Initial/home'
 
 function App() {
