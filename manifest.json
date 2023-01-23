@@ -4,9 +4,9 @@
     "display": "fullscreen",
     "icons": [
         {
-        "src": "./src/assets/ColorLogo.svg",
+        "src": "./src/assets/SAG.png",
         "sizes": "64x64 32x32 24x24 16x16",
-        "type": "image/png"
+        "type": "/png"
         }
     ],
     "name": "Soluciones Almonte Gil",
