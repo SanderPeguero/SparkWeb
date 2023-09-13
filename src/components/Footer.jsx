@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaTwitterSquare,
 } from 'react-icons/fa';
-import Logo from '../assets/ColorLogo.svg'
+import Logo from '../assets/SparkLogo.svg'
 import { Link } from 'react-router-dom'
 import instagram from '../assets/instagram.svg'
 import facebook from '../assets/facebook.svg'
@@ -17,17 +17,17 @@ const socialMedia = [
   {
     id: "social-media-1",
     icon: instagram,
-    link: "https://www.instagram.com/sag.rd/",
+    link: "https://www.instagram.com/grupo_spark/",
   },
   {
     id: "social-media-2",
     icon: facebook,
-    link: "https://www.facebook.com/SolucionesAlmonteGil",
+    link: "https://www.facebook.com/",
   },
   {
     id: "social-media-3",
     icon: twitter,
-    link: "https://twitter.com/SolucionAlmGil",
+    link: "https://twitter.com/",
   },
   {
     id: "social-media-4",
@@ -42,22 +42,22 @@ const Footer = () => {
     <>
       <div className='max-w-[1240px] mx-auto py-12 px-4 grid lg:grid-cols-3 gap-8 md:gap-32 lg:gap-32 text-gray-300 border-t-[0.5px] border-t-[#3f3E45]'>
         <div>
-          <img className='w-[7rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
+          <img className='w-[17rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
           <p className='py-4'>
             <span className=' text-lg font-bold'>Información de Contacto</span>
           </p>
           <p className='py-2'>
-            Teléfono:   809-588-2012
+            Teléfono:   829-506-3137
           </p>
-          <p className='py-2'>
+          {/* <p className='py-2'>
             Celular:  (849)-356-4820 / (809)-519-9963
-          </p>
+          </p> */}
           <p className='py-2'>
-              Email: info@sagrd.com
+              Email: sanderpeguero.21@gmail.com
           </p>
-          <p className='py-2'>
+          {/* <p className='py-2'>
             Dirección:<Link to='/contacto' className='bg-[#f4bc23] text-black rounded-md text-[0.7rem] w-[100px] ml-4 my-3 px-3 py-2'>Ver en Mapa</Link>
-          </p>
+          </p> */}
           {/* <div className='flex justify-between md:w-[75%] pt-4'>
             <FaFacebookSquare size={30} />
             <FaInstagram size={30} />
@@ -67,7 +67,7 @@ const Footer = () => {
         
         <div className='lg:col-span-2 flex justify-between pt-8'>
           <div>
-            <h6 className='font-medium text-gray-600 pb-4 pt-2'>Solutions</h6>
+            <h6 className='font-medium text-white pb-4 pt-2'>Solutions</h6>
             <ul>
               <li className='py-3 text-sm'>Analytics</li>
               <li className='py-3 text-sm'>Marketing</li>
@@ -76,7 +76,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h6 className='font-medium text-gray-600 pb-4 pt-2'>Support</h6>
+            <h6 className='font-medium text-white pb-4 pt-2'>Support</h6>
             <ul>
               <li className='py-3 text-sm'>Pricing</li>
               <li className='py-3 text-sm'>Blog</li>
@@ -85,7 +85,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h6 className='font-medium text-gray-600 pb-4 pt-2'>Company</h6>
+            <h6 className='font-medium text-white pb-4 pt-2'>Company</h6>
             <ul>
               <li className='py-3 text-sm'>About</li>
               <li className='py-3 text-sm'>Jobs</li>
@@ -94,7 +94,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h6 className='font-medium text-gray-600 pb-4 pt-2'>Legal</h6>
+            <h6 className='font-medium text-white pb-4 pt-2'>Legal</h6>
             <ul>
               <li className='py-3 text-sm'>Claim</li>
               <li className='py-3 text-sm'>Policy</li>

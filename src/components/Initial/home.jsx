@@ -6,6 +6,8 @@ import Newsletter from '../Newsletter'
 import MapComponent from '../Maps/MapComponent';
 import Footer from '../Footer';
 
+import LandingPage from '../../assets/LandingPage.png'
+
 function home(){
 
     const [nicol, setinput] = useState('');
@@ -19,9 +21,9 @@ function home(){
         <>
             <Hero />
             {/* <Contacto /> */}
-            <Analytics />
+            {/* <Analytics /> */}
             <Newsletter />
-            <Cards />
+            {/* <Cards /> */}
             {/* <MapComponent /> */}
             {/* <Footer />  */}
         </>

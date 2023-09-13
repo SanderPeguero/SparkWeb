@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-import Logo from '../../assets/ColorLogo.svg'
+import Logo from '../../assets/SparkLogo.svg'
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -11,23 +11,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className='  bg-[#00000080]'>{/*Fijar NavBar */}
+    <div>{/*Fijar NavBar */}
       <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
         <Link to='/'>
-          <img className='w-[7rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
+          <img className='w-[18rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
         </Link>
         {/* <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT.</h1> */}
         <ul className='hidden md:flex'>
           <li className='p-4'><a className='text-white' href='/'>Inicio</a></li>
-          <li className='p-4'><a className='text-white' href='/'>Productos</a></li>
-          <li className='p-4'><a className='text-white' href='/'>Servicios</a></li>
-          <li className='p-4'><a className='text-white' href='/'>Soporte</a></li>
-          <li className='p-4'><a className='text-white' href='/'>Nosotros</a></li>
-          <li className='p-4'>
-            <Link className='text-white' to='/contacto'>
-              Contacto
-            </Link>
-          </li>
+          <li className='p-4'><a className='text-white' href='/'>Boletas</a></li>
+          <li className='p-4'><a className='text-white' href='/'>Activacion</a></li>
+          <li className='p-4'><a className='text-white' href='/'>Tienda</a></li>
+          <li className='p-4'><a className='text-white' href='/'>Info</a></li>
         </ul>
         <div onClick={handleNav} className='block md:hidden'>
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}

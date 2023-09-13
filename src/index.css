@@ -21,5 +21,15 @@
 } */
 
 body {
-  background-color: #050f22;
+  background-color: #000000;
+  background-image: url('./assets/Bg.png');
+  /* background-repeat: no-repeat;
+  background-size: contain;
+  background-position: inherit;
+   */
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+  /* background-repeat: round; */
+  
 }
