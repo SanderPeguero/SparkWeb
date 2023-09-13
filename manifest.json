@@ -1,16 +1,16 @@
 {
     "background_color": "#050f22",
-    "description": "Soluciones Almonte GIl",
+    "description": "Spark Group",
     "display": "fullscreen",
     "icons": [
         {
-        "src": "./src/assets/ColorLogo.svg",
+        "src": "./src/assets/SparkLogo.svg",
         "sizes": "64x64 32x32 24x24 16x16",
         "type": "/svg"
         }
     ],
-    "name": "Soluciones Almonte Gil",
-    "short_name": "SAG",
+    "name": "Spark Group",
+    "short_name": "SG",
     "start_url": "/",
     "theme_color": "#050f22"
 }
