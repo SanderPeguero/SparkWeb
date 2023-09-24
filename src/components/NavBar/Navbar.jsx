@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-import Logo from '../../assets/SparkLogo.svg'
+import Logo from '../../assets/Logo.png'
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -13,10 +13,12 @@ const Navbar = () => {
   return (
     <div>{/*Fijar NavBar */}
       <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
-        <Link to='/'>
-          <img className='w-[18rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
-        </Link>
-        {/* <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT.</h1> */}
+        <a href='/'>
+          <div className='flex items-center'>
+            <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
+            <h1 className='w-full ml-2 text-3xl font-bold text-[#ffffff]'>Spark Group</h1>
+          </div>
+        </a>
         <ul className='hidden md:flex'>
           <li className='p-4'><a className='text-white' href='/'>Inicio</a></li>
           <li className='p-4'><a className='text-white' href='/'>Boletas</a></li>

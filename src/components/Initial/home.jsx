@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import Analytics from '../Analytics';
-import Cards from '../Cards';
-import Hero from '../Hero/Hero2';
+// import Analytics from '../Analytics';
+// import Cards from '../Cards';
+import Hero from '../Hero/Hero';
 import Newsletter from '../Newsletter'
-import MapComponent from '../Maps/MapComponent';
-import Footer from '../Footer';
+import Features from '../Features/Features';
+// import MapComponent from '../Maps/MapComponent';
+// import Footer from '../Footer';
 
-import LandingPage from '../../assets/LandingPage.png'
+// import LandingPage from '../../assets/Bg.png'
 
 function home(){
 
@@ -22,7 +23,8 @@ function home(){
             <Hero />
             {/* <Contacto /> */}
             {/* <Analytics /> */}
-            <Newsletter />
+            <Newsletter /> 
+            <Features/>
             {/* <Cards /> */}
             {/* <MapComponent /> */}
             {/* <Footer />  */}

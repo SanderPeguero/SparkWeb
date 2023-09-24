@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaTwitterSquare,
 } from 'react-icons/fa';
-import Logo from '../assets/SparkLogo.svg'
+import Logo from '../assets/Logo.png'
 import { Link } from 'react-router-dom'
 import instagram from '../assets/instagram.svg'
 import facebook from '../assets/facebook.svg'
@@ -42,7 +42,10 @@ const Footer = () => {
     <>
       <div className='max-w-[1240px] mx-auto py-12 px-4 grid lg:grid-cols-3 gap-8 md:gap-32 lg:gap-32 text-gray-300 border-t-[0.5px] border-t-[#3f3E45]'>
         <div>
-          <img className='w-[17rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="SAG Logo" />
+          <div className='flex items-center'>
+            <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
+            <h1 className='w-full ml-2 text-3xl font-bold text-[#ffffff]'>Spark Group</h1>
+          </div>
           <p className='py-4'>
             <span className=' text-lg font-bold'>Información de Contacto</span>
           </p>
@@ -106,7 +109,7 @@ const Footer = () => {
       <div className='max-w-[1240px] mx-auto sm:py-16 py-3'>
         <div className='w-full flex justify-between items-center md:flex-row flex-col pt-6  border-t-[0.5px] border-t-[#3f3E45]'>
             <p className='font-poppins font-normal text-center text-[13px] leading-[27px] text-white'>
-              © 2022 Copyright Quantum Republica Dominicana
+              © 2023 Copyright Spark Group Republica Dominicana
             </p>
 
             <div className='flex flex-row md:mt-0 mt-6'>
