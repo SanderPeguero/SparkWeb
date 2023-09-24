@@ -1,5 +1,5 @@
 import { useState } from "react";
-import bg from '../../assets/bg.png'
+import bg from '../../assets/Bg.png'
 import Lamentably from '../../assets/Lamentably.png'
 import Logo from '../../assets/Flyers.png'
 
