@@ -342,7 +342,7 @@ function tickets({ db }) {
                     </div>
                 </div>
             </div>
-            <button onClick={upload}>Upload Data</button>
+            {/* <button onClick={upload}>Upload Data</button> */}
         </>
     )
 }
