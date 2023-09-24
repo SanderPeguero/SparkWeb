@@ -1,40 +1,39 @@
 import { useState } from "react";
-import bg from '../../assets/Bg.png'
-import Lamentably from '../../assets/Lamentably.png'
-import Logo from '../../assets/Flyers.png'
-
-
 
 const Hero = () => {
 
     const [slider, setslider] = useState(0);
 
     const slidePage0 = {
-        image: bg,
+        image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleManiaBanner.png?alt=media&token=e0f7efb4-6af6-40c3-87f5-d17ab0398f8b',
         title: 'Sparkle Mania',
         titleColor: 'text-[#ef2899]',
         description: 'Sparkle Mania sera una celebración deslumbrante que iluminara la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparklemania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos, La diversión, la música y la amistad te esperan.',
+        date: '21/10/2023'
     }
 
     const slidePage1 = {
-        image: Lamentably,
+        image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/LamentablyBanner.png?alt=media&token=16d5a16c-a67b-4982-b38f-f5ac5e1eed55',
         title: 'Lamentably',
         titleColor: 'text-[#1e912a]',
         description: 'Lamentably sera una celebración deslumbrante que iluminara la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparklemania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos, La diversión, la música y la amistad te esperan.',
+        date: '05/08/2023'
     }
 
     const slidePage2 = {
-        image: Logo,
+        image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/Flyers.png?alt=media&token=fff711ab-1d81-443b-ac02-5665ebea4bca',
         title: 'Proximamente',
         titleColor: '',
-        description: '23/12/23',
+        description: '',
+        date: '23/12/2023'
     }
 
     const slidePage3 = {
-        image: Logo,
+        image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/Flyers.png?alt=media&token=fff711ab-1d81-443b-ac02-5665ebea4bca',
         title: 'Proximamente',
         titleColor: '',
-        description: '2024',
+        description: '',
+        date: '??/??/2024'
     }
 
     const images = [
@@ -62,7 +61,7 @@ const Hero = () => {
                         </span>
                     </div>
                     <div className="mt-6">
-                        <span>2023</span>
+                        <span>{images[slider].date}</span>
                     </div>
                     {/* <div className="mt-6">
                         <a href="/" className="block px-3 py-2 font-semibold text-center text-white transition-colors duration-200 transform bg-blue-500 rounded-md md:inline hover:bg-blue-400">Mas Informacion</a>

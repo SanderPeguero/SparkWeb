@@ -21,7 +21,7 @@ const Navbar = () => {
         </a>
         <ul className='hidden md:flex'>
           <li className='p-4'><a className='text-white' href='/'>Inicio</a></li>
-          <li className='p-4'><a className='text-white' href='/'>Boletas</a></li>
+          <li className='p-4'><Link className='text-white' to='boletas'>Boletas</Link></li>
           <li className='p-4'><a className='text-white' href='/'>Activacion</a></li>
           <li className='p-4'><a className='text-white' href='/'>Tienda</a></li>
           <li className='p-4'><a className='text-white' href='/'>Info</a></li>
