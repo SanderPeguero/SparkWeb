@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import Navbar from './components/NavBar/Navbar'
 import Home from './layout/Home/home'
 import Tickets from './layout/Tickets/tickets'
+import Activation from './layout/Activation/Activation'
 
 function App({ db }) {
 
@@ -19,6 +20,7 @@ function App({ db }) {
           <Routes>
             <Route exact path='/' element={<Home/>} />
             <Route exact path='/boletas' element={<Tickets db={db}/>} />
+            <Route exact path='/activacion' element={<Activation db={db}/>} />
             {/* <Route exact path='contacto' element={<MapComponent />} /> */}
           </Routes>
           <Footer/>

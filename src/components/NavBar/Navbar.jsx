@@ -22,7 +22,7 @@ const Navbar = () => {
         <ul className='hidden md:flex'>
           <li className='p-4'><a className='text-white' href='/'>Inicio</a></li>
           <li className='p-4'><Link className='text-white' to='boletas'>Boletas</Link></li>
-          <li className='p-4'><a className='text-white' href='/'>Activacion</a></li>
+          <li className='p-4'><Link className='text-white' to='activacion'>Activacion</Link></li>
           <li className='p-4'><a className='text-white' href='/'>Tienda</a></li>
           <li className='p-4'><a className='text-white' href='/'>Info</a></li>
         </ul>
@@ -33,11 +33,10 @@ const Navbar = () => {
           {/* <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>REACT.</h1> */}
           <img className='w-[8rem] text-3xl font-bold text-[#00df9a] p-4' src={Logo} alt="SAG Logo" />
           <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Inicio</a></li>
-          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Productos</a></li>
-          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Servicios</a></li>
-          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Soporte</a></li>
-          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Nosotros</a></li>
-          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/contacto'>Contacto</a></li>
+          <li className='p-4 border-b border-gray-600'><Link className='text-white' to='boletas'>Boletas</Link></li>
+          <li className='p-4 border-b border-gray-600'><Link className='text-white' to='activacion'>Activacion</Link></li>
+          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Tienda</a></li>
+          <li className='p-4 border-b border-gray-600'><a className='text-white' href='/'>Info</a></li>
         </ul>
       </div>
     </div>
