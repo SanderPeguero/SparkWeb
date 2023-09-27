@@ -1,54 +1,56 @@
 import { useEffect, useState } from "react";
 import { collection, addDoc, getDocs, getFirestore } from "firebase/firestore";
 
-// const tickets = [
-//     {'ticketId' : '3B0F', 'name': 'Henlihanny Altagracia',  'paid':'false', 'price':300},                                  
-//     {'ticketId' : '37R0', 'name': 'David Chavez ',          'paid':'false', 'price':300},                          
-//     {'ticketId' : '5J95', 'name': 'Arianny del carmen',     'paid':'false', 'price':300},                               
-//     {'ticketId' : 'E7F8', 'name': 'Rosannyi Brito',         'paid':'false', 'price':300},                           
-//     {'ticketId' : '7B9E', 'name': 'Biannelis Lopez',        'paid':'false', 'price':300},                            
-//     {'ticketId' : 'B689', 'name': 'Joey Valenzuela',        'paid':'false', 'price':300},                            
-//     {'ticketId' : '92A1', 'name': 'Enmanuel Breton',        'paid':'false', 'price':300},                            
-//     {'ticketId' : '0A4F', 'name': 'Eury Cortorreal',        'paid':'false', 'price':300},                            
-//     {'ticketId' : '62G1', 'name': 'Hermione Bello',         'paid':'false', 'price':300},                           
-//     {'ticketId' : '3A54', 'name': 'Genesis Ramirez',        'paid':'false', 'price':300},                            
-//     {'ticketId' : 'F43B', 'name': 'Eunysol Payano',         'paid':'false', 'price':300},                           
-//     {'ticketId' : 'FBE3', 'name': 'Abimael de Leon',        'paid':'false', 'price':300},                            
-//     {'ticketId' : 'D3FA', 'name': 'Anabel Aquino',          'paid':'false', 'price':300},                          
-//     {'ticketId' : '6S48', 'name': 'Eliana M. Garcia',       'paid':'false', 'price':300},                             
-//     {'ticketId' : '173D', 'name': 'Irvin Burgos',           'paid':'false', 'price':300},                         
-//     {'ticketId' : '7CEC', 'name': 'Juandy Ortega',          'paid':'false', 'price':300},                          
-//     {'ticketId' : 'A942', 'name': 'Joseph Noe',             'paid':'false', 'price':300},                       
-//     {'ticketId' : 'C6C4', 'name': 'Carlos Enrique Yanguela','paid':'false', 'price':300},                                    
-//     {'ticketId' : '784V', 'name': 'Elizabeth Espinal',      'paid':'false', 'price':300},                              
-//     {'ticketId' : '17K6', 'name': 'Fradiel nuñez ',         'paid':'false', 'price':300},                           
-//     {'ticketId' : 'C3F8', 'name': 'Danny Holguin',          'paid':'false', 'price':300},                          
-//     {'ticketId' : 'ACC4', 'name': 'Erickson colon',         'paid':'false', 'price':300},                           
-//     {'ticketId' : 'C72E', 'name': 'Luis',                   'paid':'false', 'price':300},                 
-//     {'ticketId' : '607R', 'name': 'Elizabeth Diaz',         'paid':'false', 'price':300},                           
-//     {'ticketId' : '4T41', 'name': 'Lori Diaz',              'paid':'false', 'price':300},                      
-//     {'ticketId' : '85E3', 'name': 'Jerinson Fernandez',     'paid':'false', 'price':300},                               
-//     {'ticketId' : 'EC2C', 'name': 'Carlos Inoa',            'paid':'false', 'price':300},                        
-//     {'ticketId' : '76Y8', 'name': 'Elvis vicente',          'paid':'false', 'price':300},                          
-//     {'ticketId' : '86C8', 'name': 'Felian Abreu (Rosanyi)', 'paid':'false', 'price':300},                                   
-//     {'ticketId' : '4A0A', 'name': 'Angelic Rodriguez',      'paid':'false', 'price':300},                              
-//     {'ticketId' : '31E7', 'name': 'Enmanuel Garcia',        'paid':'false', 'price':300},                            
-//     {'ticketId' : '676D', 'name': 'Pamela Gonzalez',        'paid':'false', 'price':300},                            
-//     {'ticketId' : 'E2A8', 'name': 'Jose Alberto Gonzalez',  'paid':'false', 'price':300},                                  
-//     {'ticketId' : '03CB', 'name': 'Anderson Nuñez',         'paid':'false', 'price':300},                           
-//     {'ticketId' : 'D732', 'name': 'Irene Consuelo',         'paid':'false', 'price':300},                           
-//     {'ticketId' : '8FE1', 'name': 'Yaderlys serra',         'paid':'false', 'price':300},                           
-//     {'ticketId' : 'B8DA', 'name': 'Yubelis Lopez',          'paid':'false', 'price':300},                          
-//     {'ticketId' : '0C1F', 'name': 'Joel Alejo',             'paid':'false', 'price':300},                       
-//     {'ticketId' : 'B8AD', 'name': 'Luis Holguin',           'paid':'false', 'price':300},                         
-//     {'ticketId' : 'C421', 'name': '',                       'paid':'false', 'price':300},             
-//     {'ticketId' : '1CA3', 'name': 'Joel Omar Ureña',        'paid':'false', 'price':300},                            
-//     {'ticketId' : '8F52', 'name': 'Anderson',               'paid':'false', 'price':300},                     
-//     {'ticketId' : '3CA9', 'name': 'Renny Rojas',            'paid':'false', 'price':300},                        
-//     {'ticketId' : '6FB8', 'name': 'Jesus Santos',           'paid':'false', 'price':300},                         
-//     {'ticketId' : 'C85F', 'name': 'Cesar Acosta',           'paid':'false', 'price':300},                         
-//     {'ticketId' : '31EF', 'name': '',                       'paid':'false', 'price':300},             
-// ]
+import Unpaid from './unpaid'
+
+const tickets = [
+    {'ticketId' : '3B0F', 'name': 'Henlihanny Altagracia',  'paid':'false', 'price':400.00, 'discount': 100.00},                                  
+    {'ticketId' : '37R0', 'name': 'David Chavez ',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
+    {'ticketId' : '5J95', 'name': 'Arianny del carmen',     'paid':'false', 'price':400.00, 'discount': 100.00},                               
+    {'ticketId' : 'E7F8', 'name': 'Rosannyi Brito',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : '7B9E', 'name': 'Biannelis Lopez',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : 'B689', 'name': 'Joey Valenzuela',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : '92A1', 'name': 'Enmanuel Breton',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : '0A4F', 'name': 'Eury Cortorreal',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : '62G1', 'name': 'Hermione Bello',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : '3A54', 'name': 'Genesis Ramirez',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : 'F43B', 'name': 'Eunysol Payano',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : 'FBE3', 'name': 'Abimael de Leon',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : 'D3FA', 'name': 'Anabel Aquino',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
+    {'ticketId' : '6S48', 'name': 'Eliana M. Garcia',       'paid':'false', 'price':400.00, 'discount': 100.00},                             
+    {'ticketId' : '173D', 'name': 'Irvin Burgos',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
+    {'ticketId' : '7CEC', 'name': 'Juandy Ortega',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
+    {'ticketId' : 'A942', 'name': 'Joseph Noe',             'paid':'false', 'price':400.00, 'discount': 100.00},                       
+    {'ticketId' : 'C6C4', 'name': 'Carlos Enrique Yanguela','paid':'false', 'price':400.00, 'discount': 100.00},                                    
+    {'ticketId' : '784V', 'name': 'Elizabeth Espinal',      'paid':'false', 'price':400.00, 'discount': 100.00},                              
+    {'ticketId' : '17K6', 'name': 'Fradiel nuñez ',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : 'C3F8', 'name': 'Danny Holguin',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
+    {'ticketId' : 'ACC4', 'name': 'Erickson colon',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : 'C72E', 'name': 'Luis',                   'paid':'false', 'price':400.00, 'discount': 100.00},                 
+    {'ticketId' : '607R', 'name': 'Elizabeth Diaz',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : '4T41', 'name': 'Lori Diaz',              'paid':'false', 'price':400.00, 'discount': 100.00},                      
+    {'ticketId' : '85E3', 'name': 'Jerinson Fernandez',     'paid':'false', 'price':400.00, 'discount': 100.00},                               
+    {'ticketId' : 'EC2C', 'name': 'Carlos Inoa',            'paid':'false', 'price':400.00, 'discount': 100.00},                        
+    {'ticketId' : '76Y8', 'name': 'Elvis vicente',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
+    {'ticketId' : '86C8', 'name': 'Felian Abreu (Rosanyi)', 'paid':'false', 'price':400.00, 'discount': 100.00},                                   
+    {'ticketId' : '4A0A', 'name': 'Angelic Rodriguez',      'paid':'false', 'price':400.00, 'discount': 100.00},                              
+    {'ticketId' : '31E7', 'name': 'Enmanuel Garcia',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : '676D', 'name': 'Pamela Gonzalez',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : 'E2A8', 'name': 'Jose Alberto Gonzalez',  'paid':'false', 'price':400.00, 'discount': 100.00},                                  
+    {'ticketId' : '03CB', 'name': 'Anderson Nuñez',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : 'D732', 'name': 'Irene Consuelo',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : '8FE1', 'name': 'Yaderlys serra',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
+    {'ticketId' : 'B8DA', 'name': 'Yubelis Lopez',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
+    {'ticketId' : '0C1F', 'name': 'Joel Alejo',             'paid':'false', 'price':400.00, 'discount': 100.00},                       
+    {'ticketId' : 'B8AD', 'name': 'Luis Holguin',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
+    {'ticketId' : 'C421', 'name': '',                       'paid':'false', 'price':400.00, 'discount': 100.00},             
+    {'ticketId' : '1CA3', 'name': 'Joel Omar Ureña',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
+    {'ticketId' : '8F52', 'name': 'Anderson',               'paid':'false', 'price':400.00, 'discount': 100.00},                     
+    {'ticketId' : '3CA9', 'name': 'Renny Rojas',            'paid':'false', 'price':400.00, 'discount': 100.00},                        
+    {'ticketId' : '6FB8', 'name': 'Jesus Santos',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
+    {'ticketId' : 'C85F', 'name': 'Cesar Acosta',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
+    {'ticketId' : '31EF', 'name': '',                       'paid':'false', 'price':400.00, 'discount': 100.00},             
+]
 
 function Activation() {
 
@@ -56,7 +58,8 @@ function Activation() {
     const [name, setname] = useState('');
     const [allowActivation, setallowActivation] = useState(false)
     const [paid, setpaid] = useState(null);
-    const [price, setprice] = useState(0);
+    const [price, setprice] = useState(0.0);
+    const [discount, setdiscount] = useState(0.0);
 
 
     const db = getFirestore()
@@ -83,6 +86,7 @@ function Activation() {
                 console.log(data)
                 setpaid(data.paid)
                 setprice(data.price)
+                setdiscount(data.discount)
                 setallowActivation(true)
                 return
             }
@@ -91,70 +95,71 @@ function Activation() {
 
     }
 
-    // const set = async () => {
-
-    //     tickets.forEach(async (ticket) => {
-    //         try {
-    //             const docRef = await addDoc(collection(db, "Tickets"), {
-    //                 ticketId: ticket.ticketId,
-    //                 name: ticket.name,
-    //                 paid: ticket.paid,
-    //                 price: ticket.price,
-    //                 dateOfPurchase: '',
-    //                 submitDate: new Date()
-    //             });
-    //             console.log("Document written with ID: ", docRef.id);
-    //         } catch (e) {
-    //             console.error("Error adding document: ", e);
-    //         }
-    //     })
-    // }
-
-    // useEffect(() => {
-    // }, []);
-
-    const [description, setdescription] = useState('');
-    const [email, setemail] = useState('');
-    const [time, settime] = useState('');
-
     const set = async () => {
 
-        console.log("validacion Fallida")
-        console.log({
-            name,
-            ticketId,
-            description,
-            email,
-            time
-        })
-        if(name !=='' && setdescription !=='' && ticketId !=='' && email !==''){
-            console.log("validacion exitosa")
+        tickets.forEach(async (ticket) => {
             try {
-                const docRef = await addDoc(collection(db, "Sparklers"), {
-                    name: name,
-                    ticketId: ticketId,
-                    description: description,
-                    email: email,
-                    time: time,
-                    activationDate: new Date()
+                const docRef = await addDoc(collection(db, "Tickets"), {
+                    ticketId: ticket.ticketId,
+                    name: ticket.name,
+                    paid: ticket.paid,
+                    price: ticket.price,
+                    discount: ticket.discount,
+                    dateOfPurchase: '',
+                    submitDate: new Date()
                 });
                 console.log("Document written with ID: ", docRef.id);
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
-        }
-
+        })
     }
+
+
+    const [description, setdescription] = useState('');
+    const [email, setemail] = useState('');
+    const [time, settime] = useState('');
+
+    // const set = async () => {
+
+    //     console.log("validacion Fallida")
+    //     console.log({
+    //         name,
+    //         ticketId,
+    //         description,
+    //         email,
+    //         time
+    //     })
+    //     if(name !=='' && setdescription !=='' && ticketId !=='' && email !==''){
+    //         console.log("validacion exitosa")
+    //         try {
+    //             const docRef = await addDoc(collection(db, "Sparklers"), {
+    //                 name: name,
+    //                 ticketId: ticketId,
+    //                 description: description,
+    //                 email: email,
+    //                 time: time,
+    //                 activationDate: new Date()
+    //             });
+    //             console.log("Document written with ID: ", docRef.id);
+    //         } catch (e) {
+    //             console.error("Error adding document: ", e);
+    //         }
+    //     }
+
+    // }
+
     if(paid == 'false'){
         return(
-            <div className="flex items-center justify-center p-12">
-                <div className="mx-auto w-full max-w-[550px]">
-                    <div className="text-white">Esta boleta no se puede activar porque todavia no ha sido paga</div>
-                    <div className="text-white">Precio RD${price}</div>
-                    <div className="text-white">Comunicate con Sander o con Keyla cuando quieras pagarla</div>
-                </div>
+            <Unpaid name={name} price={price} discount={discount}/>
+            // <div className="flex items-center justify-center p-12">
+            //     <div className="mx-auto w-full max-w-[550px]">
+            //         <div className="text-white">Esta boleta no se puede activar porque todavia no ha sido paga</div>
+            //         <div className="text-white">Precio RD${price}</div>
+            //         <div className="text-white">Comunicate con Sander o con Keyla cuando quieras pagarla</div>
+            //     </div>
 
-            </div>
+            // </div>
         )
     }
 
@@ -352,6 +357,7 @@ function Activation() {
                         Submit
                     </button>
                 </div>
+                {/* <button onClick={set}>Subir Archivos</button> */}
             </div>
         </div>
     )

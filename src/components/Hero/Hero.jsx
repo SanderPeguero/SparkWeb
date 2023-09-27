@@ -8,7 +8,7 @@ const Hero = () => {
         image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleManiaBanner.png?alt=media&token=e0f7efb4-6af6-40c3-87f5-d17ab0398f8b',
         title: 'Sparkle Mania',
         titleColor: 'text-[#ef2899]',
-        description: 'Sparkle Mania sera una celebración deslumbrante que iluminara la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparklemania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos, La diversión, la música y la amistad te esperan.',
+        description: 'Sparkle Mania sera una celebración deslumbrante que iluminará la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparklemania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos. La diversión, la música y la amistad te esperan.',
         date: '21/10/2023'
     }
 
@@ -16,7 +16,7 @@ const Hero = () => {
         image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/LamentablyBanner.png?alt=media&token=16d5a16c-a67b-4982-b38f-f5ac5e1eed55',
         title: 'Lamentably',
         titleColor: 'text-[#1e912a]',
-        description: 'Lamentably sera una celebración deslumbrante que iluminara la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparklemania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos, La diversión, la música y la amistad te esperan.',
+        description: 'Lamentably fue un reencuentro extraordinario de compañeros que decidieron celebrar su vinculo. Una noche eléctrica y vibrante, donde el tiempo pareció detenerse mientras todos disfrutaban de bebidas exquisitas, musica envolvente y un ambiente cargado de afecto y camaraderia. Lamentablemente, esta velada se hizo corta, pero dejo en el corazon de todos la memoria de una noche inolvidable llena de risas y conversaciones entrañables y la alegria de compartir con amigos que son mas que colegas, son una verdadera familia.',
         date: '05/08/2023'
     }
 
@@ -70,7 +70,7 @@ const Hero = () => {
             </div>
 
             <div className="flex items-center justify-center w-full h-96 md:w-1/2">
-                <img className="object-cover w-full h-full max-w-2xl rounded-md" src={images[slider].image} alt="Banner"></img>
+                <img className="object-scale-down w-full h-full max-w-2xl rounded-md" src={images[slider].image} alt="Banner"></img>
             </div>
         </div>
 

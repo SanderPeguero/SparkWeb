@@ -10,7 +10,6 @@ import { ref, onValue } from 'firebase/database'
 import { getFirestore } from 'firebase/firestore';
 
 
-
 function tickets() {
 
     const db = getFirestore()

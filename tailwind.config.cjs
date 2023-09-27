@@ -5,6 +5,9 @@ module.exports = {
   // ],
   theme: {
     extend: {},
+    fontFamily:{
+      'anonymous': ['anonymous pro']
+    }
   },
   plugins: [
     require('flowbite/plugin')

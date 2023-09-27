@@ -2,6 +2,7 @@ import { useState } from 'react'
 // import Analytics from '../Analytics';
 // import Cards from '../Cards';
 import Hero from '../../components/Hero/Hero';
+// import Hero2 from '../../components/Hero/Hero2'
 import Newsletter from '../../components/Newsletter'
 import Features from '../../components/Features/Features';
 // import MapComponent from '../Maps/MapComponent';
@@ -21,6 +22,7 @@ function home(){
     return(
         <>
             <Hero />
+            {/* <Hero2 /> */}
             {/* <Contacto /> */}
             {/* <Analytics /> */}
             <Newsletter /> 
