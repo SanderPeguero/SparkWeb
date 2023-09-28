@@ -8,7 +8,8 @@ const Hero = () => {
         image: 'https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleManiaBanner.png?alt=media&token=e0f7efb4-6af6-40c3-87f5-d17ab0398f8b',
         title: 'Sparkle Mania',
         titleColor: 'text-[#ef2899]',
-        description: 'Sparkle Mania sera una celebración deslumbrante que iluminará la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparklemania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos. La diversión, la música y la amistad te esperan.',
+        description: 'Sparkle Mania sera una celebración deslumbrante que iluminará la noche con su encanto y diversión desenfrenada. Los disfraces son la esencia de Sparkle Mania, donde la imaginación se convertira en realidad. Así que, vístete con tus atuendos más brillantes y únetenos. La diversión, la música y la amistad te esperan.',
+        // description: 'Sparkle Mania es un evento que iluminará la noche con su encanto, los disfraces son la esencia de este evento, asi que vistete como quieras y ven a brillar con nosotros esta noche, la música, la amistad y las buenas vibras te esperan.',
         date: '21/10/2023'
     }
 
