@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { collection, addDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 import graphics from '../../assets/SparkleMania.png'
 
+import { ContextVariable } from '../../Context';
 import Unpaid from './unpaid'
 
 // const tickets = [
@@ -54,6 +55,8 @@ import Unpaid from './unpaid'
 // ]
 
 function Activation() {
+
+    const { alert, setalert } = useContext(ContextVariable)
 
     const [ticketId, setticketId] = useState('')
     const [name, setname] = useState('');
@@ -116,22 +119,34 @@ function Activation() {
 
     const set = async () => {
 
-        tickets.forEach(async (ticket) => {
+        // tickets.forEach(async (ticket) => {
             try {
-                const docRef = await addDoc(collection(db, "Tickets"), {
-                    ticketId: ticket.ticketId,
-                    name: ticket.name,
-                    paid: ticket.paid,
-                    price: ticket.price,
-                    discount: ticket.discount,
+                const docRef = await addDoc(collection(db, "SparkleManiaActivations"), {
+                    ticketId: ticketId,
+                    name: name,
+                    paid: paid,
+                    price: price,
+                    discount: discount,
                     dateOfPurchase: '',
                     submitDate: new Date()
                 });
                 console.log("Document written with ID: ", docRef.id);
+                setalert({
+                    ...alert,
+                    open: true,
+                    message: `Tu boleta se ha activado correctamente`,
+                    severity: 'success'
+                });
             } catch (e) {
+                setalert({
+                    ...alert,
+                    open: true,
+                    message: `Tu boleta no se ha pudo activar`,
+                    severity: 'error'
+                });
                 console.error("Error adding document: ", e);
             }
-        })
+        // })
     }
 
 

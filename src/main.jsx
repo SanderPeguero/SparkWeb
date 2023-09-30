@@ -33,6 +33,8 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <App db={db}/>
