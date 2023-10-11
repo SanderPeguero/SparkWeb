@@ -32,7 +32,7 @@ const Navbar = () => {
         </a>
         <ul className='hidden md:flex'>
           <li className='p-4'><Link className='text-white' to='/' replace={true}>Inicio</Link></li>
-          <li className='p-4' onClick={handleNav} ><Link className='text-white' to='boletas'>Boletas</Link></li>
+          <li className='p-4'><Link className='text-white' to='boletas'>Boletas</Link></li>
           <li className='p-4'><Link className='text-white' to='activacion'>Activacion</Link></li>
           <li className='p-4'><Link className='text-white' href='/'>Tienda</Link></li>
           <li className='p-4'><a className='text-white' href='/'>Info</a></li>
