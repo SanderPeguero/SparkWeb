@@ -16,27 +16,27 @@ function ReserveTicket({ event }) {
     const [name, setname] = useState('')
     const [lastName, setlastName] = useState('')
     const [email, setemail] = useState('')
-    const [time, settime] = useState('')
+    const [how, sethow] = useState('')
     const [guest, setguest] = useState(false)
     const [address, setaddress] = useState('')
-    const [number, setnumber] = useState(0)
+    const [number, setnumber] = useState('')
 
     const db = getFirestore()
     const ref = collection(db, 'Sparklers')
 
     const upload = async () => {
 
-        if (name != '' && lastName != '' && lastName != '' && address != '' && email != '' && time != '') {
+        if (name != '' && lastName != '' && lastName != '' && address != '' && email != '' && how != '' && number != "") {
             // console.log("validacion exitosa")
             try {
                 const docRef = await addDoc(collection(db, "TicketReservations"), {
                     name: name,
                     lastName: lastName,
                     email: email,
-                    time: time,
-                    guest: guest,
                     address: address,
                     number: number,
+                    how: how,
+                    guest: guest,
                     event: event,
                     submitDate: new Date()
                 });
@@ -147,9 +147,9 @@ function ReserveTicket({ event }) {
                                         Número de Teléfono
                                     </label>
                                     <input
-                                        type="number"
-                                        name="time"
-                                        id="time"
+                                        type="text"
+                                        name="number"
+                                        id="number"
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         onChange={(e) => setnumber(e.target.value)}
                                     />
@@ -161,14 +161,14 @@ function ReserveTicket({ event }) {
                                         htmlFor="time"
                                         className="mb-3 block text-base font-medium text-[#ffffff]"
                                     >
-                                        A que hora piensas asistir?
+                                        Como te enteraste de este evento?
                                     </label>
                                     <input
-                                        type="time"
-                                        name="time"
-                                        id="time"
+                                        type="text"
+                                        name="how"
+                                        id="how"
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        onChange={(e) => settime(e.target.value)}
+                                        onChange={(e) => sethow(e.target.value)}
                                     />
                                 </div>
                             </div>

@@ -7,6 +7,7 @@ import Navbar from './components/NavBar/Navbar'
 import Home from './layout/Home/home'
 import Tickets from './layout/Tickets/tickets'
 import Activation from './layout/Activation/Activation'
+import Login from './layout/Login/Login'
 import MuiAlert from '@mui/material/Alert';
 
 import Snackbar from '@mui/material/Snackbar';
@@ -90,6 +91,7 @@ function App({ db }) {
               <Route exact path='/' element={<Home />} />
               <Route exact path='/boletas' element={<Tickets />} />
               <Route exact path='/activacion' element={<Activation />} />
+              <Route exact path='/login' element={<Login />} />
               {/* <Route exact path='contacto' element={<MapComponent />} /> */}
             </Routes>
             <Footer />

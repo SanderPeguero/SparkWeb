@@ -38,7 +38,7 @@ function tickets() {
 
     if (reserveTicket2) {
         return (
-            <ReserveTicket event={'2003'} />
+            <ReserveTicket event={'2003 Musica de la Vieja Escuela'} />
         )
     }
 
