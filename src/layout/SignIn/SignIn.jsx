@@ -2,7 +2,7 @@ import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signO
 // import app from "../../firebase/firebase.init";
 import { useState } from "react";
 
-const Login = () => {
+const SignIn = () => {
     const [user, setUser] = useState();
 
     // const auth = getAuth(app);
@@ -47,7 +47,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+<div>
             {
                 user ? null :
                     // <>
@@ -92,4 +92,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignIn;

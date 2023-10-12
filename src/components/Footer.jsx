@@ -70,38 +70,38 @@ const Footer = () => {
         
         <div className='lg:col-span-2 flex justify-between pt-8'>
           <div>
-            <h6 className='font-medium text-white pb-4 pt-2'>Solutions</h6>
+            <h6 className='font-medium text-white pb-4 pt-2'>Tickets</h6>
             <ul>
-              <li className='py-3 text-sm'>Analytics</li>
-              <li className='py-3 text-sm'>Marketing</li>
-              <li className='py-3 text-sm'>Commerce</li>
-              <li className='py-3 text-sm'>Insights</li>
+              <li className='py-3 text-sm'><Link to='boletas'>Boletas</Link></li>
+              <li className='py-3 text-sm'><Link to='activacion'>Activacion</Link></li>
+              <li className='py-3 text-sm'><Link>Dashboard</Link></li>
+              <li className='py-3 text-sm'><Link>Mantenimiento</Link></li>
             </ul>
           </div>
           <div>
-            <h6 className='font-medium text-white pb-4 pt-2'>Support</h6>
+            <h6 className='font-medium text-white pb-4 pt-2'>Store</h6>
             <ul>
-              <li className='py-3 text-sm'>Pricing</li>
-              <li className='py-3 text-sm'>Blog</li>
-              <li className='py-3 text-sm'>Guides</li>
-              <li className='py-3 text-sm'>API Status</li>
+              <li className='py-3 text-sm'><Link>Tienda</Link></li>
+              <li className='py-3 text-sm'><Link>Ordenes</Link></li>
+              <li className='py-3 text-sm'><Link>Dashboard</Link></li>
+              <li className='py-3 text-sm'><Link>Mantenimiento</Link></li>
             </ul>
           </div>
           <div>
             <h6 className='font-medium text-white pb-4 pt-2'>Company</h6>
             <ul>
-              <li className='py-3 text-sm'>About</li>
-              <li className='py-3 text-sm'>Jobs</li>
-              <li className='py-3 text-sm'>Press</li>
-              <li className='py-3 text-sm'>Careers</li>
+              <li className='py-3 text-sm'><Link>About</Link></li>
+              <li className='py-3 text-sm'><Link>Jobs</Link></li>
+              <li className='py-3 text-sm'><Link>Press</Link></li>
+              <li className='py-3 text-sm'><Link>Careers</Link></li>
             </ul>
           </div>
           <div>
             <h6 className='font-medium text-white pb-4 pt-2'>Legal</h6>
             <ul>
-              <li className='py-3 text-sm'>Claim</li>
-              <li className='py-3 text-sm'>Policy</li>
-              <li className='py-3 text-sm'>Terms</li>
+              <li className='py-3 text-sm'><Link>Claim</Link></li>
+              <li className='py-3 text-sm'><Link>Policy</Link></li>
+              <li className='py-3 text-sm'><Link>Terms</Link></li>
             </ul>
           </div>
         </div>

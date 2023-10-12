@@ -6,52 +6,55 @@ import { ContextVariable } from '../../Context';
 import Unpaid from './unpaid'
 
 // const tickets = [
-//     {'ticketId' : '3B0F', 'name': 'Henlihanny Altagracia',  'paid':'false', 'price':400.00, 'discount': 100.00},                                  
-//     {'ticketId' : '37R0', 'name': 'David Chavez ',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
-//     {'ticketId' : '5J95', 'name': 'Arianny del carmen',     'paid':'false', 'price':400.00, 'discount': 100.00},                               
-//     {'ticketId' : 'E7F8', 'name': 'Rosannyi Brito',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : '7B9E', 'name': 'Biannelis Lopez',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : 'B689', 'name': 'Joey Valenzuela',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : '92A1', 'name': 'Enmanuel Breton',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : '0A4F', 'name': 'Eury Cortorreal',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : '62G1', 'name': 'Hermaione Bello',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : '3A54', 'name': 'Genesis Ramirez',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : 'F43B', 'name': 'Eunysol Payano',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : 'FBE3', 'name': 'Abimael de Leon',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : 'D3FA', 'name': 'Anabel Aquino',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
-//     {'ticketId' : '6S48', 'name': 'Eliana M. Garcia',       'paid':'false', 'price':400.00, 'discount': 100.00},                             
-//     {'ticketId' : '173D', 'name': 'Irvin Burgos',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
-//     {'ticketId' : '7CEC', 'name': 'Juandy Ortega',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
-//     {'ticketId' : 'A942', 'name': 'Joseph Noe',             'paid':'false', 'price':400.00, 'discount': 100.00},                       
-//     {'ticketId' : 'C6C4', 'name': 'Carlos Enrique Yanguela','paid':'false', 'price':400.00, 'discount': 100.00},                                    
-//     {'ticketId' : '784V', 'name': 'Elizabeth Espinal',      'paid':'false', 'price':400.00, 'discount': 100.00},                              
-//     {'ticketId' : '17K6', 'name': 'Fradiel nuñez ',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : 'C3F8', 'name': 'Danny Holguin',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
-//     {'ticketId' : 'ACC4', 'name': 'Erickson colon',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : 'C72E', 'name': 'Luis',                   'paid':'false', 'price':400.00, 'discount': 100.00},                 
-//     {'ticketId' : '607R', 'name': 'Elizabeth Diaz',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : '4T41', 'name': 'Lori Diaz',              'paid':'false', 'price':400.00, 'discount': 100.00},                      
-//     {'ticketId' : '85E3', 'name': 'Jerinson Fernandez',     'paid':'false', 'price':400.00, 'discount': 100.00},                               
-//     {'ticketId' : 'EC2C', 'name': 'Carlos Inoa',            'paid':'false', 'price':400.00, 'discount': 100.00},                        
-//     {'ticketId' : '76Y8', 'name': 'Elvis Vicente',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
-//     {'ticketId' : '86C8', 'name': 'Felian Abreu (Rosanyi)', 'paid':'false', 'price':400.00, 'discount': 100.00},                                   
-//     {'ticketId' : '4A0A', 'name': 'Angelic Rodriguez',      'paid':'false', 'price':400.00, 'discount': 100.00},                              
-//     {'ticketId' : '31E7', 'name': 'Enmanuel Garcia',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : '676D', 'name': 'Pamela Gonzalez',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : 'E2A8', 'name': 'Jose Alberto Gonzalez',  'paid':'false', 'price':400.00, 'discount': 100.00},                                  
-//     {'ticketId' : '03CB', 'name': 'Anderson Nuñez',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : 'D732', 'name': 'Irene Consuelo',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : '8FE1', 'name': 'Yaderlys serra',         'paid':'false', 'price':400.00, 'discount': 100.00},                           
-//     {'ticketId' : 'B8DA', 'name': 'Yubelis Lopez',          'paid':'false', 'price':400.00, 'discount': 100.00},                          
-//     {'ticketId' : '0C1F', 'name': 'Joel Alejo',             'paid':'false', 'price':400.00, 'discount': 100.00},                       
-//     {'ticketId' : 'B8AD', 'name': 'Luis Holguin',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
-//     {'ticketId' : 'C421', 'name': '',                       'paid':'false', 'price':400.00, 'discount': 100.00},             
-//     {'ticketId' : '1CA3', 'name': 'Joel Omar Ureña',        'paid':'false', 'price':400.00, 'discount': 100.00},                            
-//     {'ticketId' : '8F52', 'name': 'Anderson',               'paid':'false', 'price':400.00, 'discount': 100.00},                     
-//     {'ticketId' : '3CA9', 'name': 'Renny Rojas',            'paid':'false', 'price':400.00, 'discount': 100.00},                        
-//     {'ticketId' : '6FB8', 'name': 'Jesus Santos',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
-//     {'ticketId' : 'C85F', 'name': 'Cesar Acosta',           'paid':'false', 'price':400.00, 'discount': 100.00},                         
-//     {'ticketId' : '31EF', 'name': '',                       'paid':'false', 'price':400.00, 'discount': 100.00},             
+//     {'ticketId' : '9D4E0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                  
+//     {'ticketId' : 'C0E3B', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
+//     {'ticketId' : 'E1B5D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                               
+//     {'ticketId' : '5A2C4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : '1F7C0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : '8B0D5', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : 'D5C8A', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : 'A3F1E', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : '4B7D9', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : '6F2E4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : 'B2C1E', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : 'F6A1D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : '2C9D8', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
+//     {'ticketId' : 'E4B7F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                             
+//     {'ticketId' : '3D5E1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
+//     {'ticketId' : '0B1F4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
+//     {'ticketId' : '9A7E1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                       
+//     {'ticketId' : 'C6D8F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                    
+//     {'ticketId' : '8E4B9', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                              
+//     {'ticketId' : '7F3C0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : 'D2E7A', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
+//     {'ticketId' : '5C3B7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : '1F4D8', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                 
+//     {'ticketId' : 'E0B4F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : '7D9E0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                      
+//     {'ticketId' : '3C8B0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                               
+//     {'ticketId' : '2A6F5', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                        
+//     {'ticketId' : '0E5F1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
+//     {'ticketId' : 'B9C0D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                   
+//     {'ticketId' : '64A1F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                              
+//     {'ticketId' : '8D7B4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : '37C2F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : 'A0E4F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                  
+//     {'ticketId' : 'C9D81', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : 'E2B7D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : '5FAC2', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
+//     {'ticketId' : '1D8A6', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
+//     {'ticketId' : '0F4E7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                       
+//     {'ticketId' : 'B3C0F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
+//     {'ticketId' : '9A4E7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},             
+//     {'ticketId' : 'F3E48', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : '5B7F4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
+//     {'ticketId' : '8C0A3', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                     
+//     {'ticketId' : '2D6F1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                        
+//     {'ticketId' : '7E5B9', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
+//     {'ticketId' : 'D0C2F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},
+//     {'ticketId' : 'A1B6C', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
+//     {'ticketId' : '3F8D7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},  
+//     {'ticketId' : '4E9A0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                 
 // ]
 
 function Activation() {
@@ -117,71 +120,72 @@ function Activation() {
 
     }
 
-    const set = async () => {
+    // const set = async () => {
 
-        // tickets.forEach(async (ticket) => {
-            try {
-                const docRef = await addDoc(collection(db, "SparkleManiaActivations"), {
-                    ticketId: ticketId,
-                    name: name,
-                    paid: paid,
-                    price: price,
-                    discount: discount,
-                    dateOfPurchase: '',
-                    submitDate: new Date()
-                });
-                console.log("Document written with ID: ", docRef.id);
-                setalert({
-                    ...alert,
-                    open: true,
-                    message: `Tu boleta se ha activado correctamente`,
-                    severity: 'success'
-                });
-            } catch (e) {
-                setalert({
-                    ...alert,
-                    open: true,
-                    message: `Tu boleta no se ha pudo activar`,
-                    severity: 'error'
-                });
-                console.error("Error adding document: ", e);
-            }
-        // })
-    }
+    //     tickets.forEach(async (ticket) => {
+    //         try {
+    //             const docRef = await addDoc(collection(db, "Tickets"), {
+    //                 ticketId: ticket.ticketId,
+    //                 name: ticket.name,
+    //                 paid: ticket.paid,
+    //                 price: ticket.price,
+    //                 discount: ticket.discount,
+    //                 seller: ticket.seller,
+    //                 dateOfPurchase: '',
+    //                 submitDate: new Date()
+    //             });
+    //             console.log("Document written with ID: ", docRef.id);
+    //             setalert({
+    //                 ...alert,
+    //                 open: true,
+    //                 message: `Tu boleta se ha activado correctamente`,
+    //                 severity: 'success'
+    //             });
+    //         } catch (e) {
+    //             setalert({
+    //                 ...alert,
+    //                 open: true,
+    //                 message: `Tu boleta no se ha pudo activar`,
+    //                 severity: 'error'
+    //             });
+    //             console.error("Error adding document: ", e);
+    //         }
+    //     })
+    // }
 
 
     const [description, setdescription] = useState('');
     const [email, setemail] = useState('');
-    const [time, settime] = useState('');
+    const [number, setnumber] = useState('');
 
-    // const set = async () => {
+    const set = async () => {
 
-    //     console.log("validacion Fallida")
-    //     console.log({
-    //         name,
-    //         ticketId,
-    //         description,
-    //         email,
-    //         time
-    //     })
-    //     if(name !=='' && setdescription !=='' && ticketId !=='' && email !==''){
-    //         console.log("validacion exitosa")
-    //         try {
-    //             const docRef = await addDoc(collection(db, "Sparklers"), {
-    //                 name: name,
-    //                 ticketId: ticketId,
-    //                 description: description,
-    //                 email: email,
-    //                 time: time,
-    //                 activationDate: new Date()
-    //             });
-    //             console.log("Document written with ID: ", docRef.id);
-    //         } catch (e) {
-    //             console.error("Error adding document: ", e);
-    //         }
-    //     }
+        console.log("validacion Fallida")
+        console.log({
+            name,
+            ticketId,
+            description,
+            email,
+            time
+        })
+        if(name !=='' && setdescription !=='' && ticketId !=='' && email !==''){
+            console.log("validacion exitosa")
+            try {
+                const docRef = await addDoc(collection(db, "Sparklers"), {
+                    name: name,
+                    ticketId: ticketId,
+                    description: description,
+                    email: email,
+                    number: number,
+                    activationDate: new Date()
+                });
+                console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        }
 
-    // }
+    }
 
     if (paid == 'false') {
         return (
@@ -202,12 +206,11 @@ function Activation() {
             <div className="flex items-center justify-center p-12">
                 <div className="mx-auto w-full max-w-[550px]">
                     <span className="text-white">
-                        Para activar tu boleta: <br /><br />
-                        1-Ingresa tu nombre con tu primer apellido<br />
-                        2-Describe tus espectativas del evento<br />
-                        3-Ingresa tu correo <br />
-                        4-Selecciona la hora a la que asistiras<br />
-                        5-Presiona Activar
+                        Para activar tu boleta: <br /><br/>
+                        1-Ingresa tu nombre con tu primer apellido<br/>
+                        2-Ingresa tu numero<br/>
+                        3-Ingresa tu correo <br/>
+                        4-Presiona Activar
                     </span>
                     <form onSubmit={set} className="mt-8">
                         <div className="-mx-3 flex flex-wrap">
@@ -236,9 +239,9 @@ function Activation() {
                                 htmlFor="guest"
                                 className="mb-3 block text-base font-medium text-[#ffffff]"
                             >
-                                Que esperas de {'Sparkle Mania ?'}
+                                Crea una cuenta o inicia sesion
                             </label>
-                            <input
+                            {/* <input
                                 type="text"
                                 name="guest"
                                 id="guest"
@@ -246,7 +249,7 @@ function Activation() {
                                 min="0"
                                 className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 onChange={(e) => setdescription(e.target.value)}
-                            />
+                            /> */}
                         </div>
 
                         <div className="-mx-3 flex flex-wrap">
@@ -274,12 +277,13 @@ function Activation() {
                                         htmlFor="time"
                                         className="mb-3 block text-base font-medium text-[#ffffff]"
                                     >
-                                        Hora
+                                        Numero de Telefono
                                     </label>
                                     <input
-                                        type="time"
-                                        name="time"
-                                        id="time"
+                                        type="number"
+                                        name="number"
+                                        id="number"
+                                        placeholder="809-000-0000"
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         onChange={(e) => settime(e.target.value)}
                                     />

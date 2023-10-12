@@ -10,8 +10,6 @@ import ReserveTicket from './reserveTicket';
 
 function tickets() {
 
-
-
     // const get = async () => {
     //     const docsSnap = await getDocs(ref);
 
@@ -23,8 +21,6 @@ function tickets() {
     // useEffect(() => {
     //     get()
     // }, []);
-
-
 
     const [reserveTicket, setreserveTicket] = useState(false)
     const [reserveTicket2, setreserveTicket2] = useState(false)
