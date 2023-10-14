@@ -74,7 +74,7 @@ function Activation() {
 
     const get = async () => {
 
-        const command = query(ref, where('ticketId', '==', ticketId))
+        const command = query(ref, where('ticketId', '==', ticketId.toLocaleUpperCase()))
         // console.log(res)
 
         const querySnapshot = await getDocs(command)
@@ -166,22 +166,37 @@ function Activation() {
             ticketId,
             description,
             email,
-            time
+            // time
         })
-        if(name !=='' && setdescription !=='' && ticketId !=='' && email !==''){
+        if (name !== '' && number !== 0 && ticketId !== '' && email !== '') {
             console.log("validacion exitosa")
             try {
-                const docRef = await addDoc(collection(db, "Sparklers"), {
+                const docRef = await addDoc(collection(db, "SparkleManiaActivations"), {
                     name: name,
                     ticketId: ticketId,
-                    description: description,
+                    // description: description,
+                    price: price,
+                    discount: discount,
+                    paid: paid,
                     email: email,
                     number: number,
                     activationDate: new Date()
                 });
                 console.log("Document written with ID: ", docRef.id);
+                setalert({
+                    ...alert,
+                    open: true,
+                    message: `Tu boleta se ha activado correctamente`,
+                    severity: 'success'
+                });
             } catch (e) {
                 console.error("Error adding document: ", e);
+                setalert({
+                    ...alert,
+                    open: true,
+                    message: `Tu boleta no se ha pudo activar`,
+                    severity: 'error'
+                });
             }
         }
 
@@ -206,10 +221,11 @@ function Activation() {
             <div className="flex items-center justify-center p-12">
                 <div className="mx-auto w-full max-w-[550px]">
                     <span className="text-white">
-                        Para activar tu boleta: <br /><br/>
-                        1-Ingresa tu nombre con tu primer apellido<br/>
-                        2-Ingresa tu numero<br/>
-                        3-Ingresa tu correo <br/>
+                        Para activar tu boleta: <br /><br />
+                        1-Ingresa tu nombre con tu primer apellido<br />
+                        {/* 2-Crea una cuenta o inicia sesion */}
+                        2-Ingresa tu correo <br />
+                        3-Ingresa tu numero<br />
                         4-Presiona Activar
                     </span>
                     <form onSubmit={set} className="mt-8">
@@ -234,14 +250,14 @@ function Activation() {
                                 </div>
                             </div>
                         </div>
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <label
                                 htmlFor="guest"
                                 className="mb-3 block text-base font-medium text-[#ffffff]"
                             >
                                 Crea una cuenta o inicia sesion
                             </label>
-                            {/* <input
+                            <input
                                 type="text"
                                 name="guest"
                                 id="guest"
@@ -249,8 +265,8 @@ function Activation() {
                                 min="0"
                                 className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 onChange={(e) => setdescription(e.target.value)}
-                            /> */}
-                        </div>
+                            />
+                        </div> */}
 
                         <div className="-mx-3 flex flex-wrap">
                             <div className="w-full px-3 sm:w-1/2">
@@ -265,7 +281,7 @@ function Activation() {
                                         type="text"
                                         name="date"
                                         id="date"
-                                        placeholder='email@email.com'
+                                        // placeholder='email@email.com'
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         onChange={(e) => setemail(e.target.value)}
                                     />
@@ -274,18 +290,18 @@ function Activation() {
                             <div className="w-full px-3 sm:w-1/2">
                                 <div className="mb-5">
                                     <label
-                                        htmlFor="time"
+                                        htmlFor="number"
                                         className="mb-3 block text-base font-medium text-[#ffffff]"
                                     >
                                         Numero de Telefono
                                     </label>
                                     <input
-                                        type="number"
+                                        type="tel"
                                         name="number"
                                         id="number"
-                                        placeholder="809-000-0000"
+                                        // placeholder="809-000-0000"
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        onChange={(e) => settime(e.target.value)}
+                                        onChange={(e) => setnumber(e.target.value)}
                                     />
                                 </div>
                             </div>

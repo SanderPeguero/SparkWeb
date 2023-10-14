@@ -9,7 +9,7 @@ import { getFirestore } from 'firebase/firestore';
 import { ContextVariable } from '../../Context';
 
 
-function ReserveTicket({ event }) {
+function ReserveTicket({ event, purchase }) {
 
     const { alert, setalert } = useContext(ContextVariable)
 
