@@ -5,56 +5,61 @@ import graphics from '../../assets/SparkleMania.png'
 import { ContextVariable } from '../../Context';
 import Unpaid from './unpaid'
 
-// const tickets = [
-//     {'ticketId' : '9D4E0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                  
-//     {'ticketId' : 'C0E3B', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
-//     {'ticketId' : 'E1B5D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                               
-//     {'ticketId' : '5A2C4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : '1F7C0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : '8B0D5', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : 'D5C8A', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : 'A3F1E', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : '4B7D9', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : '6F2E4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : 'B2C1E', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : 'F6A1D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : '2C9D8', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
-//     {'ticketId' : 'E4B7F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                             
-//     {'ticketId' : '3D5E1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
-//     {'ticketId' : '0B1F4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
-//     {'ticketId' : '9A7E1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                       
-//     {'ticketId' : 'C6D8F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                    
-//     {'ticketId' : '8E4B9', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                              
-//     {'ticketId' : '7F3C0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : 'D2E7A', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
-//     {'ticketId' : '5C3B7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : '1F4D8', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                 
-//     {'ticketId' : 'E0B4F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : '7D9E0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                      
-//     {'ticketId' : '3C8B0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                               
-//     {'ticketId' : '2A6F5', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                        
-//     {'ticketId' : '0E5F1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
-//     {'ticketId' : 'B9C0D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                   
-//     {'ticketId' : '64A1F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                              
-//     {'ticketId' : '8D7B4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : '37C2F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : 'A0E4F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                  
-//     {'ticketId' : 'C9D81', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : 'E2B7D', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : '5FAC2', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                           
-//     {'ticketId' : '1D8A6', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                          
-//     {'ticketId' : '0F4E7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                       
-//     {'ticketId' : 'B3C0F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
-//     {'ticketId' : '9A4E7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},             
-//     {'ticketId' : 'F3E48', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : '5B7F4', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                            
-//     {'ticketId' : '8C0A3', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                     
-//     {'ticketId' : '2D6F1', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                        
-//     {'ticketId' : '7E5B9', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
-//     {'ticketId' : 'D0C2F', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},
-//     {'ticketId' : 'A1B6C', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                         
-//     {'ticketId' : '3F8D7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},  
-//     {'ticketId' : '4E9A0', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Jessy Burgos'},                                 
+
+// const tickets = [                                                                    
+//     {'ticketId' : 'E1B9F', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '9F4E2', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '3B1E7', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '3F0B6', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '4C7E0', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '6A2F3', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '7D5E0', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '2B9D8', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},
+//     {'ticketId' : 'E0C2A', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '8F3C7', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'A1B7E', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                                                    
+//     {'ticketId' : 'D8A3F', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '0C5F9', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'F4B7D', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '1E8D0', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '5D1F8', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '3A2F7', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '6B9D7', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '2E1C8', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},
+//     {'ticketId' : 'C0D4B', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '9F8A1', 'name': 'David Luna', 'paid':'true', 'price':400.00, 'discount': 100 , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'E5B7C', 'name': 'Dariela', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                                                    
+//     {'ticketId' : '7C3A0', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'A1D8E', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'B0C8F', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '0F3A2', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '4D8E1', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '2B0F3', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '3C6D8', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '9E4A1', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},
+//     {'ticketId' : 'D1B5E', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'F0C1E', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '5A2D4', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                                                    
+//     {'ticketId' : '8D3B6', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '6F8A2', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '7C1B5', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'A9F4B', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'B5E0F', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'E3A1D', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '0C7F1', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '4B9A3', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},
+//     {'ticketId' : 'D7E2B', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '1A8F3', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '3D2F8', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                                                    
+//     {'ticketId' : '6E1D4', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'C8B3F', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '2F7E1', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '5D3B8', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'A2B4E', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : 'F3C8A', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '8E0B2', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                        
+//     {'ticketId' : '9B4C7', 'name': '', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                  
+//     {'ticketId' : '4D6E8', 'name': 'Jessy Burgos', 'paid':'true', 'price':400.00, 'discount': null , 'seller': 'Sander Peguero'},                                            
 // ]
 
 function Activation() {
@@ -70,11 +75,11 @@ function Activation() {
 
 
     const db = getFirestore()
-    const ref = collection(db, 'Tickets')
+    const Ticketsdb = collection(db, 'Tickets')
 
     const get = async () => {
 
-        const command = query(ref, where('ticketId', '==', ticketId.toLocaleUpperCase()))
+        const command = query(Ticketsdb, where('ticketId', '==', ticketId.toLocaleUpperCase()))
         // console.log(res)
 
         const querySnapshot = await getDocs(command)
@@ -138,7 +143,7 @@ function Activation() {
     //             setalert({
     //                 ...alert,
     //                 open: true,
-    //                 message: `Tu boleta se ha activado correctamente`,
+    //                 message: `Las Boletas se guardaron correctamente`,
     //                 severity: 'success'
     //             });
     //         } catch (e) {
@@ -243,7 +248,7 @@ function Activation() {
                                         name="Nombre"
                                         value={name}
                                         id="fName"
-                                        placeholder="Nombre Apellido"
+                                        // placeholder="Nombre Apellido"
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                         onChange={(e) => setname(e.target.value)}
                                     />

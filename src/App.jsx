@@ -1,5 +1,6 @@
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import ReactNode, { useState, useEffect } from 'react'
+import React from 'react'
 //components
 import Footer from './components/Footer'
 // import MapComponent from './components/Maps/MapComponent'
@@ -40,8 +41,8 @@ function App({ db }) {
       ...state,
       open: alert.open
     })
-    
-  },[alert]);
+
+  }, [alert]);
 
   const [state, setState] = useState({
     open: alert.open,
@@ -51,7 +52,7 @@ function App({ db }) {
   })
 
   const handleClick = () => {
-    setalert({ 
+    setalert({
       ...alert,
       open: true,
     });
@@ -93,7 +94,7 @@ function App({ db }) {
               <Route exact path='/boletas' element={<Tickets />} />
               <Route exact path='/activacion' element={<Activation />} />
               <Route exact path='/login' element={<Login />} />
-              <Route exact path='/dashboardsparkle' element={<Dashboard/>} />
+              <Route exact path='/dashboardsparkle' element={<Dashboard />} />
 
               {/* <Route exact path='contacto' element={<MapComponent />} /> */}
             </Routes>
