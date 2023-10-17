@@ -44,6 +44,12 @@ export default function BasicModal({ ticket, open, onClose }) {
         >
           <Box sx={style}>
             <form onSubmit={set} className="mt-8">
+              <label
+                htmlFor="fName"
+                className="mb-3 block text-base font-medium text-[#ffffff]"
+              >
+                {ticket.key}
+              </label>
               <div className="-mx-3 flex flex-wrap">
                 <div className="w-full px-3 sm:w-1/2">
                   <div className="mb-5">
@@ -54,7 +60,7 @@ export default function BasicModal({ ticket, open, onClose }) {
                       Ticket ID
                     </label>
                     <input
-                      readOnly  
+                      readOnly
                       type="text"
                       name="Nombre"
                       value={ticket.ticketId}
@@ -185,7 +191,7 @@ export default function BasicModal({ ticket, open, onClose }) {
         </Modal>
       </div>
     )
-  }else{
+  } else {
     return
   }
 }
