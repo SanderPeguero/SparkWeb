@@ -6,13 +6,6 @@ import Modal from './Modal'
 
 import './Dashboard.css'
 
-function EditForm() {
-    return (
-        <div>Edit Form</div>
-    )
-}
-
-
 function Dashboard() {
 
     const { alert, setalert } = useContext(ContextVariable)
