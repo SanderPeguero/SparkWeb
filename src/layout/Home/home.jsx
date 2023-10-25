@@ -25,7 +25,7 @@ function home(){
             {/* <Hero2 /> */}
             {/* <Contacto /> */}
             {/* <Analytics /> */}
-            <Newsletter /> 
+            {/* <Newsletter />  */}
             <Features/>
             {/* <Cards /> */}
             {/* <MapComponent /> */}

@@ -15,10 +15,10 @@ function Dashboard() {
 
     const [modalTicket, setmodalTicket] = useState(null)
     const [open, setOpen] = useState(false)
-    const handleOpen = (ticket) => {
+    const handleOpen = (ticket) =>{
         setmodalTicket(ticket)
         setOpen(true)
-    }
+    } 
     const handleClose = () => setOpen(false)
 
 
@@ -33,41 +33,19 @@ function Dashboard() {
 
     const get = async () => {
 
-        const ref = collection(db, 'Tickets')
+        const ref = collection(db, 'SparkleManiaActivations')
 
         const docsSnap = await getDocs(ref);
 
         var ti = []
 
-        docsSnap.forEach(async doc => {
+        docsSnap.forEach(doc => {
             // console.log(doc._key.path.segments[6])
-
-            const activations = getActivationStatus(doc.data().ticketId)
-
-            ti.push({ ...doc.data(), 'key': doc._key.path.segments[6], 'activations': activations })
-
+            ti.push({ ...doc.data(), 'key': doc._key.path.segments[6] })
         })
 
-        console.log(ti.activations)
-
+        // console.log(ti)
         settickets(ti)
-
-    }
-
-    const getActivationStatus = async (ticketId) => {
-
-        const command = query(collection(db, 'SparkleManiaActivations'), where('ticketId', '==', ticketId))
-        // console.log(res)
-
-        const querySnapshot = await getDocs(command)
-
-        return querySnapshot.forEach((activation) => {
-            // ti.push({ ...doc.data(), 'activations': activation.data() })
-            // console.log(activation.data())
-            return activation.data()
-
-        })
-
 
     }
 
@@ -79,7 +57,7 @@ function Dashboard() {
 
     return (
         <>
-            <Modal open={open} onClose={handleClose} ticket={modalTicket} />
+            <Modal open={open} onClose={handleClose} ticket={modalTicket}/>
             <div className="flex items-center justify-center min-h-screen bg-[#0000003f]">
                 <div className="col-span-12">
                     <div className="overflow-auto lg:overflow-visible ">
@@ -112,16 +90,16 @@ function Dashboard() {
                                     <th className="p-3 text-left">Paid</th>
                                     <th className="p-3 text-left">Price</th>
                                     <th className="p-3 text-left">Discount</th>
-                                    <th className="p-3 text-left">Seller</th>
-                                    <th className="p-3 text-left">Date of Purchase</th>
-                                    <th className="p-3 text-left">Submit Date</th>
+                                    <th className="p-3 text-left">Email</th>
+                                    <th className="p-3 text-left">Number</th>
+                                    {/* <th className="p-3 text-left">Date of Activation</th> */}
                                     <th className="p-3 text-center">Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     data.map((ticket) => (
-                                        <tr className="bg-gray-800" key={ticket.ticketId}>
+                                        <tr className="bg-gray-800" key={ticket.key}>
                                             <td className="p-3">
                                                 <div className="flex align-items-center">
                                                     <img className="rounded-full h-12 w-12  object-cover" src="https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleMania.png?alt=media&token=9c4d540b-894d-4f63-bfe2-36242de104ca" alt="User Image" />
@@ -144,19 +122,19 @@ function Dashboard() {
                                                 {ticket.discount}
                                             </td>
                                             <td className="p-3">
-                                                {ticket.seller}
+                                                {ticket.email}
                                             </td>
                                             <td className="p-3">
-                                                {ticket.dateOfPurchase}
+                                                {ticket.number}
                                             </td>
-                                            <td className="p-3">
-                                                {/* {ticket.submitDate} */}
-                                            </td>
+                                            {/* <td className="p-3">
+                                                {ticket.activationDate}
+                                            </td> */}
                                             <td className="p-3 ">
-                                                <a href="#" className="text-gray-400 hover:text-gray-100 mr-2">
+                                                <button onClick={() => handleOpen(ticket)} className="text-gray-400 hover:text-gray-100 mr-2">
                                                     <i className="material-icons-outlined text-base">visibility</i>
-                                                </a>
-                                                <button onClick={() => handleOpen(ticket)} className="text-gray-400 hover:text-gray-100  mx-2">
+                                                </button>
+                                                <button  className="text-gray-400 hover:text-gray-100  mx-2">
                                                     <i className="material-icons-outlined text-base">edit</i>
                                                 </button>
                                                 <a href="#" className="text-gray-400 hover:text-gray-100  ml-2">

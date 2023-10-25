@@ -1,0 +1,36 @@
+.table {
+    border-spacing: 0 15px;
+    border-bottom: 0;
+}
+
+i {
+    font-size: 1rem !important;
+    border-bottom: 0;
+}
+
+.table th {
+    border-bottom: 0;
+}
+
+.table tr {
+    /* border-radius: 20px; */
+    border-bottom: 0;
+}
+
+tr td:nth-child(n+8),
+tr th:nth-child(n+8) {
+    border-radius: 0 .625rem .625rem 0;
+    border-bottom: 0;
+}
+
+tr td:nth-child(1),
+tr th:nth-child(1) {
+    border-radius: .625rem 0 0 .625rem;
+    border-bottom: 0;
+}
+
+tr td,
+tr th{
+    /* border-radius: .625rem 0 0 .625rem; */
+    border-bottom: 0;
+}

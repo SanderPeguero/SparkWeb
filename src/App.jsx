@@ -18,6 +18,8 @@ import { createContext } from 'react'
 
 import { ContextVariable } from './Context'
 import Dashboard from './layout/Dashboard/Dashboard'
+import Screen from './layout/Dashboard/Screen'
+import ActivationsDash from './layout/ActivationsDash/Dashboard'
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -94,7 +96,9 @@ function App({ db }) {
               <Route exact path='/boletas' element={<Tickets />} />
               <Route exact path='/activacion' element={<Activation />} />
               <Route exact path='/login' element={<Login />} />
+              <Route exact path='/ticketsdash' element={<Screen />} />
               <Route exact path='/dashboardsparkle' element={<Dashboard />} />
+              <Route exact path='/activationsdash' element={<ActivationsDash/>} />
 
               {/* <Route exact path='contacto' element={<MapComponent />} /> */}
             </Routes>
