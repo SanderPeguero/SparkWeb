@@ -6,34 +6,18 @@ import { ContextVariable } from '../../Context';
 import Unpaid from './unpaid'
 
 
-
-
-
-
-const tickets = [                                                                    
-    {'ticketId' : 'BC739', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : 'F57B1', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : '2BFD3', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : 'D430E', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : '91AEC', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : '3A9C1', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},
-    {'ticketId' : '53B80', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : '8E74C', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : 'D71B4', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                                                    
-    {'ticketId' : 'A5D8F', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-    {'ticketId' : '0C7A3', 'name': '', 'paid':'false', 'price':400.00, 'discount': null , 'seller': 'Carlos Custodio'},                                  
-]
-
 function Activation() {
 
     const { alert, setalert } = useContext(ContextVariable)
 
+    const [name, setname] = useState('')
+    const [paid, setpaid] = useState(null)
+    const [email, setemail] = useState('')
+    const [price, setprice] = useState(0.0)
+    const [number, setnumber] = useState('')
     const [ticketId, setticketId] = useState('')
-    const [name, setname] = useState('');
+    const [discount, setdiscount] = useState(0.0)
     const [allowActivation, setallowActivation] = useState(false)
-    const [paid, setpaid] = useState(null);
-    const [price, setprice] = useState(0.0);
-    const [discount, setdiscount] = useState(0.0);
 
 
     const db = getFirestore()
@@ -42,13 +26,12 @@ function Activation() {
     const get = async () => {
 
         const command = query(Ticketsdb, where('ticketId', '==', ticketId.toLocaleUpperCase()))
-        // console.log(res)
 
         const querySnapshot = await getDocs(command)
 
         querySnapshot.forEach((doc) => {
             const ticket = (doc.id, '=', doc.data())
-            // console.log(ticket)
+
             setname(ticket.name)
             setpaid(ticket.paid)
             setprice(ticket.price)
@@ -57,84 +40,11 @@ function Activation() {
 
         })
 
-        // const docsSnap = await getDocs(ref);
-
-        // docsSnap.forEach(doc => {
-        //     const data = doc.data()
-        //     var IdValidation = false
-        //     var nameValidation = false
-
-        //     data.ticketId == ticketId ? IdValidation = true : null
-        //     data.name == name ? nameValidation = true : null
-
-        //     console.log('call to the api')
-
-        //     if (IdValidation && nameValidation) {
-        //         console.log({
-        //             IdValidation,
-        //             nameValidation,
-        //             data
-        //         })
-        //         console.log(data)
-        //         setpaid(data.paid)
-        //         setprice(data.price)
-        //         setdiscount(data.discount)
-        //         setallowActivation(true)
-        //         return
-        //     }
-        // })
-
-
     }
 
-    // const set = async () => {
-
-    //     tickets.forEach(async (ticket) => {
-    //         try {
-    //             const docRef = await addDoc(collection(db, "Tickets"), {
-    //                 ticketId: ticket.ticketId,
-    //                 name: ticket.name,
-    //                 paid: ticket.paid,
-    //                 price: ticket.price,
-    //                 discount: ticket.discount,
-    //                 seller: ticket.seller,
-    //                 dateOfPurchase: '',
-    //                 submitDate: new Date()
-    //             });
-    //             console.log("Document written with ID: ", docRef.id);
-    //             setalert({
-    //                 ...alert,
-    //                 open: true,
-    //                 message: `Las Boletas se guardaron correctamente`,
-    //                 severity: 'success'
-    //             });
-    //         } catch (e) {
-    //             setalert({
-    //                 ...alert,
-    //                 open: true,
-    //                 message: `Tu boleta no se ha pudo activar`,
-    //                 severity: 'error'
-    //             });
-    //             console.error("Error adding document: ", e);
-    //         }
-    //     })
-    // }
-
-
-    const [description, setdescription] = useState('');
-    const [email, setemail] = useState('');
-    const [number, setnumber] = useState('');
 
     const set = async () => {
 
-        console.log("validacion Fallida")
-        console.log({
-            name,
-            ticketId,
-            description,
-            email,
-            // time
-        })
         if (name !== '' && number !== 0 && ticketId !== '' && email !== '') {
             console.log("validacion exitosa")
             try {
