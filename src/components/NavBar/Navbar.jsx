@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
+import React, { useState, useEffect, useContext } from 'react'
+
 import Logo from '../../assets/Logo.png'
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const [nav, setNav] = useState(false);
+import UserMenu from './UserMenu';
 
-  const handleNav = (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setNav(!nav);
-  };
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+const links = [
+  { 'link': '/', 'text': 'Inicio', 'replace': true },
+  { 'link': 'boletas', 'text': 'Boletas', 'replace': false },
+  { 'link': 'activacion', 'text': 'Activacion', 'replace': false },
+  { 'link': '/', 'text': 'Tienda', 'replace': false },
+  // { 'link': '/', 'text': 'Info', 'replace': false },
+  // {'link':'login', 'text':'Log In', 'replace': false },
+]
 
-    setState({ ...state, left: open });
-  };
+const Navbar = ({ auth, user }) => {
+
 
   return (
     <div>{/*Fijar NavBar */}
@@ -31,27 +28,38 @@ const Navbar = () => {
           </div>
         </a>
         <ul className='hidden md:flex'>
-          <li className='p-4'><Link className='text-white' to='/' replace={true}>Inicio</Link></li>
-          <li className='p-4'><Link className='text-white' to='boletas'>Boletas</Link></li>
-          <li className='p-4'><Link className='text-white' to='activacion'>Activacion</Link></li>
-          <li className='p-4'><Link className='text-white' href='/'>Tienda</Link></li>
-          <li className='p-4'><a className='text-white' href='/'>Info</a></li>
+          {links.map((link) => (
+            <li key={link.text} className={`px-[1.5vw] pt-4 ${link.link == 'login' ? 'ml-[2vw]' : ''}`}><Link className='text-white' to={link.link} replace={link.replace}>{link.text}</Link></li>
+          ))}
+          {
+            auth == null ?
+              <Link to='login' className='px-[1.5vw] ml-[2vw]'>
+                <button className="group relative h-8 w-24 overflow-hidden rounded-xl bg-[#3d36ba] text-md text-white my-[1.20rem]">
+                  Log In
+                  <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                </button>
+              </Link>
+              :
+              <UserMenu user={user}/>
+          }
         </ul>
-        <div onClick={handleNav} className='block md:hidden'>
+        {/* <div onClick={handleNav} className='block md:hidden'>
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
         <ul className={nav ? 'z-10 fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 ' : 'ease-in-out duration-500 fixed left-[-100%] z-10'}
           onClick={handleNav}
           onKeyDown={handleNav}
         >
-          {/* <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>REACT.</h1> */}
+          <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>REACT.</h1>
           <img className='w-[6rem] text-3xl font-bold text-[#00df9a] p-4' src={Logo} alt="SAG Logo" />
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Inicio</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='boletas'>Boletas</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='activacion'>Activacion</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Tienda</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
-        </ul>
+          <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
+          <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
+        </ul> */}
       </div>
     </div>
   );

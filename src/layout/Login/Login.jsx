@@ -1,95 +1,93 @@
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
-// import app from "../../firebase/firebase.init";
-import { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { useState, useContext } from "react"
+import { Link } from "react-router-dom"
+
+import { ContextVariable } from '../../Context';
 
 const Login = () => {
-    const [user, setUser] = useState();
 
-    // const auth = getAuth(app);
-    const googleProvider = new GoogleAuthProvider();
-    const githubProvider = new GithubAuthProvider();
+    const { alert, setalert, setauth } = useContext(ContextVariable)
 
-    const handleGoogleSignIn = () => {
-        signInWithPopup(auth, googleProvider)
-            .then(result => {
-                const loggedInUser = result.user;
-                console.log(loggedInUser);
-                setUser(loggedInUser);
-            })
-            .catch(error => {
-                console.log('error', error.message);
-            })
-    }
+    const FirebaseAuth = getAuth()
+    const [email, setemail] = useState('')
+    const [password, setpassword] = useState('')
 
+    const handleLogIn = () => {
+        signInWithEmailAndPassword(FirebaseAuth, email, password)
+            .then((userCredential) => {
 
-    const handleGithubSignIn = () => {
-        signInWithPopup(auth, githubProvider)
-            .then(result => {
-                const loggedInUser = result.user;
-                console.log(loggedInUser);
-                setUser(loggedInUser);
-            })
-            .catch(error => {
-                console.log('error', error.message);
-            })
-    }
+                // Signed in 
+                const user = userCredential.user;
+                setauth(user)
 
+                setalert({
+                    ...alert,
+                    open: true,
+                    message: `Sesion Iniciada`,
+                    severity: 'success'
+                });
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
 
-    const handleSignOut = () => {
-        signOut(auth)
-            .then(result => {
-                console.log(result);
-                setUser(null);
-            })
-            .catch(error => {
-                console.log('error', error.message);
-            })
+                setalert({
+                    ...alert,
+                    open: true,
+                    message: `${errorMessage}`,
+                    severity: 'error'
+                });
+
+            });
     }
 
     return (
-        <div>
-            {
-                user ? null :
-                    // <>
-                    <div className="min-h-screen bg-[#120c32]  flex justify-center items-center">
-                        <div className="absolute w-60 h-60 rounded-xl bg-[#090520]  top-[9rem] -left-16 z-0 transform rotate-45 hidden md:block">
+        <div className="mb-[20rem] mt-[4rem]">
+            <div className="w-full lg:w-[30rem] md:w-[50%] px-4 mx-auto pt-6">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-[rgba(248,250,252)] border-0">
+                    <div className="rounded-t mb-0 px-6 py-6">
+                        <div className="text-center mb-3">
+                            <h1 className="text-blueGray-500 text-md font-bold">
+                                Log In with
+                            </h1>
                         </div>
-                        <div className="absolute w-48 h-48 rounded-xl bg-[#090520]  -bottom-6 -right-10 transform rotate-12 hidden md:block">
-                        </div>
-                        <div className="py-12 px-2 bg-white rounded-2xl shadow-xl z-20">
-                            <div className="mx-2">
+                        {/* <div className="btn-wrapper text-center">
+                            <button className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150" type="button">
+                                <img alt="..." className="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/github.svg" />Github</button>
+                            <button className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150" type="button">
+                                <img alt="..." className="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/google.svg" />Google </button>
 
-                                <div>
-                                    <h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">Create An Account</h1>
-                                    <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Create an
-                                        account to enjoy all the services without any ads for free!</p>
-                                </div>
-                                <div className="space-y-4">
-                                    <input type="text" placeholder="Email Addres" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                                    <input type="text" placeholder="Password" className="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                                </div>
-                                <div className="text-center mt-6">
-                                    <button className="py-3 w-64 text-xl text-white bg-purple-400 rounded-2xl">Create Account</button>
-                                    <p className="mt-4 text-sm">Already Have An Account? <span className="underline cursor-pointer"> Sign In</span>
-                                    </p>
-                                </div>
+                        </div> */}
+                        <hr className="mt-6 border-b-1 border-blueGray-300" />
+                    </div>
+                    <div className="flex-auto px-4 lg:px-10 py-10 pt-2">
+                        {/* <div className="text-blueGray-400 text-center mb-3 font-bold">
+                            <small>Or sign in with credentials</small>
+                        </div> */}
+                        <div>
+                            <div className="relative w-full mb-3">
+                                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">Email</label>
+                                <input value={email} type="email" onChange={(e) => setemail(e.target.value)} className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Email" />
+                            </div>
+                            <div className="relative w-full mb-3">
+                                <label className="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">Password</label>
+                                <input value={password} type="password" onChange={(e) => setpassword(e.target.value)} className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Password" />
+                            </div>
+                            {/* <div>
+                                <label className="inline-flex items-center cursor-pointer"><input id="customCheckLogin" type="checkbox" className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150" /><span className="ml-2 text-sm font-semibold text-blueGray-600">Remember me</span></label>
+                            </div> */}
+                            <div className="text-center mt-6">
+                                <button onClick={handleLogIn} className="group relative w-full px-6 py-3 overflow-hidden rounded shadow hover:shadow-lg bg-[#3d36ba] text-sm font-bold uppercase text-white my-4">
+                                    Log In
+                                    <div className="absolute inset-0 h-full w-full scale-0 rounded transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                                </button>
+                                <p className="mt-4 text-sm">Dont Have An Account Yet? <Link to='/signin' className="underline cursor-pointer"> Sign In</Link></p>
                             </div>
                         </div>
-                        <div className="w-40 h-40 absolute bg-[#090520] rounded-full top-[9rem] right-12 hidden md:block"></div>
-                        <div
-                            className="w-20 h-40 absolute bg-[#090520]  rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
-                        </div>
                     </div>
-                // </> : null
-            }
-            {user && <div>
-                <h3>
-                    User: {user.displayName}
-                </h3>
-                <p>Email: {user.email}</p>
-            </div>}
+                </div>
+            </div>
         </div>
-    );
+    )
 };
 
 export default Login;
