@@ -11,10 +11,10 @@ As an extra the website has a platform so the user can activate tickets, and adm
 <img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 12 44 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/fd768626-a1de-4e0f-b1c4-7b750ea302bc">
 
 <h2>Tickets Reservation Form</h2>
-<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 12 52 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/5c02972c-caa9-4f0a-b7da-4b14e1d8e634">
+<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 13 12 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/21b2c831-6892-4d1e-956c-c14953e25067">
 
 <h2>Activations Page</h2>
-<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 13 12 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/21b2c831-6892-4d1e-956c-c14953e25067">
+<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 12 52 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/5c02972c-caa9-4f0a-b7da-4b14e1d8e634">
 
 <h2>Unable to Activate Page</h2>
 <img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 13 30 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/611d9e1e-f086-444b-ad01-8f8905fcef67">
