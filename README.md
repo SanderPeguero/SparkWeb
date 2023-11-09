@@ -22,5 +22,33 @@ As an extra the website has a platform so the user can activate tickets, and adm
 <h2>Activation Form</h2>
 <img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 15 07 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/64ea1c34-74f4-4ca7-a083-cab6563a948c">
 
+<h1>Platform</h1>
+
+<h2>Log In</h2>
+<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 24 51 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/a5174331-76a9-44a6-8212-b924f14fec1f">
+
+<h2>Ticket Dashboard V1</h2>
+<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 25 17 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/582491c7-f7a7-40a3-b55a-6377fde1c877">
+
+<h2>Ticket Dashboard V2</h2>
+<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 25 09 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/f6ddd451-d636-421c-ad53-f31c1b9d0cb2">
+
+<h2>Activated Tickets Dashboard V1</h2>
+<img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 25 25 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/47dc6395-d2a5-42d4-ae40-51b2e469d0ef">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
