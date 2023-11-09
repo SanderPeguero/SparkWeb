@@ -4,6 +4,8 @@ This events company needs a landing page for their users, the unregister user ca
 
 As an extra the website has a platform so the user can activate tickets, and admins can manage the tickets at entrance by viewing who paid, who activated and who purchased.
 
+Link: https://sparkgroup.vercel.app/
+
 <h2>Landing Page</h2>
 <img width="1792" alt="Captura de pantalla 2023-11-09 a la(s) 5 12 31 a  m" src="https://github.com/SanderPeguero/SparkWeb/assets/95009440/6996eda2-ca67-4d69-8bdb-9fe03ffbac32">
 
