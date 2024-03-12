@@ -9,6 +9,7 @@ import Features from '../../components/Features/Features';
 // import Footer from '../Footer';
 
 // import LandingPage from '../../assets/Bg.png'
+import Hero1 from '../../components/Hero/Hero1';
 
 function home(){
 
@@ -21,6 +22,7 @@ function home(){
 
     return(
         <>
+            <Hero1 />
             <Hero />
             {/* <Hero2 /> */}
             {/* <Contacto /> */}
