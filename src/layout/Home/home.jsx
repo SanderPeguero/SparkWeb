@@ -13,6 +13,7 @@ import styles from "./home.module.css"
 // import Footer from '../Footer';
 
 // import LandingPage from '../../assets/Bg.png'
+import Hero1 from '../../components/Hero/Hero1';
 
 import allimg from './data.js'
 // import images from '../../Jsons/Images.json'
@@ -67,6 +68,7 @@ function home() {
 
     return (
         <>
+            <Hero1 />
             <Hero />
             <ContainerCard>
                 <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>

@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 
 import UserMenu from './UserMenu';
 
-
+import { GiHamburgerMenu } from "react-icons/gi";
+import styles from "./Nav.module.css"
+import Button from '../Elements/Button/Button';
 const links = [
   { 'link': '/', 'text': 'Inicio', 'replace': true },
   { 'link': 'boletas', 'text': 'Boletas', 'replace': false },
@@ -16,11 +18,83 @@ const links = [
 ]
 
 const Navbar = ({ auth, user }) => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = ''
+  };
   return (
-    <div>{/*Fijar NavBar */}
-      <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
+    <nav className={`${styles.nav} flex align-items-center`}>
+      {/*  */}
+      <h1 className={styles["nav-title"]} >Gallery</h1>
+      <ul className={`flex align-items-center  ${styles["navbar-nav"]}`}>
+        <li className={`${styles["nav-item"]} ${styles.active}`}>
+          <a href="" className={styles["nav-link"]}>Home</a>
+        </li>
+        <li className={styles["nav-item"]}>
+          <a href="" className={styles["nav-link"]}>Wallpapers</a>
+        </li>
+        <li className={styles["nav-item"]}>
+          <a href="" className={styles["nav-link"]}>Collections</a>
+        </li>
+        <li className={styles["nav-item"]}>
+          <a href="" className={styles["nav-link"]}>Artists</a>
+        </li>
+        <li className={`${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+          <a href="" className={styles["nav-link"]}>Explore</a>
+        </li>
+        <li className={`${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+          <a href="" className={styles["nav-link"]}>Blog</a>
+        </li>
+      </ul>
+      <div className={`flex ${styles["navbar-buttons"]}`}>
+        <Button theme="transparent">Login</Button>
+        <Button theme="matrix">Sign up</Button>
+      </div>
+      <div className={`${styles["navbar-responsive-menu"]}`}>
+        <Button onClick={toggleMobileMenu} theme="transparent">
+          <GiHamburgerMenu size="32" color="var(--white-100)" />
+        </Button>
+      </div>
+      {isMobileMenuOpen && (
+        <>
+          <ul className={`absolute top-[8rem] left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
+            <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles.active}`}>
+              <a href="" className={styles["nav-link"]}>Home</a>
+            </li>
+            <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+              <a href="" className={styles["nav-link"]}>Wallpapers</a>
+            </li>
+            <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+              <a href="" className={styles["nav-link"]}>Collections</a>
+            </li>
+            <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+              <a href="" className={styles["nav-link"]}>Artists</a>
+            </li>
+            <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+              <a href="" className={styles["nav-link"]}>Explore</a>
+            </li>
+            <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+              <a href="" className={styles["nav-link"]}>Blog</a>
+            </li>
+          </ul>
+        </>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
+
+{/* <div>Fijar NavBar 
+
+     
+    <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
         <a href='/'>
           <div className='flex items-center'>
             <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
@@ -43,7 +117,7 @@ const Navbar = ({ auth, user }) => {
               <UserMenu user={user}/>
           }
         </ul>
-        {/* <div onClick={handleNav} className='block md:hidden'>
+         <div onClick={handleNav} className='block md:hidden'>
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
         <ul className={nav ? 'z-10 fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 ' : 'ease-in-out duration-500 fixed left-[-100%] z-10'}
@@ -59,10 +133,6 @@ const Navbar = ({ auth, user }) => {
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
-        </ul> */}
+        </ul>
       </div>
-    </div>
-  );
-};
-
-export default Navbar;
+    </div> */}

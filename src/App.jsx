@@ -132,9 +132,9 @@ function App() {
           </Alert>
         </Snackbar>
         <Router>
-          <header>
+          {/* <header>
             <Navbar auth={auth} user={user} />
-          </header>
+          </header> */}
           <main className=''>
             <Routes>
               <Route exact path='/' element={<Home />} />
