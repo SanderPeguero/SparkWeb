@@ -1,8 +1,7 @@
 import { useState } from "react"
 
 // import styles of this component
-// import styles from "./Dropdown.css"
-import styles from "./Dropdown.css"
+import styles from "./Dropdown.module.css"
 
 // import other react pkg to use
 import { ArrowUp3 } from "iconsax-react"

@@ -6,7 +6,7 @@ import Hero from '../../components/Hero/Hero';
 import Newsletter from '../../components/Newsletter'
 import Features from '../../components/Features/Features';
 import AllImagesLayout from '../../components/AllImagesLayout/AllImagesLayout';
-import ContainerCard from '../../components/ContainerCard/CointainerCard';
+import ContainerCard from '../../components/ContainerCard/ContainerCard.jsx';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import styles from "./home.module.css"
 // import MapComponent from '../Maps/MapComponent';
@@ -16,7 +16,7 @@ import styles from "./home.module.css"
 import Hero1 from '../../components/Hero/Hero1';
 
 import allimg from './data.js'
-// import images from '../../Jsons/Images.json'
+import images from '../../Jsons/Images.json'
 const ddItems = [
     {
         id: 1,
@@ -46,23 +46,34 @@ const ddItems = [
 ]
 
 function home() {
-    const [categoryImage, setCategoryImage] = useState(allimg)
+
     const [nicol, setinput] = useState('');
     const [state, setstate] = useState('');
 
     const handle = (e) => {
         setstate(e.target.value)
     }
+    const [categoryImage, setCategoryImage] = useState(images.categories.all)
 
     const takeDdTitle = (ddTitle) => {
         setCategoryImage(() => {
-            let categoryChoose = allimg.filter(item => {
+            let categoryChoose = Object.keys(images.categories).filter(item => {
                 const titleSplited = ddTitle.toLowerCase().split(" ")[0]
                 return item.toLowerCase().includes(titleSplited)
             })
-            return [...allimg[categoryChoose]]
+            return [...images.categories[categoryChoose]]
         })
     }
+    //   const [categoryImage, setCategoryImage] = useState(allimg)
+    //     const takeDdTitle = (ddTitle) => {
+    //         setCategoryImage(() => {
+    //             let categoryChoose = allimg.filter(item => {
+    //                 const titleSplited = ddTitle.toLowerCase().split(" ")[0]
+    //                 return item.toLowerCase().includes(titleSplited)
+    //             })
+    //             return [...allimg[categoryChoose]]
+    //         })
+    //     }
 
 
 
@@ -70,13 +81,16 @@ function home() {
         <>
             <Hero1 />
             <Hero />
-            <ContainerCard>
-                <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>
-                    <h1>All images</h1>
-                    <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} />
-                </div>
-                <AllImagesLayout images={categoryImage} />
-            </ContainerCard>
+            <div className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
+                <ContainerCard>
+                    <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>
+                        <h1>All images</h1>
+                        <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} />
+                    </div>
+                    <AllImagesLayout images={categoryImage} />
+                </ContainerCard>
+            </div>
+            
             {/* <AllImagesLayout/> */}
             {/* <Hero2 /> */}
             {/* <Contacto /> */}

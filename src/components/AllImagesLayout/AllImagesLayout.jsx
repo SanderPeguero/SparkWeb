@@ -1,12 +1,12 @@
 // import styles of this component
 import styles from "./AllImagesLayout.css"
-
+import './AllImagesLayout.css'
 
 // import other react pkg to use
 import Masonry from "react-masonry-css"
 
 // import other component to use
-import AllimgBox from "./AllimgBox/AllimgBox";
+import AllimgBox from './AllimgBox/AllimgBox'
 
 // MasonryLayout Component
 const AllImagesLayout = ({ images }) => {
@@ -20,8 +20,8 @@ const AllImagesLayout = ({ images }) => {
   return (
     <Masonry
       breakpointCols={breakpointColumnsObj}
-      className={styles["my-masonry-grid"]}
-      columnClassName={styles["my-masonry-grid_column"]}
+      className={`my-masonry-grid`}
+      columnClassName={'my-masonry-grid_column'}
     >
       {images.map(item => (
         <AllimgBox 
@@ -37,3 +37,5 @@ const AllImagesLayout = ({ images }) => {
 }
 
 export default AllImagesLayout
+
+
