@@ -8,6 +8,10 @@ import UserMenu from './UserMenu';
 import { GiHamburgerMenu } from "react-icons/gi";
 import styles from "./Nav.module.css"
 import Button from '../Elements/Button/Button';
+
+import SignIn from '../../layout/SignIn/SignIn';
+import Login from '../../layout/Login/Login';
+
 const links = [
   { 'link': '/', 'text': 'Inicio', 'replace': true },
   { 'link': 'boletas', 'text': 'Boletas', 'replace': false },
@@ -18,6 +22,10 @@ const links = [
 ]
 
 const Navbar = ({ auth, user }) => {
+
+  const [isOpenLogIn, setIsOpenLogIn] = useState(false)
+  const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -28,7 +36,14 @@ const Navbar = ({ auth, user }) => {
     localStorage.clear();
     window.location.href = ''
   };
+
   return (
+
+    // etiqueta vacia componentete login y SingIn,  el navar completo
+    <>
+    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} />
+    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} />
+
     <nav className={`${styles.nav} flex align-items-center`}>
       {/*  */}
       <h1 className={styles["nav-title"]} >Gallery</h1>
@@ -53,8 +68,8 @@ const Navbar = ({ auth, user }) => {
         </li>
       </ul>
       <div className={`flex ${styles["navbar-buttons"]}`}>
-        <Button theme="transparent">Login</Button>
-        <Button theme="matrix">Sign up</Button>
+        <Button onClick={() => setIsOpenLogIn(true)} theme="transparent">Login</Button>
+        <Button onClick={() => setIsOpenSignUp(true)} theme="matrix">Sign up</Button>
       </div>
       <div className={`${styles["navbar-responsive-menu"]}`}>
         <Button onClick={toggleMobileMenu} theme="transparent">
@@ -86,6 +101,7 @@ const Navbar = ({ auth, user }) => {
         </>
       )}
     </nav>
+    </>
   );
 };
 
