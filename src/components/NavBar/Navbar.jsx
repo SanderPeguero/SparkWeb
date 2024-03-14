@@ -1,25 +1,48 @@
 import React, { useState, useEffect, useContext } from 'react'
 
 import Logo from '../../assets/Logo.png'
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
+import { ContextVariable } from '../../Context';
 import UserMenu from './UserMenu';
 
 import { GiHamburgerMenu } from "react-icons/gi";
 import styles from "./Nav.module.css"
 import Button from '../Elements/Button/Button';
+// const links = [
+//   { 'link': '/', 'text': 'Inicio', 'replace': true },
+//   { 'link': '/boletas', 'text': 'Boletas', 'replace': false },
+//   { 'link': '/activacion', 'text': 'Activacion', 'replace': false },
+//   { 'link': '/tienda', 'text': 'Tienda', 'replace': false },
+//   // { 'link': '/', 'text': 'Info', 'replace': false },
+//   // {'link':'login', 'text':'Log In', 'replace': false },
+// ]
+
 const links = [
-  { 'link': '/', 'text': 'Inicio', 'replace': true },
-  { 'link': 'boletas', 'text': 'Boletas', 'replace': false },
-  { 'link': 'activacion', 'text': 'Activacion', 'replace': false },
-  { 'link': '/', 'text': 'Tienda', 'replace': false },
-  // { 'link': '/', 'text': 'Info', 'replace': false },
-  // {'link':'login', 'text':'Log In', 'replace': false },
+  {
+    name: 'Inicio',
+    route: '/'
+  },
+  {
+    name: 'Boletas',
+    route: '/boletas'
+  },
+
+  {
+    name: 'Activacion',
+    route: '/activacion'
+  },
+
+  {
+    name: 'Tienda',
+    route: '/tienda'
+  },
+
 ]
 
 const Navbar = ({ auth, user }) => {
+  const { setlocattion } = useContext(ContextVariable);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const location = useLocation();
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -29,28 +52,25 @@ const Navbar = ({ auth, user }) => {
     window.location.href = ''
   };
   return (
-    <nav className={`${styles.nav} flex align-items-center`}>
+
+    <nav className={`${styles.nav} flex align-items-center `}>
       {/*  */}
-      <h1 className={styles["nav-title"]} >Gallery</h1>
-      <ul className={`flex align-items-center  ${styles["navbar-nav"]}`}>
-        <li className={`${styles["nav-item"]} ${styles.active}`}>
-          <a href="" className={styles["nav-link"]}>Home</a>
-        </li>
-        <li className={styles["nav-item"]}>
-          <a href="" className={styles["nav-link"]}>Wallpapers</a>
-        </li>
-        <li className={styles["nav-item"]}>
-          <a href="" className={styles["nav-link"]}>Collections</a>
-        </li>
-        <li className={styles["nav-item"]}>
-          <a href="" className={styles["nav-link"]}>Artists</a>
-        </li>
-        <li className={`${styles["nav-item"]} ${styles["d-none-1100"]}`}>
-          <a href="" className={styles["nav-link"]}>Explore</a>
-        </li>
-        <li className={`${styles["nav-item"]} ${styles["d-none-1100"]}`}>
-          <a href="" className={styles["nav-link"]}>Blog</a>
-        </li>
+      <a href='/'>
+        <div className='flex items-center'>
+          <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
+          <h1 className={`ml-2 ${styles["nav-title"]}`}>Grupo Spark</h1>
+        </div>
+      </a>
+      {/* <img src={Logo} className='h-6 w-6'/>
+      <h1 className={styles["nav-title"]} >Grupo Spark</h1> */}
+      <ul className={`flex align-items-center ${styles["navbar-nav"]}`}>
+        {links.map((link) => (
+          <li key={link.name} className={`${styles["nav-item"]} ${location.pathname === link.route ? `ml-2 ${styles.active}` : ''}`}>
+            <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
+              {link.name}
+            </Link>
+          </li>
+        ))}
       </ul>
       <div className={`flex ${styles["navbar-buttons"]}`}>
         <Button theme="transparent">Login</Button>
