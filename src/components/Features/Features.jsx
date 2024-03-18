@@ -96,7 +96,9 @@ function Features() {
                                 </div>
                             ) : (
                                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                                    <ButtonFeature title={data.title} icon={data.icon} quantity={data.quantity} />
+                                    {data.icon}
+                                    <h2 className="title-font font-medium text-3xl text-[#ffffff]" > {data.quantity}</h2 >
+                                    <p className="leading-relaxed">{data.title}</p>
                                 </div>
                             )}
                         </button>
@@ -113,14 +115,10 @@ export default Features;
 const ButtonFeature = ({ title, icon, quantity }) => {
 
     return (
-        // <button className="p-4 md:w-1/4 sm:w-1/2 w-full">
         <>
             {icon}
-            <h2  className="title-font font-medium text-3xl text-[#ffffff]" > {quantity}</h2 >
+            <h2 className="title-font font-medium text-3xl text-[#ffffff]" > {quantity}</h2 >
             <p className="leading-relaxed">{title}</p>
         </>
-
-
-        // </button>
     )
 }
