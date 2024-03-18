@@ -48,8 +48,8 @@ const featuredata = [
             </svg>
 
         ),
-        title: "Sparklers",
-        quantity: "1.3K",
+        title: "DJ's",
+        quantity: "9",
     },
 
     {
