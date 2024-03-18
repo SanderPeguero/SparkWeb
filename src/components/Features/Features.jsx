@@ -68,14 +68,17 @@ const featuredata = [
 ];
 
 function Features() {
-    const [clickedIndex, setClickedIndex] = useState(null);
+
+    const [clickedIndex, setClickedIndex] = useState(null)
+
     const handleClick = (index) => {
+
         if (clickedIndex === index) {
             setClickedIndex(null)
         } else {
             setClickedIndex(index)
         }
-    };
+    }
 
 
 
