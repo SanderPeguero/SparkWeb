@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Hero = () => {
+const Slider = () => {
 
     const [slider, setslider] = useState(0);
 
@@ -78,4 +78,4 @@ const Hero = () => {
     );
 };
 
-export default Hero;
+export default Slider;

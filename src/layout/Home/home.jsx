@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // import Analytics from '../Analytics';
 // import Cards from '../Cards';
-import Hero from '../../components/Hero/Hero';
+import Slider from '../../components/Slider/Slider.jsx';
 // import Hero2 from '../../components/Hero/Hero2'
 import Newsletter from '../../components/Newsletter'
 import Features from '../../components/Features/Features';
@@ -80,7 +80,8 @@ function home() {
     return (
         <>
             <Hero1 />
-            <Hero />
+            <Features />
+            <Slider />
             <div className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
                 <ContainerCard>
                     <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>
@@ -96,7 +97,7 @@ function home() {
             {/* <Contacto /> */}
             {/* <Analytics /> */}
             {/* <Newsletter />  */}
-            <Features />
+         
             {/* <Cards /> */}
             {/* <MapComponent /> */}
             {/* <Footer />  */}
