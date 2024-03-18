@@ -111,14 +111,3 @@ function Features() {
 
 export default Features;
 
-
-const ButtonFeature = ({ title, icon, quantity }) => {
-
-    return (
-        <>
-            {icon}
-            <h2 className="title-font font-medium text-3xl text-[#ffffff]" > {quantity}</h2 >
-            <p className="leading-relaxed">{title}</p>
-        </>
-    )
-}
