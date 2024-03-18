@@ -8,14 +8,9 @@ import UserMenu from './UserMenu';
 import { GiHamburgerMenu } from "react-icons/gi";
 import styles from "./Nav.module.css"
 import Button from '../Elements/Button/Button';
-// const links = [
-//   { 'link': '/', 'text': 'Inicio', 'replace': true },
-//   { 'link': '/boletas', 'text': 'Boletas', 'replace': false },
-//   { 'link': '/activacion', 'text': 'Activacion', 'replace': false },
-//   { 'link': '/tienda', 'text': 'Tienda', 'replace': false },
-//   // { 'link': '/', 'text': 'Info', 'replace': false },
-//   // {'link':'login', 'text':'Log In', 'replace': false },
-// ]
+
+import SignIn from '../../layout/SignIn/SignIn';
+import Login from '../../layout/Login/Login';
 
 const links = [
   {
@@ -41,6 +36,10 @@ const links = [
 
 const Navbar = ({ auth, user }) => {
   const { setlocattion } = useContext(ContextVariable);
+
+  const [isOpenLogIn, setIsOpenLogIn] = useState(false)
+  const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const toggleMobileMenu = () => {
@@ -51,9 +50,15 @@ const Navbar = ({ auth, user }) => {
     localStorage.clear();
     window.location.href = ''
   };
+
   return (
 
-    <nav className={`${styles.nav} flex align-items-center `}>
+    // etiqueta vacia componentete login y SingIn,  el navar completo
+    <>
+    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} />
+    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} />
+
+    <nav className={`${styles.nav} flex align-items-center`}>
       {/*  */}
       <a href='/'>
         <div className='flex items-center'>
@@ -73,8 +78,8 @@ const Navbar = ({ auth, user }) => {
         ))}
       </ul>
       <div className={`flex ${styles["navbar-buttons"]}`}>
-        <Button theme="transparent">Login</Button>
-        <Button theme="matrix">Sign up</Button>
+        <Button onClick={() => setIsOpenLogIn(true)} theme="transparent">Login</Button>
+        <Button onClick={() => setIsOpenSignUp(true)} theme="matrix">Sign up</Button>
       </div>
       <div className={`${styles["navbar-responsive-menu"]}`}>
         <Button onClick={toggleMobileMenu} theme="transparent">
@@ -106,6 +111,7 @@ const Navbar = ({ auth, user }) => {
         </>
       )}
     </nav>
+    </>
   );
 };
 
