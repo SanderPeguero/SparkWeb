@@ -117,6 +117,8 @@ function App() {
     })
   }
 
+
+  
   const { vertical, horizontal, open } = state;
 
   const [locattion, setlocattion] = useState(null)

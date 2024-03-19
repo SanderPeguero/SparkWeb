@@ -20,6 +20,7 @@ const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
                 // Signed in 
                 const user = userCredential.user;
                 setauth(user)
+                setIsOpen(false)
 
                 setalert({
                     ...alert,
@@ -42,7 +43,7 @@ const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
     }
     const handleCloseModal = (e) => {
         e.preventDefault()
-        setIsOpen(false) 
+        setIsOpen(false)
     }
 
     // setIsSignUp
@@ -54,15 +55,15 @@ const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
     return (
         <>
             {isOpen &&
-            // mb-[20rem] mt-[4rem]
+                // mb-[20rem] mt-[4rem]
                 <div className="fixed  inset-0 flex items-center justify-center z-50 mx-8 sm:mx-0 min-h-screen w-full backdrop-blur-md"
-                onClick={(e) => handleCloseModal(e)}
+                    onClick={(e) => handleCloseModal(e)}
                 >
                     {/* El onClick es para cerrar el modal en la parte que se vez borroso */}
                     <div className="w-full lg:w-[30rem] md:w-[50%] px-4 mx-auto pt-6" onClick={(e) => e.stopPropagation()}>
                         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-[rgba(248,250,252)] border-0">
                             <div className="rounded-t mb-0 px-6 py-6">
-                            <div className=' px-5 py-7 font-bold'>
+                                <div className=' px-5 py-7 font-bold'>
                                     <div className='flex justify-between items-center '>
                                         <h2 className="text-2xl font-semibold">Log In with</h2>
                                         <button
@@ -121,14 +122,14 @@ const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
                                         {/* <p className="mt-4 text-sm">Dont Have An Account Yet? <Link to='/signin' className="underline cursor-pointer"> Sign In</Link></p> */}
                                     </div>
 
-                                    
+
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                }
+            }
         </>
     )
 };
