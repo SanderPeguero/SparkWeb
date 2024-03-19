@@ -34,8 +34,8 @@ const links = [
 
 ]
 
-const Navbar = ({ auth, user }) => {
-  const { setlocattion } = useContext(ContextVariable);
+const Navbar = () => {
+  const { setlocattion, auth, user } = useContext(ContextVariable);
 
   const [isOpenLogIn, setIsOpenLogIn] = useState(false)
   const [isOpenSignUp, setIsOpenSignUp] = useState(false)
@@ -55,62 +55,68 @@ const Navbar = ({ auth, user }) => {
 
     // etiqueta vacia componentete login y SingIn,  el navar completo
     <>
-    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} />
-    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} />
+      <Login isOpen={isOpenLogIn} setIsOpen={setIsOpenLogIn} />
+      <SignIn isOpen={isOpenSignUp} setIsOpen={setIsOpenSignUp} />
 
-    <nav className={`${styles.nav} flex align-items-center`}>
-      {/*  */}
-      <a href='/'>
-        <div className='flex items-center'>
-          <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
-          <h1 className={`ml-2 ${styles["nav-title"]}`}>Grupo Spark</h1>
-        </div>
-      </a>
-      {/* <img src={Logo} className='h-6 w-6'/>
+      <nav className={`${styles.nav} flex align-items-center`}>
+        {/*  */}
+        <a href='/'>
+          <div className='flex items-center'>
+            <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
+            <h1 className={`ml-2 ${styles["nav-title"]}`}>Grupo Spark</h1>
+          </div>
+        </a>
+        {/* <img src={Logo} className='h-6 w-6'/>
       <h1 className={styles["nav-title"]} >Grupo Spark</h1> */}
-      <ul className={`flex align-items-center ${styles["navbar-nav"]}`}>
-        {links.map((link) => (
-          <li key={link.name} className={`${styles["nav-item"]} ${location.pathname === link.route ? `ml-2 ${styles.active}` : ''}`}>
-            <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <div className={`flex ${styles["navbar-buttons"]}`}>
-        <Button onClick={() => setIsOpenLogIn(true)} theme="transparent">Login</Button>
-        <Button onClick={() => setIsOpenSignUp(true)} theme="matrix">Sign up</Button>
-      </div>
-      <div className={`${styles["navbar-responsive-menu"]}`}>
-        <Button onClick={toggleMobileMenu} theme="transparent">
-          <GiHamburgerMenu size="32" color="var(--white-100)" />
-        </Button>
-      </div>
-      {isMobileMenuOpen && (
-        <>
-          <ul className={`absolute top-[8rem] left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
-            <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles.active}`}>
-              <a href="" className={styles["nav-link"]}>Home</a>
+        <ul className={`flex align-items-center ${styles["navbar-nav"]}`}>
+          {links.map((link) => (
+            <li key={link.name} className={`${styles["nav-item"]} ${location.pathname === link.route ? `ml-2 ${styles.active}` : ''}`}>
+              <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
+                {link.name}
+              </Link>
             </li>
-            <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
-              <a href="" className={styles["nav-link"]}>Wallpapers</a>
-            </li>
-            <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
-              <a href="" className={styles["nav-link"]}>Collections</a>
-            </li>
-            <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
-              <a href="" className={styles["nav-link"]}>Artists</a>
-            </li>
-            <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
-              <a href="" className={styles["nav-link"]}>Explore</a>
-            </li>
-            <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
-              <a href="" className={styles["nav-link"]}>Blog</a>
-            </li>
-          </ul>
-        </>
-      )}
-    </nav>
+          ))}
+        </ul>
+        {
+          auth == null ?
+            <div className={`flex ${styles["navbar-buttons"]}`}>
+              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent">Login</Button>
+              <Button onClick={() => setIsOpenSignUp(true)} theme="matrix">Sign up</Button>
+            </div>
+            :
+            <UserMenu user={user} />
+        }
+
+        <div className={`${styles["navbar-responsive-menu"]}`}>
+          <Button onClick={toggleMobileMenu} theme="transparent">
+            <GiHamburgerMenu size="32" color="var(--white-100)" />
+          </Button>
+        </div>
+        {isMobileMenuOpen && (
+          <>
+            <ul className={`absolute top-[8rem] left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
+              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles.active}`}>
+                <a href="" className={styles["nav-link"]}>Home</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+                <a href="" className={styles["nav-link"]}>Wallpapers</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+                <a href="" className={styles["nav-link"]}>Collections</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+                <a href="" className={styles["nav-link"]}>Artists</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+                <a href="" className={styles["nav-link"]}>Explore</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+                <a href="" className={styles["nav-link"]}>Blog</a>
+              </li>
+            </ul>
+          </>
+        )}
+      </nav>
     </>
   );
 };
