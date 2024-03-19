@@ -35,10 +35,7 @@ const links = [
 ]
 
 const Navbar = () => {
-  const { setlocattion, auth, user } = useContext(ContextVariable);
-
-  const [isOpenLogIn, setIsOpenLogIn] = useState(false)
-  const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+  const { setlocattion, auth, user, setIsOpenLogIn,setIsOpenSignUp } = useContext(ContextVariable);
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -55,8 +52,8 @@ const Navbar = () => {
 
     // etiqueta vacia componentete login y SingIn,  el navar completo
     <>
-    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} setIsOpenSignUp={setIsOpenSignUp}/>
-    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} setIsOpenLogIn={setIsOpenLogIn}/>
+    <Login />
+    <SignIn/>
 
       <nav className={`${styles.nav} flex align-items-center`}>
         {/*  */}
