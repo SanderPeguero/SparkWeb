@@ -4,13 +4,14 @@ import { Link } from "react-router-dom"
 
 import { ContextVariable } from '../../Context';
 
-const Login = ({ isOpen, setIsOpen }) => {
+const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
 
     const { alert, setalert, setauth } = useContext(ContextVariable)
 
     const FirebaseAuth = getAuth()
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
+    const [isBackgroundBlurred, setIsBackgroundBlurred] = useState(false);
 
     const handleLogIn = () => {
         signInWithEmailAndPassword(FirebaseAuth, email, password)
@@ -41,10 +42,15 @@ const Login = ({ isOpen, setIsOpen }) => {
     }
     const handleCloseModal = (e) => {
         e.preventDefault()
-        setIsOpen(false)
-        
+        setIsOpen(false) 
     }
 
+    // setIsSignUp
+    const handleOpenSignUp = (e) => {
+        e.preventDefault()
+        setIsOpen(false)
+        setIsOpenSignUp(true)
+    }
     return (
         <>
             {isOpen &&
@@ -110,8 +116,13 @@ const Login = ({ isOpen, setIsOpen }) => {
                                             Log In
                                             <div className="absolute inset-0 h-full w-full scale-0 rounded transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                                         </button>
-                                        <p className="mt-4 text-sm">Dont Have An Account Yet? <Link to='/signin' className="underline cursor-pointer"> Sign In</Link></p>
+                                        Don't you have an account yet? <button onClick={(e) => handleOpenSignUp(e)}> Sign In</button>
+
+                                        {/* <p className="mt-4 text-sm">Dont Have An Account Yet? <Link to='/signin' className="underline cursor-pointer"> Sign In</Link></p> */}
                                     </div>
+
+                                    
+
                                 </div>
                             </div>
                         </div>
