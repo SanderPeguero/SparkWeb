@@ -55,8 +55,8 @@ const Navbar = ({ auth, user }) => {
 
     // etiqueta vacia componentete login y SingIn,  el navar completo
     <>
-    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} />
-    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} />
+    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} setIsOpenSignUp={setIsOpenSignUp}/>
+    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} setIsOpenLogIn={setIsOpenLogIn}/>
 
     <nav className={`${styles.nav} flex align-items-center`}>
       {/*  */}

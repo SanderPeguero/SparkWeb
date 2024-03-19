@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 import { ContextVariable } from '../../Context';
 
-const SignIn = ({ isOpen, setIsOpen }) => {
+const SignIn = ({ isOpen, setIsOpen, setIsOpenLogIn }) => {
 
     const { alert, setalert, auth, setauth } = useContext(ContextVariable)
 
@@ -86,6 +86,12 @@ const SignIn = ({ isOpen, setIsOpen }) => {
         
     }
 
+    const handleLogIn = (e) =>{
+        e.preventDefault()
+        setIsOpen(false)
+        setIsOpenLogIn(true)
+    }
+
     return (
         <>
             {isOpen &&
@@ -161,8 +167,8 @@ const SignIn = ({ isOpen, setIsOpen }) => {
                                             Sign In
                                             <div className="absolute inset-0 h-full w-full scale-0 rounded transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                                         </button>
-                                        <p className="text-sm">Already Have An Account? <Link to='/login' className="underline cursor-pointer"> Log In</Link></p>
-                                    </div>
+                                        Already Have An Account? <button onClick={(e) => handleLogIn(e)}> Log In</button>
+                                        </div>
                                 </div>
                             </div>
                         </div>
