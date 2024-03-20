@@ -119,7 +119,10 @@ function App() {
 
   const [isOpenLogIn, setIsOpenLogIn] = useState(false)
   const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+  const [reserveTicket, setreserveTicket] = useState(false)
+  const [comprarTicket, setcomprarTicket] = useState(false)
 
+ 
   
   const { vertical, horizontal, open } = state;
 
@@ -144,7 +147,12 @@ function App() {
       isOpenLogIn,
       setIsOpenLogIn,
       isOpenSignUp,
-      setIsOpenSignUp
+      setIsOpenSignUp,
+      reserveTicket,
+      setreserveTicket,
+      comprarTicket,
+      setcomprarTicket
+     
       }}>
       <div>
         <Snackbar

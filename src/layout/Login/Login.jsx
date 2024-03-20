@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { ContextVariable } from '../../Context';
 
 const Login = () => {
-    const { alert, setalert, setauth, isOpenLogIn, setIsOpenLogIn, setIsOpenSignUp } = useContext(ContextVariable)
+    const { alert, setalert, setauth, isOpenLogIn, setIsOpenLogIn, setIsOpenSignUp,setreserveTicket,locattion } = useContext(ContextVariable)
 
     const FirebaseAuth = getAuth()
     const [email, setemail] = useState('')
@@ -20,6 +20,8 @@ const Login = () => {
                 const user = userCredential.user;
                 setauth(user)
                 setIsOpenLogIn(false)
+                
+                
 
                 setalert({
                     ...alert,
