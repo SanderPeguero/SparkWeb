@@ -16,7 +16,13 @@ function Purchase({ event }) {
 
   const [Email, setEmail] = useState('')
   const [number, setnumber] = useState('')
-  const [isOpenMenu, setIsOpenMenu] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const options = [
+    { value: 'Cash', label: 'Cash' },
+    { value: 'Transfer', label: 'Transfer' },
+  ];
+
   function generateTicket() {
     const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Caracteres permitidos
     const ticketLength = 5; // Longitud del ticket
@@ -57,11 +63,14 @@ function Purchase({ event }) {
     setTicketCode(ticket)
     setCustomerEmail(user?.email)
     setCustomerPhoneNumber(user?.phone)
-    setPaymentMethod("efectivo")
+    setPaymentMethod(selectedOption)
     setPaymentStatus('Pending')
-  }, [event, user])
+  }, [selectedOption])
+
+
 
   useEffect(() => {
+    console.log(selectedOption)
     const eventData = {
       nameOfCustomer: {
         eventDetails: {
@@ -77,7 +86,7 @@ function Purchase({ event }) {
           phoneNumber: customerPhoneNumber
         },
         paymentDetails: {
-          paymentMethod: paymentMethod,
+          paymentMethod: selectedOption,
           paymentStatus: paymentStatus
         }
       }
@@ -86,7 +95,7 @@ function Purchase({ event }) {
     localStorage.setItem("purchase", JSON.stringify(eventData));
     console.log("Datos guardado en la base de datos")
     console.log(JSON.parse(localStorage.getItem("purchase")));
-  }, [load === true])
+  }, [load === true, selectedOption])
 
 
 
@@ -117,12 +126,6 @@ function Purchase({ event }) {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
 
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const options = [
-    { value: 'Cash', label: 'Cash' },
-    { value: 'Transfer', label: 'Transfer' },
-  ];
 
   const db = getFirestore()
   const purchaseStart = async () => {
@@ -132,6 +135,7 @@ function Purchase({ event }) {
     try {
       const docRef = await addDoc(collection(db, "events"), data);
       console.log("Document written with ID: ", docRef.id);
+      localStorage.clear();
       setalert({
         ...alert,
         open: true,
@@ -153,13 +157,20 @@ function Purchase({ event }) {
 
   const openWhatsAppGroup = () => {
     if (selectedOption === "Cash") {
-      const message = `Hello! I'm currently on your website and I'm interested in purchasing a ticket for the 
+
+      const message = `Hello! I'm currently on your website and I'm interested in purchasing a ticket for the
       ${event} event. I've chosen to pay in ${selectedOption}. Could you please assist me with the purchase process? Thank you!`;
       const encodedMessage = encodeURIComponent(message);
       console.log(encodedMessage)
       window.location.href = `https://wa.me/message/EH45EKR7CQL6H1?text=${encodedMessage}`;
 
     } else if (selectedOption === "Transfer") {
+
+      const message = `Hi there! I'm currently on your website and I'm interested in purchasing a ticket for the ${event}event. 
+      I've chosen to pay via bank wire ${selectedOption}. Could you please provide me with the necessary routing numbers for the company's bank account?`;
+      const encodedMessage = encodeURIComponent(message);
+      console.log(encodedMessage)
+      window.location.href = `https://wa.me/message/EH45EKR7CQL6H1?text=${encodedMessage}`;
 
     }
   };
