@@ -14,10 +14,9 @@ function Purchase({ event }) {
 
   const { alert, setalert, user } = useContext(ContextVariable)
 
-
-
   const [Email, setEmail] = useState('')
   const [number, setnumber] = useState('')
+  const [isOpenMenu, setIsOpenMenu] = useState(false)
   function generateTicket() {
     const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Caracteres permitidos
     const ticketLength = 5; // Longitud del ticket
@@ -118,9 +117,16 @@ function Purchase({ event }) {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
 
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const options = [
+    { value: 'Cash', label: 'Cash' },
+    { value: 'Transfer', label: 'Transfer' },
+  ];
+
   const db = getFirestore()
   const purchaseStart = async () => {
-    const data =  JSON.parse(localStorage.getItem("purchase"));
+    const data = JSON.parse(localStorage.getItem("purchase"));
     console.log(data)
 
     try {
@@ -131,7 +137,7 @@ function Purchase({ event }) {
         open: true,
         message: `Tu compra se ha hecho correctamente`,
         severity: 'success'
-    });
+      });
       openWhatsAppGroup()
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -140,17 +146,23 @@ function Purchase({ event }) {
         open: true,
         message: `Tu compra no se ha podido hacer en este momento`,
         severity: 'error'
-    });
+      });
     }
   };
 
 
   const openWhatsAppGroup = () => {
-    const message = `Hola, estoy interesado en comprar una boleta. Mi correo electrónico es ${Email} y mi número de teléfono es ${number}. ¿Cómo puedo proceder?`;
-    const encodedMessage = encodeURIComponent(message);
-    window.location.href = `https://wa.me/message/EH45EKR7CQL6H1?text=${encodedMessage}`;
-  };
+    if (selectedOption === "Cash") {
+      const message = `Hello! I'm currently on your website and I'm interested in purchasing a ticket for the 
+      ${event} event. I've chosen to pay in ${selectedOption}. Could you please assist me with the purchase process? Thank you!`;
+      const encodedMessage = encodeURIComponent(message);
+      console.log(encodedMessage)
+      window.location.href = `https://wa.me/message/EH45EKR7CQL6H1?text=${encodedMessage}`;
 
+    } else if (selectedOption === "Transfer") {
+
+    }
+  };
 
 
 
@@ -192,7 +204,7 @@ function Purchase({ event }) {
 
 
 
-                    <div className="" onClick={handleEditPhone}>
+                    <div className="mb-4" onClick={handleEditPhone}>
                       <label
                         htmlFor="time"
                         className="w-[10rem] mb-3 block text-base font-medium text-[#ffffff]"
@@ -206,6 +218,29 @@ function Purchase({ event }) {
                         name="number"
                         id="number"
                         className="rounded-md border border-[#e0e0e0] bg-white py-3 px-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    </div>
+                    <div>
+                      <div className=" ">
+                        <label
+                          className="w-[10rem] mb-3 block text-base font-medium text-[#ffffff]"
+                        >
+                          Payment type
+                        </label>
+                        <select
+                          name="title"
+                          value={selectedOption}
+                          onChange={(e) => setSelectedOption(e.target.value)}
+                          className="rounded-md border border-[#e0e0e0] bg-white py-3 px-3 w-[13.5rem] text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+
+                        >
+                          <option className='' value="" disabled>Payment option</option>
+                          {options.map((option) => (
+                            <option className='text-black' key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -228,3 +263,49 @@ function Purchase({ event }) {
 }
 
 export default Purchase
+
+
+const InputMenu = ({ isOpenMenu, setIsOpenMenu }) => {
+
+  return (
+    <>
+
+      {/* <>
+      <button onClick={() => setIsOpenMenu(!isOpenMenu)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
+        Open Menu
+        <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+      </button>
+      {isOpenMenu && (
+
+        <ul
+          role="menu"
+          data-popover="menu"
+          data-popover-placement="bottom"
+          className="absolute z-10 min-w-[180px] overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none"
+        >
+          <li
+            role="menuitem"
+            className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+          >
+            Menu Item 1
+          </li>
+          <li
+            role="menuitem"
+            className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+          >
+            Menu Item 2
+          </li>
+          <li
+            role="menuitem"
+            className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
+          >
+            Menu Item 3
+          </li>
+        </ul>
+      )}
+
+
+    </> */}
+    </>
+  )
+}
