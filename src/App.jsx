@@ -26,6 +26,7 @@ import ActivationsDash from './layout/ActivationsDash/Dashboard'
 import { ContextVariable } from './Context'
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import ContainerCard from './components/ContainerCard/ContainerCard'
+import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 
 
@@ -171,6 +172,7 @@ function App() {
               <Route exact path='/' element={<Home />} />
               <Route exact path='/boletas' element={<Tickets />} />
               <Route exact path='/activacion' element={<Activation />} />
+              <Route exact path='/emailConfi' element={<EmailConfirmation />} />
               <Route exact path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
               <Route exact path='/signin' element={!auth ? <SignIn /> : <Navigate to='/' />} />
               {

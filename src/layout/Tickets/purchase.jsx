@@ -61,11 +61,11 @@ function Purchase({ event }) {
     setTicketQuantity(1)
     const ticket = generateTicket();
     setTicketCode(ticket)
-    setCustomerEmail(user?.email)
+    setCustomerEmail(Email)
     setCustomerPhoneNumber(user?.phone)
     setPaymentMethod(selectedOption)
     setPaymentStatus('Pending')
-  }, [selectedOption])
+  }, [selectedOption, Email])
 
 
 
