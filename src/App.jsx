@@ -28,6 +28,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 import ContainerCard from './components/ContainerCard/ContainerCard'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
+import { getDatabase, ref, get } from 'firebase/database';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -70,22 +71,45 @@ function App() {
 
   const db = getFirestore()
 
+  // const getUser = async (data) => {
+
+  //   const docRef = doc(db, "Users", data.uid);
+  //   const docSnap = await getDoc(docRef);
+
+  //   if (docSnap.exists()) {
+
+  //     setuser(docSnap.data())
+
+  //   } else {
+
+  //     console.log("No such user document!");
+
+  //   }
+
+  // }
+
   const getUser = async (data) => {
-
-    const docRef = doc(db, "Users", data.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-
-      setuser(docSnap.data())
-
-    } else {
-
-      console.log("No such user document!");
-
+    try {
+      // Obtener una referencia a la base de datos en tiempo real de Firebase
+      const database = getDatabase();
+  
+      // Obtener los datos del usuario desde la base de datos en tiempo real
+      const userRef = ref(database, `Users/${data.uid}`);
+      const dataSnapshot = await get(userRef);
+  
+      if (dataSnapshot.exists()) {
+        // Convertir los datos del usuario a un objeto JavaScript
+        const userData = dataSnapshot.val();
+        console.log(userData)
+        // Establecer los datos del usuario en el estado
+        setuser(userData);
+      } else {
+        console.log("No such user document!");
+      }
+    } catch (error) {
+      console.error("Error getting user data: ", error);
     }
-
-  }
+  };
 
   useEffect(() => {
     setState({
@@ -129,11 +153,25 @@ function App() {
 
   const [locattion, setlocattion] = useState(null)
 
-  //Comp 1 Padre App -> num1
-  //Comp 2 Hijo
-  //Comp 3
-  //Comp 4
-  //Comp 5
+  const commonRoutes = [
+    { path: '/', element: <Home /> },
+    { path: '/boletas', element: <Tickets /> },
+    { path: '/activacion', element: <Activation /> },
+    { path: '/emailConfi', element: <EmailConfirmation /> },
+    { path: '/login', element: !auth ? <Login /> : <Navigate to='/' /> },
+    { path: '/signin', element: !auth ? <SignIn /> : <Navigate to='/' /> },
+    { path: '*', element: <Navigate to='/' /> }
+  ];
+
+  const adminRoutes = [
+    { path: '/boletas', element: <Tickets /> },
+    { path: '/activacion', element: <Activation /> },
+    { path: '/ticketsdash', element: <Screen /> },
+    { path: '/dashboardsparkle', element: <Dashboard /> },
+    { path: '/activationsdash', element: <ActivationsDash /> },
+  ];
+
+  const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({...route, path: `/admin${route.path}`})) : [])];
 
 
   return (
@@ -171,13 +209,16 @@ function App() {
 
           <header>
             {/* {locattion !== '/' && <Navbar auth={auth} user={user} />} */}
-            {locattion !== "/" && (
+            {locattion !== "/" && locattion !== "/admin/" && (
               <Navbar auth={auth} user={user} />
             )}
           </header>
           <main className=''>
             <Routes>
-              <Route exact path='/' element={<Home />} />
+            {routes.map((route, index) => (
+                <Route key={index} {...route} />
+              ))}
+              {/* <Route exact path='/' element={<Home />} />
               <Route exact path='/boletas' element={<Tickets />} />
               <Route exact path='/activacion' element={<Activation />} />
               <Route exact path='/emailConfi' element={<EmailConfirmation />} />
@@ -194,7 +235,7 @@ function App() {
                   )
                   : <Route path='*' element={<Navigate to='/' />} />
                   : <Route path='*' element={<Navigate to='/' />} />
-              }
+              } */}
             </Routes>
             <Footer />
           </main>
