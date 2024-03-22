@@ -22,7 +22,7 @@ console.log(user?.role)
   const links = [
     {
       name: 'Inicio',
-      route: '/'
+      route: `${user && user.role === 'admin' ? '/admin' : '/'}`
     },
     {
       name: 'Boletas',

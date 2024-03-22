@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { doc, getDoc, getFirestore } from "firebase/firestore"
-import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes, Navigate, useNavigate  } from 'react-router-dom'
 
 //MUI
 import MuiAlert from '@mui/material/Alert'
@@ -171,6 +171,8 @@ function App() {
     { path: '/dashboardsparkle', element: <Dashboard /> },
     { path: '/activationsdash', element: <ActivationsDash /> },
   ];
+  
+  
 
   const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({...route, path: `/admin${route.path}`})) : [])];
 

@@ -24,43 +24,10 @@ const SignIn = () => {
     const [password2, setpassword2] = useState('')
 
 
-    // const submitUser = async (data) => {
-    //     try {
-    //         const docref = await setDoc(doc(db, "Users", data.uid), {
-    //             userName: null,                      //Nombre de usuario: El nombre que el usuario utiliza para iniciar sesión en la plataforma.
-    //             name: name,                          //Nombre completo: El nombre completo del usuario.
-    //             phone: phone,                        //Número de teléfono: El número de teléfono del usuario, que puede ser útil para enviar SMS o notificaciones.
-    //             email: email,                        //Correo electrónico: La dirección de correo electrónico del usuario, que se utiliza para fines de comunicación y notificaciones.
-    //             password: password,                  //Contraseña: La contraseña del usuario, que debe estar segura y cifrada en la base de datos.
-    //             password2: password2,
-    //             profileImage: null,                  //Imagen de perfil: Una imagen que el usuario puede cargar para personalizar su perfil.
-    //             birthDate: null,                     //Fecha de nacimiento: La fecha de nacimiento del usuario, que puede ser necesaria para verificar la edad en eventos con restricciones de edad.
-    //             address: null,                       //Dirección: La dirección física del usuario, que podría ser necesaria para la entrega de productos físicos o para verificar la ubicación del usuario.
-    //             accountState: 'active',              //Estado de cuenta: Información sobre el estado de la cuenta del usuario, como si la cuenta está activa, suspendida o bloqueada.
-    //             role: 'user',                        //Rol del usuario: Si tienes diferentes tipos de usuarios (por ejemplo, administradores, compradores de boletos, vendedores de productos), puedes asignar un rol a cada usuario.
-    //             authToken: null,                     //Tokens de autenticación: Para manejar la autenticación y la seguridad del usuario.
-    //             scoinTokens: 0,                      //Tokens de moneda virtual: Registra la cantidad de tokens virtuales que el usuario tiene en su cuenta.
-    //             scoinsBalance: 0,                    //Saldo de monedas: La cantidad de monedas virtuales que el usuario tiene en su cuenta.
-    //             transactionHistory: null,            //Historial de transacciones: Un registro de las transacciones que ha realizado el usuario, incluyendo la compra de boletos y el gasto de monedas virtuales en eventos.
-    //             notificationPreferences: null,       //Preferencias de notificación: Las preferencias del usuario para recibir notificaciones por correo electrónico, mensajes de texto u otras formas de comunicación.
-    //             creationDate: new Date(),            //Fecha de Creacion: La fecha en la que el usuario creo su cuenta.
-    //             updateDate: null                     //Fecha de Actualizacion: La fecha del ultimo movimiento que hizo el usuario en su cuenta
-    //         });
-
-    //         console.log("Document written with ID: ", docref);
-    //     } catch (e) {
-    //         console.error("Error adding document: ", e);
-    //     }
-    // }
-
     const submitUser = async (data) => {
         try {
-            // Obtener una referencia a la base de datos en tiempo real de Firebase
-            const database = getDatabase();
-    
-            // Establecer los datos del usuario en la base de datos en tiempo real
-            await set(ref(database, `Users/${data.uid}`), {
-                               userName: null,         //Nombre de usuario: El nombre que el usuario utiliza para iniciar sesión en la plataforma.
+            const docref = await setDoc(doc(db, "Users", data.uid), {
+                userName: null,                      //Nombre de usuario: El nombre que el usuario utiliza para iniciar sesión en la plataforma.
                 name: name,                          //Nombre completo: El nombre completo del usuario.
                 phone: phone,                        //Número de teléfono: El número de teléfono del usuario, que puede ser útil para enviar SMS o notificaciones.
                 email: email,                        //Correo electrónico: La dirección de correo electrónico del usuario, que se utiliza para fines de comunicación y notificaciones.
@@ -77,14 +44,47 @@ const SignIn = () => {
                 transactionHistory: null,            //Historial de transacciones: Un registro de las transacciones que ha realizado el usuario, incluyendo la compra de boletos y el gasto de monedas virtuales en eventos.
                 notificationPreferences: null,       //Preferencias de notificación: Las preferencias del usuario para recibir notificaciones por correo electrónico, mensajes de texto u otras formas de comunicación.
                 creationDate: new Date(),            //Fecha de Creacion: La fecha en la que el usuario creo su cuenta.
-                updateDate: null   
+                updateDate: null                     //Fecha de Actualizacion: La fecha del ultimo movimiento que hizo el usuario en su cuenta
             });
-    
-            console.log("User data added successfully.");
-        } catch (error) {
-            console.error("Error adding user data: ", error);
+
+            console.log("Document written with ID: ", docref);
+        } catch (e) {
+            console.error("Error adding document: ", e);
         }
     }
+
+    // const submitUser = async (data) => {
+    //     try {
+    //         // Obtener una referencia a la base de datos en tiempo real de Firebase
+    //         const database = getDatabase();
+    
+    //         // Establecer los datos del usuario en la base de datos en tiempo real
+    //         await set(ref(database, `Users/${data.uid}`), {
+    //                            userName: null,         //Nombre de usuario: El nombre que el usuario utiliza para iniciar sesión en la plataforma.
+    //             name: name,                          //Nombre completo: El nombre completo del usuario.
+    //             phone: phone,                        //Número de teléfono: El número de teléfono del usuario, que puede ser útil para enviar SMS o notificaciones.
+    //             email: email,                        //Correo electrónico: La dirección de correo electrónico del usuario, que se utiliza para fines de comunicación y notificaciones.
+    //             password: password,                  //Contraseña: La contraseña del usuario, que debe estar segura y cifrada en la base de datos.
+    //             password2: password2,
+    //             profileImage: null,                  //Imagen de perfil: Una imagen que el usuario puede cargar para personalizar su perfil.
+    //             birthDate: null,                     //Fecha de nacimiento: La fecha de nacimiento del usuario, que puede ser necesaria para verificar la edad en eventos con restricciones de edad.
+    //             address: null,                       //Dirección: La dirección física del usuario, que podría ser necesaria para la entrega de productos físicos o para verificar la ubicación del usuario.
+    //             accountState: 'active',              //Estado de cuenta: Información sobre el estado de la cuenta del usuario, como si la cuenta está activa, suspendida o bloqueada.
+    //             role: 'user',                        //Rol del usuario: Si tienes diferentes tipos de usuarios (por ejemplo, administradores, compradores de boletos, vendedores de productos), puedes asignar un rol a cada usuario.
+    //             authToken: null,                     //Tokens de autenticación: Para manejar la autenticación y la seguridad del usuario.
+    //             scoinTokens: 0,                      //Tokens de moneda virtual: Registra la cantidad de tokens virtuales que el usuario tiene en su cuenta.
+    //             scoinsBalance: 0,                    //Saldo de monedas: La cantidad de monedas virtuales que el usuario tiene en su cuenta.
+    //             transactionHistory: null,            //Historial de transacciones: Un registro de las transacciones que ha realizado el usuario, incluyendo la compra de boletos y el gasto de monedas virtuales en eventos.
+    //             notificationPreferences: null,       //Preferencias de notificación: Las preferencias del usuario para recibir notificaciones por correo electrónico, mensajes de texto u otras formas de comunicación.
+    //             creationDate: new Date(),            //Fecha de Creacion: La fecha en la que el usuario creo su cuenta.
+    //             updateDate: null   
+    //         });
+    
+    //         console.log("User data added successfully.");
+    //     } catch (error) {
+    //         console.error("Error adding user data: ", error);
+    //     }
+    // }
     
 
     const handleSignIn = () => {
