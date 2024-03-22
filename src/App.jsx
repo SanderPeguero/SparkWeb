@@ -71,45 +71,45 @@ function App() {
 
   const db = getFirestore()
 
-  // const getUser = async (data) => {
-
-  //   const docRef = doc(db, "Users", data.uid);
-  //   const docSnap = await getDoc(docRef);
-
-  //   if (docSnap.exists()) {
-
-  //     setuser(docSnap.data())
-
-  //   } else {
-
-  //     console.log("No such user document!");
-
-  //   }
-
-  // }
-
   const getUser = async (data) => {
-    try {
-      // Obtener una referencia a la base de datos en tiempo real de Firebase
-      const database = getDatabase();
-  
-      // Obtener los datos del usuario desde la base de datos en tiempo real
-      const userRef = ref(database, `Users/${data.uid}`);
-      const dataSnapshot = await get(userRef);
-  
-      if (dataSnapshot.exists()) {
-        // Convertir los datos del usuario a un objeto JavaScript
-        const userData = dataSnapshot.val();
-        console.log(userData)
-        // Establecer los datos del usuario en el estado
-        setuser(userData);
-      } else {
-        console.log("No such user document!");
-      }
-    } catch (error) {
-      console.error("Error getting user data: ", error);
+
+    const docRef = doc(db, "Users", data.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+
+      setuser(docSnap.data())
+
+    } else {
+
+      console.log("No such user document!");
+
     }
-  };
+
+  }
+
+  // const getUser = async (data) => {
+  //   try {
+  //     // Obtener una referencia a la base de datos en tiempo real de Firebase
+  //     const database = getDatabase();
+  
+  //     // Obtener los datos del usuario desde la base de datos en tiempo real
+  //     const userRef = ref(database, `Users/${data.uid}`);
+  //     const dataSnapshot = await get(userRef);
+  
+  //     if (dataSnapshot.exists()) {
+  //       // Convertir los datos del usuario a un objeto JavaScript
+  //       const userData = dataSnapshot.val();
+  //       console.log(userData)
+  //       // Establecer los datos del usuario en el estado
+  //       setuser(userData);
+  //     } else {
+  //       console.log("No such user document!");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error getting user data: ", error);
+  //   }
+  // };
 
   useEffect(() => {
     setState({
@@ -164,6 +164,7 @@ function App() {
   ];
 
   const adminRoutes = [
+    { path: '/', element: <Home /> },
     { path: '/boletas', element: <Tickets /> },
     { path: '/activacion', element: <Activation /> },
     { path: '/ticketsdash', element: <Screen /> },
