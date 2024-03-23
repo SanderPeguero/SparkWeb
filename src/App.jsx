@@ -30,6 +30,30 @@ import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 import { getDatabase, ref, get } from 'firebase/database';
 
+//Images Hero 1
+
+import img1 from '../public/dummy_image/1.jpg';
+import img2 from '../public/dummy_image/dj.avif';
+import img3 from '../public/dummy_image/djrecord.webp';
+import img4 from '../public/dummy_image/4.jpg';
+import img5 from '../public/dummy_image/luces.avif';
+import img6 from '../public/dummy_image/6.jpg';
+import img7 from '../public/dummy_image/7.jpg';
+import img8 from '../public/dummy_image/8.jpg';
+import img9 from '../public/dummy_image/9.jpg';
+
+
+const images = [
+  { id: 1, image: img1 },
+  { id: 2, image: img2 },
+  { id: 3, image: img3 },
+  { id: 4, image: img4 },
+  { id: 5, image: img5 },
+  { id: 6, image: img6 },
+  { id: 7, image: img7 },
+  { id: 8, image: img8 },
+  { id: 9, image: img9 },
+];
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -146,8 +170,13 @@ function App() {
   const [isOpenSignUp, setIsOpenSignUp] = useState(false)
   const [reserveTicket, setreserveTicket] = useState(false)
   const [comprarTicket, setcomprarTicket] = useState(false)
+  const [isOpenEditImg, setisOpenEditImg] = useState(false)
 
- 
+  const [listImg, setListImg] = useState([])
+  useEffect(() => {
+      setListImg(images)
+  }, [])
+
   
   const { vertical, horizontal, open } = state;
 
@@ -193,7 +222,11 @@ function App() {
       reserveTicket,
       setreserveTicket,
       comprarTicket,
-      setcomprarTicket
+      setcomprarTicket,
+      isOpenEditImg,
+      setisOpenEditImg,
+      listImg,
+      setListImg
      
       }}>
       <div>
@@ -212,7 +245,7 @@ function App() {
 
           <header>
             {/* {locattion !== '/' && <Navbar auth={auth} user={user} />} */}
-            {locattion !== "/" && locattion !== "/admin/" && (
+            {locattion !== "/" && locattion !== "/admin" && (
               <Navbar auth={auth} user={user} />
             )}
           </header>

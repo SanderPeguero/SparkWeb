@@ -11,26 +11,56 @@ import img9 from '../../../public/dummy_image/9.jpg'
 import imgN1 from '../../../public/dummy_image/dj.avif'
 import imgN2 from '../../../public/dummy_image/djrecord.webp'
 import imgN3 from '../../../public/dummy_image/luces.avif'
+import { useState, useContext, useEffect } from 'react';
+import { ContextVariable } from "../../Context"
 const BrickLayout = () => {
+  const { listImg } = useContext(ContextVariable)
+
+  const totalColumns = Math.ceil(listImg.length / 3);
+
+  const columns = Array.from({ length: totalColumns }, (_, index) =>
+    listImg.slice(index * 3, (index + 1) * 3)
+  );
+
+
+  const brickColumns = columns.map((column, columnIndex) => (
+    <div key={columnIndex} className={styles["brick-column"]}>
+      {column.map((image, imageIndex) => (
+        <img
+          key={imageIndex}
+          src={image.image}
+          alt=""
+          className={imageIndex === 2 ? "h-6 w-6" : ""}
+        />
+      ))}
+    </div>
+  ));
+
   return (
     <div className={styles["brick-layout"]}>
-      <div className={styles["brick-column"]}>
-        <img src={img1} alt="" />
-        <img src={imgN2} alt="" />
-        <img className="h-6 w-6" src={imgN1} alt="" />
-      </div>
-      <div className={styles["brick-column"]}>
-        <img src={img4} alt="" />
-        <img src={imgN3} alt="" />
-        <img src={img6} alt="" />
-      </div>
-      <div className={styles["brick-column"]}>
-        <img src={img7} alt="" />
-        <img src={img8} alt="" />
-        <img src={img9} alt="" />
-      </div>
+      {brickColumns}
     </div>
-  )
+  );
+
 }
 
 export default BrickLayout
+
+
+// <div className={styles["brick-layout"]}>
+//   <div className={styles["brick-column"]}>
+//     <img src={img1} alt="" />
+//     <img src={imgN2} alt="" />
+//     <img className="h-6 w-6" src={imgN1} alt="" />
+//   </div>
+//   <div className={styles["brick-column"]}>
+//     <img src={img4} alt="" />
+//     <img src={imgN3} alt="" />
+//     <img src={img6} alt="" />
+//   </div>
+//   <div className={styles["brick-column"]}>
+//     <img src={img7} alt="" />
+//     <img src={img8} alt="" />
+//     <img src={img9} alt="" />
+//   </div>
+// </div>

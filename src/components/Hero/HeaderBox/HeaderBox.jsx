@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react"
 // import styles this component
 import styles from "./HeaderBox.module.css"
 
@@ -5,12 +6,21 @@ import styles from "./HeaderBox.module.css"
 import PropTypes from 'prop-types'
 
 // HeaderBox component
-const HeaderBox = ({ number, title, border_right=true }) => (
-    <div className={`${styles["header-box"]} ${border_right && styles["active-border-right"]} flex flex-column`}>
-        <h1>{`${number}k+`}</h1>
-        <h3>{ title }</h3>
-    </div>
-)
+const HeaderBox = ({ number, title, border_right = true }) => {
+
+    return (
+        <>
+            <div className={`${styles["header-box"]} ${border_right && styles["active-border-right"]} flex flex-column`}>
+                <h1>{`${number}k+`}</h1>
+                <h3>{title}</h3>
+            </div>
+        </>
+
+    )
+}
+
+
+
 
 HeaderBox.propTypes = {
     number: PropTypes.number.isRequired,
