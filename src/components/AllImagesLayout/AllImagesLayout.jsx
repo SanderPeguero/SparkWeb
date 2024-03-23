@@ -25,22 +25,30 @@ const AllImagesLayout = ({ images, setCategoryImage }) => {
   const handleEditImg = (e, index) => {
     const selectedImage = e.target.files[0];
     if (selectedImage) {
-        const reader = new FileReader();
+      const reader = new FileReader();
+      const confir = window.confirm("Are you sure want to edit the image?")
+      if (confir) {
         reader.onload = () => {
-            const newListImg = [...images];
-            newListImg[index] = { ...images[index], src: reader.result };
-            setCategoryImage(newListImg);
+          const newListImg = [...images];
+          newListImg[index] = { ...images[index], src: reader.result };
+          setCategoryImage(newListImg);
         };
         reader.readAsDataURL(selectedImage);
-    }
-}
+      }
 
-const handleDeleteImg = (index) => {
+    }
+  }
+
+  const handleDeleteImg = (index) => {
     const newListImg = [...images];
-    newListImg.splice(index, 1);
-    setCategoryImage(newListImg);
-}
-  
+    const confir = window.confirm("Are you sure want to delete the image?")
+    if (confir) {
+      newListImg.splice(index, 1);
+      setCategoryImage(newListImg);
+    }
+
+  }
+
 
   return (
     <Masonry
@@ -54,7 +62,7 @@ const handleDeleteImg = (index) => {
             <div className='flex flex-row items-center'>
               <label htmlFor={`file-upload-${index}`} className="px-3 py-2 text-right  text-xs leading-4">
                 <div className="px-3 py-1 border border-blue-500 text-blue-500 rounded transition duration-300 hover:bg-yellow-400 hover:text-white focus:outline-none">
-                  <input id={`file-upload-${index}`} type="file" onChange={(e) => handleEditImg(e, index)}  className="hidden" />
+                  <input id={`file-upload-${index}`} type="file" onChange={(e) => handleEditImg(e, index)} className="hidden" />
                   <FaEdit size={14} className="text-yellow-400" />
                 </div>
               </label>
