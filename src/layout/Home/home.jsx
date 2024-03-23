@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import Analytics from '../Analytics';
 // import Cards from '../Cards';
 import Slider from '../../components/Slider/Slider.jsx';
@@ -53,7 +53,12 @@ function home() {
     const handle = (e) => {
         setstate(e.target.value)
     }
-    const [categoryImage, setCategoryImage] = useState(images.categories.all)
+    const [categoryImage, setCategoryImage] = useState([])
+
+    useEffect(() => {
+        setCategoryImage(images.categories.all)
+    }, [])
+    
 
     const takeDdTitle = (ddTitle) => {
         setCategoryImage(() => {
@@ -88,7 +93,7 @@ function home() {
                         <h1>All images</h1>
                         <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} />
                     </div>
-                    <AllImagesLayout images={categoryImage} />
+                    <AllImagesLayout images={categoryImage} setCategoryImage={setCategoryImage}/>
                 </ContainerCard>
             </div>
             
