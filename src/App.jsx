@@ -205,6 +205,7 @@ function App() {
 
   const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({...route, path: `/admin${route.path}`})) : [])];
 
+  console.log(routes)
 
   return (
     <ContextVariable.Provider value={{ 
