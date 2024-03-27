@@ -39,7 +39,7 @@ const images = [
 
 const Navbar = () => {
   const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp } = useContext(ContextVariable);
-console.log(user?.role)
+// console.log(user?.role)
 // /activacion
   const links = [
     {
