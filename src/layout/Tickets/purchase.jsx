@@ -187,11 +187,11 @@ function Purchase({ event }) {
                 Hey Keyla <span className="text-gray-400 text-[1rem]">Únete a la chispa!</span>
               </h2>
               <div className="text-white mt-10">
-                Para empezar: <br /><br />
+                {/* Para empezar: <br /><br />
                 1. Confirmar el correo <br />
                 2. Entrar al chat <br />
                 3. Comprar la boleta <br />
-                esperar la confirmación en el correo <br />
+                esperar la confirmación en el correo <br /> */}
               </div>
               <form className='mt-8'>
                 <div className="-mx-3 flex flex-wrap">
