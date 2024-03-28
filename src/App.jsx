@@ -171,6 +171,7 @@ function App() {
   const [reserveTicket, setreserveTicket] = useState(false)
   const [comprarTicket, setcomprarTicket] = useState(false)
   const [isOpenEditImg, setisOpenEditImg] = useState(false)
+  const [GalleryVisible, setGalleryVisible] = useState(false)
 
   const [listImg, setListImg] = useState([])
   useEffect(() => {
@@ -224,7 +225,9 @@ console.log(locattion)
       isOpenEditImg,
       setisOpenEditImg,
       listImg,
-      setListImg
+      setListImg,
+      GalleryVisible,
+      setGalleryVisible
      
       }}>
       <div>

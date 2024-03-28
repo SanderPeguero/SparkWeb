@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 // import Analytics from '../Analytics';
 // import Cards from '../Cards';
 import Slider from '../../components/Slider/Slider.jsx';
@@ -14,6 +14,7 @@ import styles from "./home.module.css"
 
 // import LandingPage from '../../assets/Bg.png'
 import Hero1 from '../../components/Hero/Hero1';
+import { ContextVariable } from '../../Context.js';
 
 import allimg from './data.js'
 import images from '../../Jsons/Images.json'
@@ -46,9 +47,17 @@ const ddItems = [
 ]
 
 function home() {
-
+    const {GalleryVisible, setGalleryVisible} = useContext(ContextVariable)
     const [nicol, setinput] = useState('');
     const [state, setstate] = useState('');
+    const galleryRef = useRef(null);
+
+    useEffect(() => {
+        if (GalleryVisible && galleryRef.current) {
+          galleryRef.current.scrollIntoView({ behavior: 'smooth' });
+          setGalleryVisible(false)
+        }
+      }, [GalleryVisible]);
 
     const handle = (e) => {
         setstate(e.target.value)
@@ -58,7 +67,7 @@ function home() {
     useEffect(() => {
         setCategoryImage(images.categories.all)
     }, [])
-    
+
 
     const takeDdTitle = (ddTitle) => {
         setCategoryImage(() => {
@@ -87,22 +96,22 @@ function home() {
             <Hero1 />
             <Features />
             <Slider />
-            <div className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
+            <div ref={galleryRef} className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
                 <ContainerCard>
                     <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>
                         <h1>All images</h1>
                         <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} />
                     </div>
-                    <AllImagesLayout images={categoryImage} setCategoryImage={setCategoryImage}/>
+                    <AllImagesLayout images={categoryImage} setCategoryImage={setCategoryImage} />
                 </ContainerCard>
             </div>
-            
+
             {/* <AllImagesLayout/> */}
             {/* <Hero2 /> */}
             {/* <Contacto /> */}
             {/* <Analytics /> */}
             {/* <Newsletter />  */}
-         
+
             {/* <Cards /> */}
             {/* <MapComponent /> */}
             {/* <Footer />  */}

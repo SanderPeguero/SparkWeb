@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 
 import Logo from '../../assets/Logo.png'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ContextVariable } from '../../Context';
 import UserMenu from './UserMenu';
 
@@ -23,7 +23,6 @@ import img7 from '../../../public/dummy_image/7.jpg';
 import img8 from '../../../public/dummy_image/8.jpg';
 import img9 from '../../../public/dummy_image/9.jpg';
 
-
 const images = [
   { id: 1, image: img1 },
   { id: 2, image: img2 },
@@ -38,9 +37,9 @@ const images = [
 
 
 const Navbar = () => {
-  const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp } = useContext(ContextVariable);
-// console.log(user?.role)
-// /activacion
+  const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp, setGalleryVisible, GalleryVisible } = useContext(ContextVariable);
+  // console.log(user?.role)
+  // /activacion
   const links = [
     {
       name: 'Inicio',
@@ -51,17 +50,17 @@ const Navbar = () => {
       route: `${user && user.role === 'admin' ? '/admin/boletas' : '/boletas'}`
 
     },
-  
+
     {
       name: 'Activacion',
       route: `${user && user.role === 'admin' ? '/admin/activacion' : '/activacion'}`
     },
-  
-    {
-      name: 'Tienda',
-      route: `${user && user.role === 'admin' ? '/admin/tienda' : '/tienda'}`
-    },
-  
+
+    // {
+    //   name: 'Galeria',
+    //   route: `${user && user.role === 'admin' ? '/admin/allImage' : '/allImage'}`
+    // },
+
   ]
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -74,6 +73,16 @@ const Navbar = () => {
     localStorage.clear();
     window.location.href = ''
   };
+  
+  const history = useNavigate()
+  const handleGalleryVisible = () => {
+    if(location.pathname !== '/' && location.pathname !== '/admin'){
+      history('/')
+      setGalleryVisible(true)
+    }else {
+      setGalleryVisible(true)
+    }
+  }
 
   return (
 
@@ -81,7 +90,7 @@ const Navbar = () => {
     <>
       <Login />
       <SignIn />
-      <EditIma images = {images}/>
+      <EditIma images={images} />
       <nav className={`${styles.nav} flex align-items-center`}>
         {/*  */}
         <a href='/'>
@@ -100,12 +109,18 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          <li className={`${styles["nav-item"]} `}>
+            <button onClick={handleGalleryVisible} className='text-white' >
+              Galeria
+            </button>
+          </li>
         </ul>
         {
           auth == null ?
             <div className={`flex ${styles["navbar-buttons"]}`}>
-              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent">Login</Button>
-              <Button onClick={() => setIsOpenSignUp(true)} theme="matrix">Sign up</Button>
+
+              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent"  className="hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
+              <Button onClick={() => setIsOpenSignUp(true)} theme="matrix" className="text-white  bg-gradient-to-r from-[#9340FF] to-[#ba36ba]">Sign up</Button>
             </div>
             :
             <UserMenu user={user} />
