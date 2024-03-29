@@ -117,14 +117,43 @@ function App() {
     })
   }
 
+  const [isOpenLogIn, setIsOpenLogIn] = useState(false)
+  const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+  const [reserveTicket, setreserveTicket] = useState(false)
+  const [comprarTicket, setcomprarTicket] = useState(false)
 
+ 
   
   const { vertical, horizontal, open } = state;
 
   const [locattion, setlocattion] = useState(null)
 
+  //Comp 1 Padre App -> num1
+  //Comp 2 Hijo
+  //Comp 3
+  //Comp 4
+  //Comp 5
+
+
   return (
-    <ContextVariable.Provider value={{ user, alert, setalert, auth, setauth, locattion, setlocattion }}>
+    <ContextVariable.Provider value={{ 
+      user, 
+      alert, 
+      setalert, 
+      auth, 
+      setauth, 
+      locattion, 
+      setlocattion,
+      isOpenLogIn,
+      setIsOpenLogIn,
+      isOpenSignUp,
+      setIsOpenSignUp,
+      reserveTicket,
+      setreserveTicket,
+      comprarTicket,
+      setcomprarTicket
+     
+      }}>
       <div>
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}

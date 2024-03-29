@@ -4,9 +4,8 @@ import { Link } from "react-router-dom"
 
 import { ContextVariable } from '../../Context';
 
-const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
-
-    const { alert, setalert, setauth } = useContext(ContextVariable)
+const Login = () => {
+    const { alert, setalert, setauth, isOpenLogIn, setIsOpenLogIn, setIsOpenSignUp,setreserveTicket,locattion } = useContext(ContextVariable)
 
     const FirebaseAuth = getAuth()
     const [email, setemail] = useState('')
@@ -20,7 +19,9 @@ const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
                 // Signed in 
                 const user = userCredential.user;
                 setauth(user)
-                setIsOpen(false)
+                setIsOpenLogIn(false)
+                
+                
 
                 setalert({
                     ...alert,
@@ -43,18 +44,18 @@ const Login = ({ isOpen, setIsOpen, setIsOpenSignUp }) => {
     }
     const handleCloseModal = (e) => {
         e.preventDefault()
-        setIsOpen(false)
+        setIsOpenLogIn(false)
     }
 
     // setIsSignUp
     const handleOpenSignUp = (e) => {
         e.preventDefault()
-        setIsOpen(false)
+        setIsOpenLogIn(false)
         setIsOpenSignUp(true)
     }
     return (
         <>
-            {isOpen &&
+            {isOpenLogIn &&
                 // mb-[20rem] mt-[4rem]
                 <div className="fixed  inset-0 flex items-center justify-center z-50 mx-8 sm:mx-0 min-h-screen w-full backdrop-blur-md"
                     onClick={(e) => handleCloseModal(e)}
