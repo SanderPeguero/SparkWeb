@@ -5,9 +5,9 @@ import { Link } from "react-router-dom"
 
 import { ContextVariable } from '../../Context';
 
-const SignIn = ({ isOpen, setIsOpen, setIsOpenLogIn }) => {
+const SignIn = () => {
 
-    const { alert, setalert, auth, setauth } = useContext(ContextVariable)
+    const { alert, setalert, auth, setauth, isOpenSignUp, setIsOpenLogIn,setIsOpenSignUp } = useContext(ContextVariable)
 
     const [user, setUser] = useState()
 
@@ -82,19 +82,19 @@ const SignIn = ({ isOpen, setIsOpen, setIsOpenLogIn }) => {
 
     const handleCloseModal = (e) => {
         e.preventDefault()
-        setIsOpen(false)
+        setIsOpenSignUp(false)
         
     }
 
     const handleLogIn = (e) =>{
         e.preventDefault()
-        setIsOpen(false)
+        setIsOpenSignUp(false)
         setIsOpenLogIn(true)
     }
 
     return (
         <>
-            {isOpen &&
+            {isOpenSignUp &&
             // mb-[20rem] mt-[4rem]
             <div className="fixed  inset-0 flex items-center justify-center z-50 mx-8 sm:mx-0 min-h-screen w-full backdrop-blur-md"
             onClick={(e) => handleCloseModal(e)} >

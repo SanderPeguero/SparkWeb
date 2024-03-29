@@ -5,7 +5,7 @@ import ticket2 from '../../assets/Ticket2003.png'
 
 // import { ContextVariable } from '../../Context';
 import ReserveTicket from './reserveTicket';
-
+import Purchase from './purchase';
 
 
 function tickets() {
@@ -24,6 +24,7 @@ function tickets() {
 
     const [reserveTicket, setreserveTicket] = useState(false)
     const [reserveTicket2, setreserveTicket2] = useState(false)
+    const [OpenPurchase, setOpenPurchase] = useState(false)
     const purchase = true
 
     if (reserveTicket) {
@@ -32,9 +33,9 @@ function tickets() {
         )
     }
 
-    if (reserveTicket2) {
+    if (OpenPurchase) {
         return (
-            <ReserveTicket event={'2003 Musica de la Vieja Escuela'} />
+            <Purchase event={'Sparkle Mania'}/>
         )
     }
 
@@ -52,19 +53,12 @@ function tickets() {
                         <img src={ticket} className='w-full md:w-[85%]' />
                         <div>
 
-                            {purchase ?
-                                <>
-                                    <button className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
-                                        Compra ya!
-                                        <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                                    </button>                                   
-                                </>
-                                :
-                                <button onClick={() => setreserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
-                                    Reservar ahora!
-                                    <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                                </button>
-                            }
+
+                            <button onClick={() => setOpenPurchase(true)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
+                                Compra ya!
+                                <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                            </button>
+
 
                         </div>
                     </div>
@@ -75,7 +69,7 @@ function tickets() {
                         </div>
                         <img src={ticket2} className='w-full md:w-[85%]' />
                         <div>
-                            <button onClick={() => setreserveTicket2(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
+                            <button onClick={() => setreserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
                                 Reservar ahora!
                                 <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                             </button>

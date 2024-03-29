@@ -6,6 +6,7 @@ import { ContextVariable } from '../../Context';
 import UserMenu from './UserMenu';
 
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
 import styles from "./Nav.module.css"
 import Button from '../Elements/Button/Button';
 
@@ -35,10 +36,7 @@ const links = [
 ]
 
 const Navbar = () => {
-  const { setlocattion, auth, user } = useContext(ContextVariable);
-
-  const [isOpenLogIn, setIsOpenLogIn] = useState(false)
-  const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+  const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp } = useContext(ContextVariable);
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -55,8 +53,8 @@ const Navbar = () => {
 
     // etiqueta vacia componentete login y SingIn,  el navar completo
     <>
-    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} setIsOpenSignUp={setIsOpenSignUp}/>
-    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} setIsOpenLogIn={setIsOpenLogIn}/>
+      <Login />
+      <SignIn />
 
       <nav className={`${styles.nav} flex align-items-center`}>
         {/*  */}
@@ -88,35 +86,32 @@ const Navbar = () => {
         }
 
         <div className={`${styles["navbar-responsive-menu"]}`}>
-          <Button onClick={toggleMobileMenu} theme="transparent">
-            <GiHamburgerMenu size="32" color="var(--white-100)" />
-          </Button>
+          {isMobileMenuOpen === true ?
+            <Button onClick={toggleMobileMenu} theme="transparent">
+              <IoMdClose size="32" color="var(--white-100)" />
+            </Button>
+            :
+            <Button onClick={toggleMobileMenu} theme="transparent">
+              <GiHamburgerMenu size="32" color="var(--white-100)" />
+            </Button>
+          }
+
         </div>
-        {isMobileMenuOpen && (
-          <>
-            <ul className={`absolute top-[8rem] left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
-              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles.active}`}>
-                <a href="" className={styles["nav-link"]}>Home</a>
-              </li>
-              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
-                <a href="" className={styles["nav-link"]}>Wallpapers</a>
-              </li>
-              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
-                <a href="" className={styles["nav-link"]}>Collections</a>
-              </li>
-              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
-                <a href="" className={styles["nav-link"]}>Artists</a>
-              </li>
-              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
-                <a href="" className={styles["nav-link"]}>Explore</a>
-              </li>
-              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
-                <a href="" className={styles["nav-link"]}>Blog</a>
-              </li>
-            </ul>
-          </>
-        )}
+
       </nav>
+      {isMobileMenuOpen && (
+        <>
+          <ul className={`fixed   left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
+            {links.map((link) => (
+              <li key={link.name} className={`block px-4 py-2 ${styles["nav-item"]} ${location.pathname === link.route ? ` ${styles.active}` : ''}`}>
+                <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 };
