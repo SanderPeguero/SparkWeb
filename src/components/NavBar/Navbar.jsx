@@ -1,26 +1,132 @@
 import React, { useState, useEffect, useContext } from 'react'
 
 import Logo from '../../assets/Logo.png'
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
+import { ContextVariable } from '../../Context';
 import UserMenu from './UserMenu';
 
+import { GiHamburgerMenu } from "react-icons/gi";
+import styles from "./Nav.module.css"
+import Button from '../Elements/Button/Button';
+
+import SignIn from '../../layout/SignIn/SignIn';
+import Login from '../../layout/Login/Login';
 
 const links = [
-  { 'link': '/', 'text': 'Inicio', 'replace': true },
-  { 'link': 'boletas', 'text': 'Boletas', 'replace': false },
-  { 'link': 'activacion', 'text': 'Activacion', 'replace': false },
-  { 'link': '/', 'text': 'Tienda', 'replace': false },
-  // { 'link': '/', 'text': 'Info', 'replace': false },
-  // {'link':'login', 'text':'Log In', 'replace': false },
+  {
+    name: 'Inicio',
+    route: '/'
+  },
+  {
+    name: 'Boletas',
+    route: '/boletas'
+  },
+
+  {
+    name: 'Activacion',
+    route: '/activacion'
+  },
+
+  {
+    name: 'Tienda',
+    route: '/tienda'
+  },
+
 ]
 
-const Navbar = ({ auth, user }) => {
+const Navbar = () => {
+  const { setlocattion, auth, user } = useContext(ContextVariable);
 
+  const [isOpenLogIn, setIsOpenLogIn] = useState(false)
+  const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = ''
+  };
 
   return (
-    <div>{/*Fijar NavBar */}
-      <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
+
+    // etiqueta vacia componentete login y SingIn,  el navar completo
+    <>
+    <Login isOpen={isOpenLogIn} setIsOpen ={setIsOpenLogIn} setIsOpenSignUp={setIsOpenSignUp}/>
+    <SignIn isOpen ={isOpenSignUp} setIsOpen ={setIsOpenSignUp} setIsOpenLogIn={setIsOpenLogIn}/>
+
+      <nav className={`${styles.nav} flex align-items-center`}>
+        {/*  */}
+        <a href='/'>
+          <div className='flex items-center'>
+            <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
+            <h1 className={`ml-2 ${styles["nav-title"]}`}>Grupo Spark</h1>
+          </div>
+        </a>
+        {/* <img src={Logo} className='h-6 w-6'/>
+      <h1 className={styles["nav-title"]} >Grupo Spark</h1> */}
+        <ul className={`flex align-items-center ${styles["navbar-nav"]}`}>
+          {links.map((link) => (
+            <li key={link.name} className={`${styles["nav-item"]} ${location.pathname === link.route ? `ml-2 ${styles.active}` : ''}`}>
+              <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        {
+          auth == null ?
+            <div className={`flex ${styles["navbar-buttons"]}`}>
+              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent">Login</Button>
+              <Button onClick={() => setIsOpenSignUp(true)} theme="matrix">Sign up</Button>
+            </div>
+            :
+            <UserMenu user={user} />
+        }
+
+        <div className={`${styles["navbar-responsive-menu"]}`}>
+          <Button onClick={toggleMobileMenu} theme="transparent">
+            <GiHamburgerMenu size="32" color="var(--white-100)" />
+          </Button>
+        </div>
+        {isMobileMenuOpen && (
+          <>
+            <ul className={`absolute top-[8rem] left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
+              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles.active}`}>
+                <a href="" className={styles["nav-link"]}>Home</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+                <a href="" className={styles["nav-link"]}>Wallpapers</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+                <a href="" className={styles["nav-link"]}>Collections</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]}`}>
+                <a href="" className={styles["nav-link"]}>Artists</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+                <a href="" className={styles["nav-link"]}>Explore</a>
+              </li>
+              <li className={`block px-4 py-2 ${styles["nav-item"]} ${styles["d-none-1100"]}`}>
+                <a href="" className={styles["nav-link"]}>Blog</a>
+              </li>
+            </ul>
+          </>
+        )}
+      </nav>
+    </>
+  );
+};
+
+export default Navbar;
+
+{/* <div>Fijar NavBar 
+
+     
+    <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
         <a href='/'>
           <div className='flex items-center'>
             <img className='w-[3.5rem] text-3xl font-bold text-[#00df9a]' src={Logo} alt="Sparkle Group Logo" />
@@ -43,7 +149,7 @@ const Navbar = ({ auth, user }) => {
               <UserMenu user={user}/>
           }
         </ul>
-        {/* <div onClick={handleNav} className='block md:hidden'>
+         <div onClick={handleNav} className='block md:hidden'>
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
         <ul className={nav ? 'z-10 fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 ' : 'ease-in-out duration-500 fixed left-[-100%] z-10'}
@@ -59,10 +165,6 @@ const Navbar = ({ auth, user }) => {
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
           <li className='p-4 border-b border-gray-600'><Link className='text-white' to='/'>Info</Link></li>
-        </ul> */}
+        </ul>
       </div>
-    </div>
-  );
-};
-
-export default Navbar;
+    </div> */}

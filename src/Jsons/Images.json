@@ -1,0 +1,293 @@
+{
+    "categories": {
+        "all": [
+            {
+                "id": "wallpaper 1",
+                "src": "wallpapers/1.jpg",
+                "user": {
+                    "src": "profile/1.jpg",
+                    "name": "Arash",
+                    "job": "Designer"
+                }
+            },
+            {
+                "id": "wallpaper 2",
+                "src": "wallpapers/2.jfif",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Farbod",
+                    "job": "Scientist"
+                }
+            },
+            {
+                "id": "wallpaper 3",
+                "src": "wallpapers/3.jpg",
+                "user": {
+                    "src": "profile/1.jpg",
+                    "name": "Anne",
+                    "job": "Graphic Designer"
+                }
+            },
+            {
+                "id": "wallpaper 4",
+                "src": "wallpapers/4.jpg",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "James",
+                    "job": "editor"
+                }
+            },
+            {
+                "id": "wallpaper 5",
+                "src": "wallpapers/5.jpg",
+                "user": {
+                    "src": "profile/5.jpg",
+                    "name": "Mary",
+                    "job": "Developer"
+                }
+            },
+            {
+                "id": "wallpaper 6",
+                "src": "wallpapers/6.jpg",
+                "user": {
+                    "src": "profile/3.png",
+                    "name": "Patricia",
+                    "job": "Front-End"
+                }
+            },
+            {
+                "id": "wallpaper 7",
+                "src": "wallpapers/7.png",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Jennifer",
+                    "job": "Front-End"
+                }
+            },
+            {
+                "id": "wallpaper 8",
+                "src": "wallpapers/8.jfif",
+                "user": {
+                    "src": "profile/1.jpg",
+                    "name": "Richard",
+                    "job": "Product Designer"
+                }
+            },
+            {
+                "id": "wallpaper 9",
+                "src": "wallpapers/9.jpg",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Joseph",
+                    "job": "Designer"
+                }
+            },
+            {
+                "id": "wallpaper 10",
+                "src": "wallpapers/10.jfif",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Charles",
+                    "job": "Designer"
+                }
+            },
+            {
+                "id": "wallpaper 11",
+                "src": "wallpapers/11.jfif",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Joshua",
+                    "job": "Developer"
+                }
+            },
+            {
+                "id": "wallpaper 12",
+                "src": "wallpapers/12.jpg",
+                "user": {
+                    "src": "profile/5.jpg",
+                    "name": "Jacob",
+                    "job": "Ui/Ux Designer"
+                }
+            },
+            {
+                "id": "wallpaper 13",
+                "src": "wallpapers/13.jpg",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Larry",
+                    "job": "photographer"
+                }
+            },
+            {
+                "id": "wallpaper 14",
+                "src": "wallpapers/14.jpg",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Eric",
+                    "job": "Editor"
+                }
+            },
+            {
+                "id": "wallpaper 15",
+                "src": "wallpapers/15.jpg",
+                "user": {
+                    "src": "profile/5.jpg",
+                    "name": "Justin",
+                    "job": "Designer"
+                }
+            }
+        ],
+        "space": [
+            {
+                "id": "wallpaper 1",
+                "src": "wallpapers/6.jpg",
+                "user": {
+                    "src": "profile/3.png",
+                    "name": "Patricia",
+                    "job": "Front-End"
+                }
+            },
+            {
+                "id": "wallpaper 2",
+                "src": "wallpapers/7.png",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Jennifer",
+                    "job": "Front-End"
+                }
+            }
+        ],
+        "topic": [
+            {
+                "id": "wallpaper 1",
+                "src": "wallpapers/2.jfif",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Farbod",
+                    "job": "Scientist"
+                }
+            },
+            {
+                "id": "wallpaper 2",
+                "src": "wallpapers/3.jpg",
+                "user": {
+                    "src": "profile/1.jpg",
+                    "name": "Anne",
+                    "job": "Graphic Designer"
+                }
+            },
+            {
+                "id": "wallpaper 3",
+                "src": "wallpapers/4.jpg",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "James",
+                    "job": "editor"
+                }
+            },
+            {
+                "id": "wallpaper 4",
+                "src": "wallpapers/5.jpg",
+                "user": {
+                    "src": "profile/5.jpg",
+                    "name": "Mary",
+                    "job": "Developer"
+                }
+            },
+            {
+                "id": "wallpaper 5",
+                "src": "wallpapers/6.jpg",
+                "user": {
+                    "src": "profile/3.png",
+                    "name": "Patricia",
+                    "job": "Front-End"
+                }
+            },
+            {
+                "id": "wallpaper 6",
+                "src": "wallpapers/7.png",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Jennifer",
+                    "job": "Front-End"
+                }
+            },
+            {
+                "id": "wallpaper 7",
+                "src": "wallpapers/8.jfif",
+                "user": {
+                    "src": "profile/1.jpg",
+                    "name": "Richard",
+                    "job": "Product Designer"
+                }
+            },
+            {
+                "id": "wallpaper 8",
+                "src": "wallpapers/9.jpg",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Joseph",
+                    "job": "Designer"
+                }
+            }
+        ],
+        "nature": [
+            {
+                "id": "wallpaper 1",
+                "src": "wallpapers/12.jpg",
+                "user": {
+                    "src": "profile/5.jpg",
+                    "name": "Jacob",
+                    "job": "Ui/Ux Designer"
+                }
+            },
+            {
+                "id": "wallpaper 2",
+                "src": "wallpapers/14.jpg",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Eric",
+                    "job": "Editor"
+                }
+            },
+            {
+                "id": "wallpaper 3",
+                "src": "wallpapers/15.jpg",
+                "user": {
+                    "src": "profile/5.jpg",
+                    "name": "Justin",
+                    "job": "Designer"
+                }
+            }
+        ],
+        "nft": [
+            {
+                "id": "wallpaper 1",
+                "src": "wallpapers/8.jfif",
+                "user": {
+                    "src": "profile/1.jpg",
+                    "name": "Richard",
+                    "job": "Product Designer"
+                }
+            },
+            {
+                "id": "wallpaper 2",
+                "src": "wallpapers/9.jpg",
+                "user": {
+                    "src": "profile/2.png",
+                    "name": "Joseph",
+                    "job": "Designer"
+                }
+            },
+            {
+                "id": "wallpaper 3",
+                "src": "wallpapers/10.jfif",
+                "user": {
+                    "src": "profile/4.jpg",
+                    "name": "Charles",
+                    "job": "Designer"
+                }
+            }
+        ]
+    }
+}

@@ -25,6 +25,8 @@ import ActivationsDash from './layout/ActivationsDash/Dashboard'
 //Data
 import { ContextVariable } from './Context'
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import ContainerCard from './components/ContainerCard/ContainerCard'
+
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -115,10 +117,14 @@ function App() {
     })
   }
 
+
+  
   const { vertical, horizontal, open } = state;
 
+  const [locattion, setlocattion] = useState(null)
+
   return (
-    <ContextVariable.Provider value={{ user, alert, setalert, auth, setauth }}>
+    <ContextVariable.Provider value={{ user, alert, setalert, auth, setauth, locattion, setlocattion }}>
       <div>
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
@@ -132,8 +138,12 @@ function App() {
           </Alert>
         </Snackbar>
         <Router>
+
           <header>
-            <Navbar auth={auth} user={user} />
+            {/* {locattion !== '/' && <Navbar auth={auth} user={user} />} */}
+            {locattion !== "/" && (
+              <Navbar auth={auth} user={user} />
+            )}
           </header>
           <main className=''>
             <Routes>
