@@ -5,9 +5,7 @@ import ticket2 from '../../assets/Ticket2003.png'
 
 
 import ReserveTicket from './reserveTicket';
-import { getAuth } from "firebase/auth"
-import { ContextVariable } from '../../Context';
-
+import Purchase from './purchase';
 
 
 
@@ -32,55 +30,9 @@ function tickets() {
     //     get()
     // }, []);
 
-    // const [reserveTicket, setreserveTicket] = useState(false)
-    // const [reserveTicket2, setreserveTicket2] = useState(false)
-
-    const { reserveTicket, auth, setreserveTicket, comprarTicket, setcomprarTicket, isOpenLogIn, setIsOpenLogIn } = useContext(ContextVariable)
-   
-    const [isAuthOpenReserva, setIsAuthOpenReserva] = useState(false)
-    const [isAuthOpenCompras, setIsAuthOpenCompras] = useState(false)
-    
-    const handleOpenReservar = (e) => {
-        e.preventDefault()
-        if (auth === null) {
-            setIsOpenLogIn(true)
-            setIsAuthOpenReserva(true)
-        } else {
-            setreserveTicket(true)
-        }
-    }
-
-    useEffect(() => {
-        if (isAuthOpenReserva && !isOpenLogIn && !reserveTicket) {
-            setreserveTicket(true);
-        }
-        
-    }, [isAuthOpenReserva, isOpenLogIn, reserveTicket]);
-
-    useEffect(() => {
-        if (isAuthOpenCompras && !isOpenLogIn && !comprarTicket) {
-            setcomprarTicket(true);
-            // console.log("Open Comprar");
-        }
-        // console.log("AQUI EN TICKETS Compra");
-    }, [isAuthOpenCompras, isOpenLogIn, comprarTicket]);
-
-
-
-    const handleOpenCompras = (e) => {
-        e.preventDefault()
-        if (auth === null) {
-            setIsOpenLogIn(true)
-            setIsAuthOpenCompras(true)
-            
-        }
-        else {
-
-            console.log("Compra " + comprarTicket)
-        }
-    }
-
-
+    const [reserveTicket, setreserveTicket] = useState(false)
+    const [reserveTicket2, setreserveTicket2] = useState(false)
+    const [OpenPurchase, setOpenPurchase] = useState(false)
 
     const purchase = true
 
@@ -89,6 +41,14 @@ function tickets() {
             <ReserveTicket event={'Sparkle Mania'} />
         )
     }
+
+
+    if (OpenPurchase) {
+        return (
+            <Purchase event={'Sparkle Mania'}/>
+        )
+    }
+
 
     return (
         <>
@@ -106,20 +66,14 @@ function tickets() {
                         <img src={ticket} className='w-full md:w-[85%]' />
                         <div>
 
-                            {purchase ?
-                                <>
-                                    <button onClick={(e) => handleOpenCompras(e)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
-                                        Compra ya!
-                                        <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                                    </button>
-                                </>
-                                :
 
-                                <button onClick={(e) => reserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
-                                    Reservar ahora!
-                                    <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                                </button>
-                            }
+
+                            <button onClick={() => setOpenPurchase(true)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
+                                Compra ya!
+                                <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                            </button>
+
+
 
                         </div>
                     </div>
@@ -130,9 +84,9 @@ function tickets() {
                         </div>
                         <img src={ticket2} className='w-full md:w-[85%]' />
                         <div>
-                            {/* //setreserveTicket2  */}
 
-                            <button onClick={(e) => handleOpenReservar(e)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
+                            <button onClick={() => setreserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
+
                                 Reservar ahora!
                                 <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                             </button>
