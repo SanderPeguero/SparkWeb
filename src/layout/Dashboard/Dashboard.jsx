@@ -5,6 +5,7 @@ import { collection, addDoc, getDocs, getFirestore, query, where } from "firebas
 import Modal from './Modal'
 
 import './Dashboard.css'
+import ModalStatusPaid from "../../components/ModalStatusPaid/ModalStatusPaid";
 
 function Dashboard() {
 
@@ -15,11 +16,19 @@ function Dashboard() {
 
     const [modalTicket, setmodalTicket] = useState(null)
     const [open, setOpen] = useState(false)
+    const [OpenStatusPaid, setOpenStatusPaid] = useState(false)
+    const [StatusTicket, setStatusTicket] = useState(null)
+    const [loadStatus, setloadStatus] = useState(false)
     const handleOpen = (ticket) => {
         setmodalTicket(ticket)
         setOpen(true)
     }
+    const handleOpenStatus = (ticket) => {
+        setOpenStatusPaid(true)
+        setStatusTicket(ticket)
+    }
     const handleClose = () => setOpen(false)
+    const handleCloseStatus = () => setOpenStatusPaid(false)
 
 
     const handleSearch = (event) => {
@@ -30,6 +39,46 @@ function Dashboard() {
 
 
     const db = getFirestore()
+    const [tickets2, setTickets2] = useState([])
+    const getpurchase = async () => {
+        try {
+            const ref = collection(db, 'events');
+
+            const docsSnap = await getDocs(ref);
+
+
+            const eventos = [];
+            docsSnap.forEach(doc => {
+
+                const data = doc.data();
+                const eventId = doc.id; // Obtener el ID del documento
+                // Puedes utilizar eventId como necesites aquí
+                data.eventId = eventId; // Agregar el ID del documento a los datos
+                eventos.push(data);
+            });
+            setTickets2(eventos)
+
+            console.log("Datos de los eventos:", eventos);
+        } catch (error) {
+            console.error("Error al obtener los datos de la colección 'events':", error);
+        }
+    };
+
+    useEffect(() => {
+        getpurchase()
+    }, [])
+
+    useEffect(() => {
+        if (loadStatus === true) {
+            getpurchase()
+            setloadStatus(false)
+        }
+
+    }, [loadStatus])
+
+
+
+
 
     const get = async () => {
 
@@ -80,6 +129,7 @@ function Dashboard() {
     return (
         <>
             <Modal open={open} onClose={handleClose} ticket={modalTicket} />
+            <ModalStatusPaid open={OpenStatusPaid} onClose={handleCloseStatus} StatusTicket={StatusTicket} setloadStatus={setloadStatus} />
             <div className="flex items-center justify-center min-h-screen bg-[#0000003f]">
                 <div className="col-span-12">
                     <div className="overflow-auto lg:overflow-visible ">
@@ -120,34 +170,37 @@ function Dashboard() {
                             </thead>
                             <tbody>
                                 {
-                                    data.map((ticket) => (
-                                        <tr className="bg-gray-800" key={ticket.ticketId}>
+                                    tickets2.map((ticket, index) => (
+                                        <tr className="bg-gray-800" key={index}>
                                             <td className="p-3">
                                                 <div className="flex align-items-center">
                                                     <img className="rounded-full h-12 w-12  object-cover" src="https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleMania.png?alt=media&token=9c4d540b-894d-4f63-bfe2-36242de104ca" alt="User Image" />
                                                     {/* <i className="material-icons-outlined text-base">person</i> */}
                                                     <div className="ml-3">
-                                                        <div className="">{ticket.ticketId}</div>
-                                                        <div className="text-gray-500">{ticket.name}</div>
+                                                        <div className="">{ticket.nameOfCustomer.eventDetails.ticketCode}</div>
+                                                        <div className="text-gray-500">{ticket.nameOfCustomer.customerDetails.name}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-3">
-                                                {ticket.paid == 'true' ? <span className="bg-green-400 text-gray-50 rounded-md px-2">Paid</span> : null}
-                                                {ticket.paid == 'pending' ? <span className="bg-yellow-400 text-gray-50  rounded-md px-2">Pending</span> : null}
-                                                {ticket.paid == 'false' ? <span className="bg-red-400 text-gray-50 rounded-md px-2">Unpaid</span> : null}
+                                                <button onClick={() => handleOpenStatus(ticket)}>
+                                                    {ticket.nameOfCustomer.paymentDetails.paymentStatus === 'Paid' ? <span className="bg-green-400 text-gray-50 rounded-md px-2">Paid</span> : null}
+                                                    {ticket.nameOfCustomer.paymentDetails.paymentStatus === 'Pending' ? <span className="bg-yellow-400 text-gray-50  rounded-md px-2">Pending</span> : null}
+                                                    {ticket.nameOfCustomer.paymentDetails.paymentStatus === 'Unpaid' ? <span className="bg-red-400 text-gray-50 rounded-md px-2">Unpaid</span> : null}
+                                                </button>
+
                                             </td>
                                             <td className="p-3">
-                                                {ticket.price}
+                                                {ticket.nameOfCustomer.eventDetails.ticketPrice}
                                             </td>
                                             <td className="p-3">
-                                                {ticket.discount}
+                                                {/* {ticket.discount} */}
                                             </td>
                                             <td className="p-3">
-                                                {ticket.seller}
+                                                {ticket.nameOfCustomer.customerDetails.name}
                                             </td>
                                             <td className="p-3">
-                                                {ticket.dateOfPurchase}
+                                                {/* {ticket.dateOfPurchase} */}
                                             </td>
                                             <td className="p-3">
                                                 {/* {ticket.submitDate} */}
