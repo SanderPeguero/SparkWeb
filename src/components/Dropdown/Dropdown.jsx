@@ -36,7 +36,7 @@ const Dropdown = ({ items, title, liftingDdTextUp }) => {
       <Button theme="transparent" className="flex align-items-center">
         { ddTitle }
         <span className={styles["dropdown-arrow-icon"]}>
-          <ArrowUp3 color="var(--green-400)" />
+          <ArrowUp3 color="var(--white-100)" />
         </span>
       </Button>
       <ul className={styles["dropdown-menu"]}>
