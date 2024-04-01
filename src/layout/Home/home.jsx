@@ -18,6 +18,7 @@ import { ContextVariable } from '../../Context.js';
 
 import allimg from './data.js'
 import images from '../../Jsons/Images.json'
+import RoadMap from '../../components/RoadMap/RoadMap.jsx';
 const ddItems = [
     {
         id: 1,
@@ -47,17 +48,17 @@ const ddItems = [
 ]
 
 function home() {
-    const {GalleryVisible, setGalleryVisible} = useContext(ContextVariable)
+    const { GalleryVisible, setGalleryVisible } = useContext(ContextVariable)
     const [nicol, setinput] = useState('');
     const [state, setstate] = useState('');
     const galleryRef = useRef(null);
 
     useEffect(() => {
         if (GalleryVisible && galleryRef.current) {
-          galleryRef.current.scrollIntoView({ behavior: 'smooth' });
-          setGalleryVisible(false)
+            galleryRef.current.scrollIntoView({ behavior: 'smooth' });
+            setGalleryVisible(false)
         }
-      }, [GalleryVisible]);
+    }, [GalleryVisible]);
 
     const handle = (e) => {
         setstate(e.target.value)
@@ -94,6 +95,7 @@ function home() {
     return (
         <>
             <Hero1 />
+            <RoadMap />
             <Features />
             <Slider />
             <div ref={galleryRef} className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
