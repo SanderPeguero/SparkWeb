@@ -197,7 +197,7 @@ function Purchase({ event }) {
               <form className='mt-8 '>
 
                 <div className="-mx-3 flex flex-wrap">
-                  <div className="flex w-full lg:flex-row ">
+                  <div className="flex w-full flex-col lg:flex-row ">
                     <div className="mb-4" onClick={handleEditEmail}>
                       <label
                         htmlFor="fName"
@@ -261,7 +261,7 @@ function Purchase({ event }) {
                     {/*   space-x-4  */}
 
                    
-                    <div className='mx-6 mt-11 mb-4'>
+                    <div className='mx-6 mt-11 mb-6 lg:ml-[29rem] '>
                       <button onClick={purchaseStart} className="group relative  h-12 w-full md:w-48 overflow-hidden rounded-xl bg-purple-500 text-lg font-bold text-white">
                         Comprar
                         <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
