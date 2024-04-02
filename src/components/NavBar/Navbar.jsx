@@ -37,7 +37,7 @@ const images = [
 
 
 const Navbar = () => {
-  const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp, setGalleryVisible, GalleryVisible } = useContext(ContextVariable);
+  const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp, setGalleryVisible, GalleryVisible, setFiestaVisible } = useContext(ContextVariable);
   // console.log(user?.role)
   // /activacion
   const links = [
@@ -51,10 +51,6 @@ const Navbar = () => {
 
     },
 
-    {
-      name: 'Activacion',
-      route: `${user && user.role === 'admin' ? '/admin/activacion' : '/activacion'}`
-    },
 
     // {
     //   name: 'Galeria',
@@ -73,14 +69,23 @@ const Navbar = () => {
     localStorage.clear();
     window.location.href = ''
   };
-  
+
   const history = useNavigate()
   const handleGalleryVisible = () => {
-    if(location.pathname !== '/' && location.pathname !== '/admin'){
+    if (location.pathname !== '/' && location.pathname !== '/admin') {
       history('/')
       setGalleryVisible(true)
-    }else {
+    } else {
       setGalleryVisible(true)
+    }
+  }
+
+  const handleFiestaVisible = () => {
+    if (location.pathname !== '/' && location.pathname !== '/admin') {
+      history('/')
+      setFiestaVisible(true)
+    } else {
+      setFiestaVisible(true)
     }
   }
 
@@ -110,6 +115,11 @@ const Navbar = () => {
             </li>
           ))}
           <li className={`${styles["nav-item"]} `}>
+            <button onClick={handleFiestaVisible} className='text-white' >
+              Fiesta
+            </button>
+          </li>
+          <li className={`${styles["nav-item"]} `}>
             <button onClick={handleGalleryVisible} className='text-white' >
               Galeria
             </button>
@@ -119,7 +129,7 @@ const Navbar = () => {
           auth == null ?
             <div className={`flex ${styles["navbar-buttons"]}`}>
 
-              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent"  className="hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
+              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent" className="hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
               <Button onClick={() => setIsOpenSignUp(true)} theme="matrix" className="text-white  bg-gradient-to-r from-[#9340FF] to-[#ba36ba]">Sign up</Button>
             </div>
             :
@@ -150,6 +160,16 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
+            <li className={`block px-4 py-2 ${styles["nav-item"]} `}>
+              <button onClick={handleFiestaVisible} className='text-white' >
+                Fiesta
+              </button>
+            </li>
+            <li className={`block px-4 py-2 ${styles["nav-item"]} `}>
+              <button onClick={handleGalleryVisible} className='text-white' >
+                Galeria
+              </button>
+            </li>
           </ul>
         </>
       )}

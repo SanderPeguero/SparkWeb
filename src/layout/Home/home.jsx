@@ -48,10 +48,11 @@ const ddItems = [
 ]
 
 function home() {
-    const { GalleryVisible, setGalleryVisible } = useContext(ContextVariable)
+    const { GalleryVisible, setGalleryVisible, FiestaVisible, setFiestaVisible } = useContext(ContextVariable)
     const [nicol, setinput] = useState('');
     const [state, setstate] = useState('');
     const galleryRef = useRef(null);
+    const fiestaRef = useRef(null)
 
     useEffect(() => {
         if (GalleryVisible && galleryRef.current) {
@@ -59,6 +60,14 @@ function home() {
             setGalleryVisible(false)
         }
     }, [GalleryVisible]);
+
+    useEffect(() => {
+        if (FiestaVisible && fiestaRef.current) {
+            fiestaRef.current.scrollIntoView({ behavior: 'smooth' });
+            setFiestaVisible(false)
+        }
+    }, [FiestaVisible])
+
 
     const handle = (e) => {
         setstate(e.target.value)
@@ -95,7 +104,9 @@ function home() {
     return (
         <>
             <Hero1 />
-            <RoadMap />
+            <div ref={fiestaRef}>
+                <RoadMap />
+            </div>
             <Features />
             <Slider />
             <div ref={galleryRef} className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
