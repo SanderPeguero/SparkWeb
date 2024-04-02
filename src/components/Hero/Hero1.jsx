@@ -75,7 +75,7 @@ const Hero1 = () => {
                 </div>
               )}
 
-              <div className='mt-[10rem]'>
+              <div className='mt-[10rem] absolute bottom-16'>
                 <div className="flex flex-row my-2 items-center">
                   <h2 className={`${styles["heading-header-title"]}`}>
                     {formatText(TextHero)}
