@@ -1,0 +1,21 @@
+
+const NosotrsoModal = () => {
+
+    <div class="h-screen max-w-2xl mx-auto mt-24 space-y-20">
+        <div class="max-w-screen-md md:w-3/4 mx-auto">
+            <div class="inline-flex flex-col space-y-2 items-center justify-end flex-1 h-full p-4 bg-blue-800 rounded-xl">
+                <p class="w-full text-2xl font-semibold text-white">GRUPO SPARK</p>
+                <p class="w-full pb-8 text-sm tracking-wide leading-tight text-white">
+                    En Grupo Spark, cada evento es una oportunidad para sumergirse en un ambiente lleno de alegría y originalidad, donde la música, la comida y las bebidas se fusionan para crear momentos memorables. Con una amplia variedad de temáticas y DJs que adapta la música a cada ocasión,
+                     cada fiesta es única y emocionante.</p>
+                <div class="rounded mr-auto">
+                    <div class="opacity-95 border rounded-lg border-white px-4">
+                        <p class="m-auto inset-0 text-sm font-medium leading-normal text-center text-white py-2">Buy Now</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+export default NosotrsoModal;
