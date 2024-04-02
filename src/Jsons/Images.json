@@ -12,7 +12,7 @@
             },
             {
                 "id": "wallpaper 2",
-                "src": "wallpapers/2.jfif",
+                "src": "wallpapers/2.jpg",
                 "user": {
                     "src": "profile/2.png",
                     "name": "Farbod",
@@ -57,7 +57,7 @@
             },
             {
                 "id": "wallpaper 7",
-                "src": "wallpapers/7.png",
+                "src": "wallpapers/7.jpg",
                 "user": {
                     "src": "profile/4.jpg",
                     "name": "Jennifer",
@@ -66,7 +66,7 @@
             },
             {
                 "id": "wallpaper 8",
-                "src": "wallpapers/8.jfif",
+                "src": "wallpapers/8.jpg",
                 "user": {
                     "src": "profile/1.jpg",
                     "name": "Richard",
@@ -84,7 +84,7 @@
             },
             {
                 "id": "wallpaper 10",
-                "src": "wallpapers/10.jfif",
+                "src": "wallpapers/10.jpg",
                 "user": {
                     "src": "profile/4.jpg",
                     "name": "Charles",
@@ -93,7 +93,7 @@
             },
             {
                 "id": "wallpaper 11",
-                "src": "wallpapers/11.jfif",
+                "src": "wallpapers/11.jpg",
                 "user": {
                     "src": "profile/2.png",
                     "name": "Joshua",
@@ -149,7 +149,7 @@
             },
             {
                 "id": "wallpaper 2",
-                "src": "wallpapers/7.png",
+                "src": "wallpapers/7.jpg",
                 "user": {
                     "src": "profile/4.jpg",
                     "name": "Jennifer",
@@ -160,7 +160,7 @@
         "topic": [
             {
                 "id": "wallpaper 1",
-                "src": "wallpapers/2.jfif",
+                "src": "wallpapers/2.jpg",
                 "user": {
                     "src": "profile/2.png",
                     "name": "Farbod",
@@ -214,7 +214,7 @@
             },
             {
                 "id": "wallpaper 7",
-                "src": "wallpapers/8.jfif",
+                "src": "wallpapers/8.jpg",
                 "user": {
                     "src": "profile/1.jpg",
                     "name": "Richard",
@@ -263,7 +263,7 @@
         "nft": [
             {
                 "id": "wallpaper 1",
-                "src": "wallpapers/8.jfif",
+                "src": "wallpapers/8.jpg",
                 "user": {
                     "src": "profile/1.jpg",
                     "name": "Richard",
@@ -281,7 +281,7 @@
             },
             {
                 "id": "wallpaper 3",
-                "src": "wallpapers/10.jfif",
+                "src": "wallpapers/10.jpg",
                 "user": {
                     "src": "profile/4.jpg",
                     "name": "Charles",
