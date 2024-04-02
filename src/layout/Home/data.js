@@ -2,6 +2,7 @@
 import img1 from '../../assets/All images/1.png'
 import img2 from '../../assets/All images/Dj1.jpg'
 import img3 from '../../assets/All images/w1.jpg'
+
 import img4 from '../../../public/Wallpapers/4.jpg'
 import img5 from '../../../public/Wallpapers/5.jpg'
 import img6 from '../../../public/Wallpapers/6.jpg'

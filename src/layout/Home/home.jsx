@@ -16,7 +16,7 @@ import styles from "./home.module.css"
 import Hero1 from '../../components/Hero/Hero1';
 import { ContextVariable } from '../../Context.js';
 
-import allimg from './data.js'
+// import images from './data.js'
 import images from '../../Jsons/Images.json'
 const ddItems = [
     {

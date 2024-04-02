@@ -3,7 +3,7 @@
         "all": [
             {
                 "id": "wallpaper 1",
-                "src": "wallpapers/1.jpg",
+                "src": "wallpapers/1.png",
                 "user": {
                     "src": "profile/1.jpg",
                     "name": "Arash",
