@@ -1,7 +1,7 @@
 // Wallpapers
-import img1 from '../../../public/Wallpapers/1.jpg'
-import img2 from '../../../public/Wallpapers/2.jfif'
-import img3 from '../../../public/Wallpapers/3.jpg'
+import img1 from '../../assets/All images/1.png'
+import img2 from '../../assets/All images/Dj1.jpg'
+import img3 from '../../assets/All images/w1.jpg'
 import img4 from '../../../public/Wallpapers/4.jpg'
 import img5 from '../../../public/Wallpapers/5.jpg'
 import img6 from '../../../public/Wallpapers/6.jpg'
@@ -17,7 +17,7 @@ import img15 from '../../../public/Wallpapers/15.jpg'
 
 
 //Profile
-import prof1 from '../../../public/profile/1.jpg'
+import prof1 from '../../assets/All images/1.png'
 import prof2 from '../../../public/profile/2.png'
 import prof3 from '../../../public/profile/3.png'
 import prof4 from '../../../public/profile/4.jpg'
