@@ -104,8 +104,9 @@ function home() {
             <div class="container my-1 mx-auto md:px-6">
 
                 <section >
+                {/* bg-[url('https://drive.google.com/file/d/1ipnaKoOlzuFmwW6_A9yl0j8LBNWarCEm/view?usp=sharing')] */}
                     <div
-                        class="relative overflow-hidden bg-cover bg-no-repeat bg-[40%] bg-[url('https://drive.google.com/file/d/1ipnaKoOlzuFmwW6_A9yl0j8LBNWarCEm/view?usp=sharing')] h-[500px]">
+                        class="relative overflow-hidden bg-cover bg-no-repeat bg-[60%] bg-gradient-to-r from-[#9340FF] to-[#ba36ba] h-[500px]">
                         <div
                             class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsla(0,0%,0%,0.75)] bg-fixed">
                             <div class="flex h-full items-center justify-center">
