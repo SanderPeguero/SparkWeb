@@ -72,7 +72,7 @@ const featuredata = [
 
 ];
 
-function Features() {
+function Features(setIsOPenNosotros) {
 
     const [clickedIndex, setClickedIndex] = useState(null)
 
@@ -86,8 +86,17 @@ function Features() {
     }
 
 
+
+    const handNosotros = (e) =>{
+        e.preventDefault()
+        setIsOPenNosotros()
+
+    }
+
     // crear un estado para contralar el modal
     // 
+
+
 
 
 

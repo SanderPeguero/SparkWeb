@@ -1,7 +1,13 @@
 
-const NosotrsoModal = () => {
+const NosotrsoModal = (setIsOPenNosotros,) => {
 
-    <div class="h-screen max-w-2xl mx-auto mt-24 space-y-20">
+    const handleCloseModal = (e) => {
+        e.preventDefault()
+        setIsOPenNosotros(false)
+    }
+
+
+    <div class="h-screen max-w-2xl mx-auto mt-24 space-y-20" onClick={(e) => handleCloseModal(e)}>
         <div class="max-w-screen-md md:w-3/4 mx-auto">
             <div class="inline-flex flex-col space-y-2 items-center justify-end flex-1 h-full p-4 bg-blue-800 rounded-xl">
                 <p class="w-full text-2xl font-semibold text-white">GRUPO SPARK</p>
