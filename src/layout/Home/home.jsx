@@ -94,7 +94,7 @@ function home() {
     return (
         <>
             <Hero1 />
-            <Features />
+      
             <Slider />
             <div ref={galleryRef} className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
                 <ContainerCard>
@@ -105,7 +105,7 @@ function home() {
                     <AllImagesLayout images={categoryImage} setCategoryImage={setCategoryImage} />
                 </ContainerCard>
             </div>
-
+            <Features />
             {/* <AllImagesLayout/> */}
             {/* <Hero2 /> */}
             {/* <Contacto /> */}
