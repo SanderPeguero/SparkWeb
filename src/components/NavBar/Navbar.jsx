@@ -13,30 +13,34 @@ import Button from '../Elements/Button/Button';
 import SignIn from '../../layout/SignIn/SignIn';
 import Login from '../../layout/Login/Login';
 
-const links = [
-  {
-    name: 'Inicio',
-    route: '/'
-  },
-  {
-    name: 'Boletas',
-    route: '/boletas'
-  },
 
-  {
-    name: 'Activacion',
-    route: '/activacion'
-  },
-
-  {
-    name: 'Tienda',
-    route: '/tienda'
-  },
-
-]
 
 const Navbar = () => {
   const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp } = useContext(ContextVariable);
+console.log(user?.role)
+// /activacion
+  const links = [
+    {
+      name: 'Inicio',
+      route: `${user && user.role === 'admin' ? '/admin' : '/'}`
+    },
+    {
+      name: 'Boletas',
+      route: `${user && user.role === 'admin' ? '/admin/boletas' : '/boletas'}`
+
+    },
+  
+    {
+      name: 'Activacion',
+      route: `${user && user.role === 'admin' ? '/admin/activacion' : '/activacion'}`
+    },
+  
+    {
+      name: 'Tienda',
+      route: `${user && user.role === 'admin' ? '/admin/tienda' : '/tienda'}`
+    },
+  
+  ]
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
