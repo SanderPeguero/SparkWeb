@@ -104,15 +104,17 @@ function home() {
             <div class="container my-1 mx-auto md:px-6">
 
                 <section >
-                {/* bg-[url('https://drive.google.com/file/d/1ipnaKoOlzuFmwW6_A9yl0j8LBNWarCEm/view?usp=sharing')] */}
+                {/* bg-[url('https://drive.google.com/file/d/1ipnaKoOlzuFmwW6_A9yl0j8LBNWarCEm/view?usp=sharing')] 
+                para color  bg-gradient-to-r from-[#9340FF] to-[#ba36ba]
+                */}
                     <div
-                        class="relative overflow-hidden bg-cover bg-no-repeat bg-[60%] bg-gradient-to-r from-[#9340FF] to-[#ba36ba] h-[500px]">
+                        class="relative overflow-hidden bg-cover bg-no-repeat bg-[60%] bg-[url('https://i.postimg.cc/25dKbcys/2.jpg')] h-[500px]">
                         <div
                             class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsla(0,0%,0%,0.75)] bg-fixed">
                             <div class="flex h-full items-center justify-center">
                                 <div class="px-6 text-center text-white md:px-12">
                                     <h2 class="mb-5 text-4xl font-bold leading-tight tracking-tight">
-                                        ¡Sé parte de la vibrante experiencia " <span class="text-primary dark:text-primary-400">Away and Spark</span><span>"!<br />Consigue tus boletas hoy.</span>
+                                        ¡Sé parte de la vibrante experiencia " <span class="text-purple-800">Away and Spark</span><span>"!<br />Consigue tus boletas hoy.</span>
                                     </h2>
                                     <button onClick={(e) => reserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-gradient-to-r from-[#9340FF] to-[#ba36ba] text-lg font-bold text-white my-4">
                                         Compra ya!
