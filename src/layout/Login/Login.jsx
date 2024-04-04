@@ -1,11 +1,11 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { useState, useContext } from "react"
-import { Link } from "react-router-dom"
+import { useState, useContext, useEffect } from "react"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 
 import { ContextVariable } from '../../Context';
 
 const Login = () => {
-    const { alert, setalert, setauth, isOpenLogIn, setIsOpenLogIn, setIsOpenSignUp } = useContext(ContextVariable)
+    const { alert, setalert, setauth, isOpenLogIn, setIsOpenLogIn, setIsOpenSignUp, setreserveTicket, locattion, user } = useContext(ContextVariable)
 
     const FirebaseAuth = getAuth()
     const [email, setemail] = useState('')
@@ -20,6 +20,8 @@ const Login = () => {
                 const user = userCredential.user;
                 setauth(user)
                 setIsOpenLogIn(false)
+
+
 
                 setalert({
                     ...alert,
@@ -51,6 +53,16 @@ const Login = () => {
         setIsOpenLogIn(false)
         setIsOpenSignUp(true)
     }
+    const [location, setlocation] = useState(useLocation())
+
+    const history = useNavigate();
+    useEffect(() => {
+        if (user && user.role === 'admin') {
+            if (location.pathname === '/') {
+                history("/admin")
+            }
+        }
+    }, [user])
     return (
         <>
             {isOpenLogIn &&

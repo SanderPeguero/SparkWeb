@@ -15,7 +15,7 @@ import MoreIcon from '@mui/icons-material/MoreVert'
 
 import { getAuth, signOut } from "firebase/auth"
 import { ContextVariable } from '../../Context'
-
+import {Navigate} from "react-router-dom";
 
 export default function PrimarySearchAppBar({ user }) {
     
@@ -54,6 +54,10 @@ export default function PrimarySearchAppBar({ user }) {
     const handleLogout = () => {
         signOut(FirebaseAuth)
         handleMenuClose()
+        window.location.reload();
+        return(
+            <Navigate to='/' replace />
+        )
     }
 
     const handleRoute = (route) => {
@@ -81,9 +85,9 @@ export default function PrimarySearchAppBar({ user }) {
         >
             <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
             <MenuItem onClick={handleMenuClose}>My Tickets</MenuItem>
-            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('dashboardsparkle')}>Tickets Dash</MenuItem> ) : null :null }
-            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('ticketsdash')}>Tickets Dash v2</MenuItem> ) : null :null }
-            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('activationsdash')}>Activation Dash</MenuItem> ) : null :null }
+            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('admin/dashboardsparkle')}>Tickets Dash</MenuItem> ) : null :null }
+            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('admin/ticketsdash')}>Tickets Dash v2</MenuItem> ) : null :null }
+            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('admin/activationsdash')}>Activation Dash</MenuItem> ) : null :null }
             <MenuItem onClick={handleLogout}>Log Out</MenuItem>
         </Menu>
     );

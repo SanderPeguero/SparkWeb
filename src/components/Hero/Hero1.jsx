@@ -22,6 +22,8 @@ const Hero1 = () => {
     setlocattion(location.pathname);
   }, [location, setlocattion]);
 
+  console.log(location.pathname)
+
 
   
   return (

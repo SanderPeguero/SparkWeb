@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { doc, getDoc, getFirestore } from "firebase/firestore"
-import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes, Navigate, useNavigate  } from 'react-router-dom'
 
 //MUI
 import MuiAlert from '@mui/material/Alert'
@@ -26,7 +26,9 @@ import ActivationsDash from './layout/ActivationsDash/Dashboard'
 import { ContextVariable } from './Context'
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import ContainerCard from './components/ContainerCard/ContainerCard'
+import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
+import { getDatabase, ref, get } from 'firebase/database';
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -86,6 +88,29 @@ function App() {
 
   }
 
+  // const getUser = async (data) => {
+  //   try {
+  //     // Obtener una referencia a la base de datos en tiempo real de Firebase
+  //     const database = getDatabase();
+  
+  //     // Obtener los datos del usuario desde la base de datos en tiempo real
+  //     const userRef = ref(database, `Users/${data.uid}`);
+  //     const dataSnapshot = await get(userRef);
+  
+  //     if (dataSnapshot.exists()) {
+  //       // Convertir los datos del usuario a un objeto JavaScript
+  //       const userData = dataSnapshot.val();
+  //       console.log(userData)
+  //       // Establecer los datos del usuario en el estado
+  //       setuser(userData);
+  //     } else {
+  //       console.log("No such user document!");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error getting user data: ", error);
+  //   }
+  // };
+
   useEffect(() => {
     setState({
       ...state,
@@ -119,17 +144,37 @@ function App() {
 
   const [isOpenLogIn, setIsOpenLogIn] = useState(false)
   const [isOpenSignUp, setIsOpenSignUp] = useState(false)
+  const [reserveTicket, setreserveTicket] = useState(false)
+  const [comprarTicket, setcomprarTicket] = useState(false)
 
+ 
   
   const { vertical, horizontal, open } = state;
 
   const [locattion, setlocattion] = useState(null)
 
-  //Comp 1 Padre App -> num1
-  //Comp 2 Hijo
-  //Comp 3
-  //Comp 4
-  //Comp 5
+  const commonRoutes = [
+    { path: '/', element: <Home /> },
+    { path: '/boletas', element: <Tickets /> },
+    { path: '/activacion', element: <Activation /> },
+    { path: '/emailConfi', element: <EmailConfirmation /> },
+    { path: '/login', element: !auth ? <Login /> : <Navigate to='/' /> },
+    { path: '/signin', element: !auth ? <SignIn /> : <Navigate to='/' /> },
+    { path: '*', element: <Navigate to='/' /> }
+  ];
+
+  const adminRoutes = [
+    { path: '/', element: <Home /> },
+    { path: '/boletas', element: <Tickets /> },
+    { path: '/activacion', element: <Activation /> },
+    { path: '/ticketsdash', element: <Screen /> },
+    { path: '/dashboardsparkle', element: <Dashboard /> },
+    { path: '/activationsdash', element: <ActivationsDash /> },
+  ];
+  
+  
+
+  const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({...route, path: `/admin${route.path}`})) : [])];
 
 
   return (
@@ -144,7 +189,12 @@ function App() {
       isOpenLogIn,
       setIsOpenLogIn,
       isOpenSignUp,
-      setIsOpenSignUp
+      setIsOpenSignUp,
+      reserveTicket,
+      setreserveTicket,
+      comprarTicket,
+      setcomprarTicket
+     
       }}>
       <div>
         <Snackbar
@@ -162,15 +212,19 @@ function App() {
 
           <header>
             {/* {locattion !== '/' && <Navbar auth={auth} user={user} />} */}
-            {locattion !== "/" && (
+            {locattion !== "/" && locattion !== "/admin/" && (
               <Navbar auth={auth} user={user} />
             )}
           </header>
           <main className=''>
             <Routes>
-              <Route exact path='/' element={<Home />} />
+            {routes.map((route, index) => (
+                <Route key={index} {...route} />
+              ))}
+              {/* <Route exact path='/' element={<Home />} />
               <Route exact path='/boletas' element={<Tickets />} />
               <Route exact path='/activacion' element={<Activation />} />
+              <Route exact path='/emailConfi' element={<EmailConfirmation />} />
               <Route exact path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
               <Route exact path='/signin' element={!auth ? <SignIn /> : <Navigate to='/' />} />
               {
@@ -184,7 +238,7 @@ function App() {
                   )
                   : <Route path='*' element={<Navigate to='/' />} />
                   : <Route path='*' element={<Navigate to='/' />} />
-              }
+              } */}
             </Routes>
             <Footer />
           </main>
