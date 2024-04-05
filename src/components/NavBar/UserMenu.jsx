@@ -18,7 +18,7 @@ import { ContextVariable } from '../../Context'
 import {Navigate} from "react-router-dom";
 
 export default function PrimarySearchAppBar({ user }) {
-    
+    const {setlocattion} = React.useContext(ContextVariable)
     const navigate = useNavigate();
 
     const FirebaseAuth = getAuth()
@@ -61,6 +61,8 @@ export default function PrimarySearchAppBar({ user }) {
     }
 
     const handleRoute = (route) => {
+        console.log(route)
+        setlocattion(route)
         navigate(route)
         handleMenuClose()
     }
@@ -85,9 +87,9 @@ export default function PrimarySearchAppBar({ user }) {
         >
             <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
             <MenuItem onClick={handleMenuClose}>My Tickets</MenuItem>
-            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('admin/dashboardsparkle')}>Tickets Dash</MenuItem> ) : null :null }
-            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('admin/ticketsdash')}>Tickets Dash v2</MenuItem> ) : null :null }
-            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('admin/activationsdash')}>Activation Dash</MenuItem> ) : null :null }
+            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('/admin/dashboardsparkle')}>Tickets Dash</MenuItem> ) : null :null }
+            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('/admin/ticketsdash')}>Tickets Dash v2</MenuItem> ) : null :null }
+            {user ? user.role == 'admin' ? (<MenuItem onClick={() => handleRoute('/admin/activationsdash')}>Activation Dash</MenuItem> ) : null :null }
             <MenuItem onClick={handleLogout}>Log Out</MenuItem>
         </Menu>
     );

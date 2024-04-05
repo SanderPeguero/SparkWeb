@@ -200,12 +200,10 @@ function App() {
     { path: '/dashboardsparkle', element: <Dashboard /> },
     { path: '/activationsdash', element: <ActivationsDash /> },
   ];
-  
-  
+
 
   const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({...route, path: `/admin${route.path}`})) : [])];
-
-
+console.log(locattion)
   return (
     <ContextVariable.Provider value={{ 
       user, 
