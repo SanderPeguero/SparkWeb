@@ -24,7 +24,10 @@ const BrickLayout = () => {
 
 
   const brickColumns = columns.map((column, columnIndex) => (
+    
+   
     <div key={columnIndex} className={styles["brick-column"]}>
+
       {column.map((image, imageIndex) => (
         <img
           key={imageIndex}
@@ -34,12 +37,16 @@ const BrickLayout = () => {
         />
       ))}
     </div>
+   
+
   ));
 
   return (
+
     <div className={styles["brick-layout"]}>
       {brickColumns}
     </div>
+    
   );
 
 }

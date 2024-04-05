@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { CgUnavailable } from "react-icons/cg";
+
+
 const featuredata = [
     {
         id: 1,
@@ -83,11 +85,11 @@ function Features() {
 
 
     return (
-        <div className="text-gray-600 body-font -mt-8 -mb-8">
+        <div className="text-gray-600 body-font -mt-8 -mb-8 ">
             <div className="container px-5 py-24 mx-auto">
-                <div className="flex flex-wrap -m-4 text-center">
+                <div className="flex flex-wrap -m-4 text-center  ">
                     {featuredata.map((data, index) => (
-                        <button key={index} className="p-4 md:w-1/4 sm:w-1/2 w-full" onClick={() => handleClick(index)}>
+                        <button key={index} className="p-4 md:w-1/4 ms:w-1/2 w-full " onClick={() => handleClick(index)}>
                             {clickedIndex === index ? (
                                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg0">
                                     <CgUnavailable className="text-gray-300 w-12 h-12 mb-3 inline-block" />
