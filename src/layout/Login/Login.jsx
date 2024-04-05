@@ -104,9 +104,9 @@ const Login = () => {
                             <button className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150" type="button">
                                 <img alt="..." className="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/google.svg" />Google </button>
 
-                        </div> */}
+                                </div> */}
                                 <hr className="mt-3 border-b-1 border-blueGray-300" />
-                            </div>
+                        </div>
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-2">
                                 {/* <div className="text-blueGray-400 text-center mb-3 font-bold">
                             <small>Or sign in with credentials</small>
