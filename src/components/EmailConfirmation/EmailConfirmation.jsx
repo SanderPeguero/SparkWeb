@@ -57,7 +57,7 @@ const EmailConfirmation = ({ StatusTicket }) => {
 
             </div>
 
-        </div>
+        </div> 
     )
 }
 
