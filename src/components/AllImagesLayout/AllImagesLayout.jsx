@@ -12,7 +12,7 @@ import { ContextVariable } from "../../Context"
 //Icon
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { UploadFileAllImg, EditImageAll } from "../../Scripts/UploadAllImg"
+import { UploadFileAllImg, EditImageAll, DeleteImgAll } from "../../Scripts/UploadAllImg"
 // MasonryLayout Component
 const AllImagesLayout = ({ images, setCategoryImage }) => {
   const { user } = useContext(ContextVariable)
@@ -50,12 +50,16 @@ const AllImagesLayout = ({ images, setCategoryImage }) => {
   }
 
   const handleDeleteImg = (index) => {
-    const newListImg = [...images];
-    const confir = window.confirm("Are you sure want to delete the image?")
-    if (confir) {
-      newListImg.splice(index, 1);
-      setCategoryImage(newListImg);
+    var r = window.confirm('Are you sure to delete this Image?');
+    if (r == true) {
+      DeleteImgAll(index, setCategoryImage)
     }
+    // const newListImg = [...images];
+    // const confir = window.confirm("Are you sure want to delete the image?")
+    // if (confir) {
+    //   newListImg.splice(index, 1);
+    //   setCategoryImage(newListImg);
+    // }
 
   }
 
@@ -85,7 +89,7 @@ const AllImagesLayout = ({ images, setCategoryImage }) => {
                 </div>
               </label>
               <div className="px-3 py-2 text-start text-xs leading-4">
-                <button onClick={() => handleDeleteImg(index)} className="px-3 py-1 border border-blue-500 text-blue-500 rounded transition duration-300 hover:bg-red-400 hover:text-white focus:outline-none">
+                <button onClick={() => handleDeleteImg(index + 1)} className="px-3 py-1 border border-blue-500 text-blue-500 rounded transition duration-300 hover:bg-red-400 hover:text-white focus:outline-none">
                   <MdDelete size={14} color='red' />
                 </button>
               </div>

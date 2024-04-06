@@ -81,3 +81,25 @@ export const obtenerTodasLasImgAll = async (setImages) => {
 
     }
 };
+
+export const DeleteImgAll = async ( id, setImages) => {
+
+    const db = getFirestore();
+
+    try {
+         const querySnapshot = await getDocs(query(collection(db, 'AllImg'), where('Id', '==', id)))
+
+         querySnapshot.forEach(async (docSnapshot) => {
+
+             const docRef = doc(db, "AllImg", docSnapshot.id)
+             
+             await updateDoc(docRef, { Url: null })
+
+             obtenerTodasLasImgAll(setImages)
+
+         });
+
+    } catch (error) {
+
+    }
+}
