@@ -10,14 +10,14 @@ const NosotrsoModal = ({ Open, setOpen }) => {
     return (
         <>
             {Open &&
-                <div className="fixed  inset-0 flex items-center justify-center z-50 mx-8 sm:mx-0 min-h-screen w-full backdrop-blur-sm" onClick={(e) => handleCloseModal(e)}>
-                    <div className="h-screen w-3/4 mx-auto mt-24 space-y-20 flex justify-center items-center" >
+                <div className="fixed inset-0 flex items-center justify-center z-50 mx-15 sm:mx-0 min-h-screen w-full backdrop-blur-sm" onClick={(e) => handleCloseModal(e)}>
+                    <div className="h-screen w-3/4 mt-24 space-y-1 flex justify-center items-center" >
                         <div className="max-w-screen-md md:w-3/4 mx-auto" onClick={(e) => e.stopPropagation()}>
-                            <div className="inline-flex flex-col space-y-2 items-center justify-end flex-1 h-full p-4 bg-[#0b023f] rounded-[2.5rem]">
+                            <div className="inline-flex flex-col space-y-4 items-center justify-end flex-1 h-full p-4 bg-[#0b023f] rounded-[2.5rem]">
                                 <div className="w-full">
                                     <div className="w-full flex items-center justify-between">
                                         <div className="w-full">
-                                            <p className="w-full text-2xl font-semibold text-white">GRUPO SPARK</p>
+                                            <p className="w-full text-3xl font-semibold text-white">GRUPO SPARK</p>
 
                                         </div>
                                         <button
