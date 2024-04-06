@@ -77,8 +77,7 @@ function tickets() {
             
         }
         else {
-
-            console.log("Compra " + comprarTicket)
+            setcomprarTicket(true);
         }
     }
 
@@ -95,6 +94,8 @@ function tickets() {
             <Purchase event={'Sparkle Mania'}/>
         )
     }
+
+    console.log("Compra " + comprarTicket)
 
 
     return (
