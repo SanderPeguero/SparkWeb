@@ -49,7 +49,7 @@ const Hero1 = () => {
   return (
     <>
 
-      <header className={`${styles.header} flex justify-content-center`}>
+      <header className={`${styles.header}  flex justify-content-center `}>
         <ContainerCard className="flex flex-column">
           <div className={styles["blur-circle-shape" ]}></div>
           {location.pathname === "/" && (
@@ -64,7 +64,7 @@ const Hero1 = () => {
           
 
          
-            <div className={`${styles["headings-header"]} flex justify-content-center flex-column sm:w-1/2`}>
+            <div className={`${styles["headings-header"]} flex justify-content-center flex-column w-32`}>
               <div className='mb-[15rem]'>
 
                 {user && user.role === 'admin' && (

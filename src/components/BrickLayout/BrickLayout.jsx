@@ -16,7 +16,7 @@ import { ContextVariable } from "../../Context"
 const BrickLayout = () => {
   const { listImg } = useContext(ContextVariable)
 
-  const totalColumns = Math.ceil(listImg.length / 3);
+  const totalColumns = Math.ceil(listImg.length / 5);
 
   const columns = Array.from({ length: totalColumns }, (_, index) =>
     listImg.slice(index * 3, (index + 1) * 3)
