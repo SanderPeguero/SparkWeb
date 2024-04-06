@@ -14,28 +14,42 @@ import imgN3 from '../../../public/dummy_image/luces.avif'
 import { useState, useContext, useEffect } from 'react';
 import { ContextVariable } from "../../Context"
 const BrickLayout = () => {
-  const { listImg } = useContext(ContextVariable)
+  const { listImg, ListImages } = useContext(ContextVariable)
 
-  const totalColumns = Math.ceil(listImg.length / 3);
+  const totalColumns = Math.ceil(ListImages.length / 3);
 
   const columns = Array.from({ length: totalColumns }, (_, index) =>
-    listImg.slice(index * 3, (index + 1) * 3)
+    ListImages.slice(index * 3, (index + 1) * 3)
   );
+
+  // console.log(
+  //   columns.map((column, columnIndex) => {
+  //     console.log(`Columna ${columnIndex + 1}:`);
+  //     return column.map((image, imageIndex) => {
+  //       console.log(`  Imagen ${imageIndex + 1}:`, image);
+  //       return image; // Devuelve la imagen para mantener la estructura de datos
+  //     });
+  //   })
+  // );
+  
+
 
 
   const brickColumns = columns.map((column, columnIndex) => (
     <div key={columnIndex} className={styles["brick-column"]}>
-      {column.map((image, imageIndex) => (
-        <img
-          key={imageIndex}
-          src={image.image}
-          alt=""
-          className={imageIndex === 2 ? "h-6 w-6" : ""}
-        />
-      ))}
+      {column.map((image, imageIndex) => {
+        return (
+          <img
+            key={imageIndex}
+            src={image.Url} // Accede a la propiedad Url de cada objeto de imagen
+            alt=""
+            className={imageIndex === 2 ? "h-6 w-6" : ""}
+          />
+        );
+      })}
     </div>
   ));
-
+  
   return (
     <div className={styles["brick-layout"]}>
       {brickColumns}

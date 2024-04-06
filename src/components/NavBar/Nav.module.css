@@ -4,7 +4,8 @@
 }
 .nav-title {
     font-size: 1.8rem;
-    color: var(--green-400);
+    color: white;
+    font-weight: bold;
 }
 .navbar-nav {
     margin-left: 140px;
@@ -24,7 +25,7 @@
     height: 14px;
     top: 50%;
     left: -30px;
-    background: var(--green-400);
+    background: purple;
     border-radius: 5px;
     transform: rotate(45deg) translateY(-70%);
 }

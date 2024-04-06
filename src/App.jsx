@@ -1,3 +1,4 @@
+App
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { doc, getDoc, getFirestore } from "firebase/firestore"
@@ -43,6 +44,7 @@ import img8 from '../public/dummy_image/8.jpg';
 import img9 from '../public/dummy_image/9.jpg';
 
 
+
 const images = [
   { id: 1, image: img1 },
   { id: 2, image: img2 },
@@ -54,7 +56,7 @@ const images = [
   { id: 8, image: img8 },
   { id: 9, image: img9 },
 ];
-
+import { obtenerTodasLasImagenes } from './Scripts/UploadHero1'
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -171,11 +173,19 @@ function App() {
   const [reserveTicket, setreserveTicket] = useState(false)
   const [comprarTicket, setcomprarTicket] = useState(false)
   const [isOpenEditImg, setisOpenEditImg] = useState(false)
+  const [GalleryVisible, setGalleryVisible] = useState(false)
 
   const [listImg, setListImg] = useState([])
+  const [ListImages, setListImages] = useState([])
   useEffect(() => {
       setListImg(images)
+     obtenerTodasLasImagenes(setListImages)
+     
   }, [])
+
+  useEffect(() => {
+  }, [ListImages])
+  
 
   
   const { vertical, horizontal, open } = state;
@@ -224,7 +234,11 @@ console.log(locattion)
       isOpenEditImg,
       setisOpenEditImg,
       listImg,
-      setListImg
+      setListImg,
+      GalleryVisible,
+      setGalleryVisible,
+      ListImages,
+      setListImages
      
       }}>
       <div>
