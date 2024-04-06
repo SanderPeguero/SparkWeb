@@ -18,6 +18,7 @@ import { ContextVariable } from '../../Context.js';
 
 import allimg from './data.js'
 import images from '../../Jsons/Images.json'
+import { obtenerTodasLasImgAll } from '../../Scripts/UploadAllImg.js';
 const ddItems = [
     {
         id: 1,
@@ -47,17 +48,17 @@ const ddItems = [
 ]
 
 function home() {
-    const {GalleryVisible, setGalleryVisible} = useContext(ContextVariable)
+    const { GalleryVisible, setGalleryVisible } = useContext(ContextVariable)
     const [nicol, setinput] = useState('');
     const [state, setstate] = useState('');
     const galleryRef = useRef(null);
 
     useEffect(() => {
         if (GalleryVisible && galleryRef.current) {
-          galleryRef.current.scrollIntoView({ behavior: 'smooth' });
-          setGalleryVisible(false)
+            galleryRef.current.scrollIntoView({ behavior: 'smooth' });
+            setGalleryVisible(false)
         }
-      }, [GalleryVisible]);
+    }, [GalleryVisible]);
 
     const handle = (e) => {
         setstate(e.target.value)
@@ -65,7 +66,8 @@ function home() {
     const [categoryImage, setCategoryImage] = useState([])
 
     useEffect(() => {
-        setCategoryImage(images.categories.all)
+        // setCategoryImage(images.categories.all)
+        obtenerTodasLasImgAll(setCategoryImage)
     }, [])
 
 
@@ -78,6 +80,7 @@ function home() {
             return [...images.categories[categoryChoose]]
         })
     }
+
     //   const [categoryImage, setCategoryImage] = useState(allimg)
     //     const takeDdTitle = (ddTitle) => {
     //         setCategoryImage(() => {
@@ -100,7 +103,8 @@ function home() {
                 <ContainerCard>
                     <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>
                         <h1>All images</h1>
-                        <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} />
+                        <Dropdown title="All Images" items={ddItems} />
+                        {/* <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} /> */}
                     </div>
                     <AllImagesLayout images={categoryImage} setCategoryImage={setCategoryImage} />
                 </ContainerCard>
