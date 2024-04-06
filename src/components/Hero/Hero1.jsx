@@ -18,6 +18,7 @@ import { ContextVariable } from '../../Context'
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
+import { SaveTextHero1, obtenerText, EditarText } from '../../Scripts/UploadHero1'
 
 
 
@@ -25,7 +26,8 @@ const Hero1 = () => {
   const { locattion, setlocattion, user, isOpenEditImg, setisOpenEditImg } = useContext(ContextVariable);
   // const location = useLocation();
   const [location, setlocation] = useState(useLocation())
-  const [TextHero, setTextHero] = useState('Se la chipa de nuestras fiestas!')
+
+  const [TextHero, setTextHero] = useState('')
 
   useEffect(() => {
     setlocattion(location.pathname);
@@ -35,9 +37,14 @@ const Hero1 = () => {
   const handleEditTextHero = () => {
     const newTitle = prompt('Edit text Hero1:', TextHero);
     if (newTitle !== null) {
-      setTextHero(newTitle);
+      EditarText(newTitle, setTextHero)
     }
   }
+
+  useEffect(() => {
+    obtenerText(setTextHero)
+  }, [])
+
 
   const handleOpenEditImage = () => {
     setisOpenEditImg(!isOpenEditImg)
@@ -64,8 +71,8 @@ const Hero1 = () => {
             <div className='mb-[15rem]'>
 
 
-              
-            {user && user.role === 'admin' && (
+
+              {user && user.role === 'admin' && (
                 <div className="px-3 py-2 ml-[20rem]  text-xs leading-4">
                   <button onClick={() => handleOpenEditImage()} className="group relative flex items-center justify-center h-12 w-1/2 md:w-48 overflow-hidden rounded-xl text-lg font-bold text-white">
                     <span className="mr-2">Edit images</span>
