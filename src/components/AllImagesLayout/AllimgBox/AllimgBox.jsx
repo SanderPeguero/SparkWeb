@@ -5,7 +5,7 @@ import styles from "./MasonryBox.module.css"
 import { PropTypes } from 'prop-types';
 
 // MasonryBox component
-const AllimgBox = ({ wallSrc, userProf, userName, userJob }) => {
+const AllimgBox = ({ wallSrc, userProf }) => {
   return (
     <div className={styles["my-masonry"]}>
         <img src={wallSrc} style={{ width: "100%" }} alt="" />
@@ -25,11 +25,11 @@ const AllimgBox = ({ wallSrc, userProf, userName, userJob }) => {
 }
 
 // validate MasonryBox component
-AllimgBox.propTypes = {
-  wallSrc: PropTypes.string.isRequired,
-  userProf: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  userJob: PropTypes.string.isRequired,
-}
+// AllimgBox.propTypes = {
+//   wallSrc: PropTypes.string.isRequired,
+//   userProf: PropTypes.string.isRequired,
+//   userName: PropTypes.string.isRequired,
+//   userJob: PropTypes.string.isRequired,
+// }
 
 export default AllimgBox

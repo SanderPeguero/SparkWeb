@@ -18,6 +18,7 @@ import { ContextVariable } from '../../Context'
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
+import { SaveTextHero1, obtenerText, EditarText } from '../../Scripts/UploadHero1'
 
 
 
@@ -25,7 +26,8 @@ const Hero1 = () => {
   const { locattion, setlocattion, user, isOpenEditImg, setisOpenEditImg } = useContext(ContextVariable);
   // const location = useLocation();
   const [location, setlocation] = useState(useLocation())
-  const [TextHero, setTextHero] = useState('Se parte del coro.')
+
+  const [TextHero, setTextHero] = useState('')
 
   useEffect(() => {
     setlocattion(location.pathname);
@@ -35,13 +37,20 @@ const Hero1 = () => {
   const handleEditTextHero = () => {
     const newTitle = prompt('Edit text Hero1:', TextHero);
     if (newTitle !== null) {
-      setTextHero(newTitle);
+      EditarText(newTitle, setTextHero)
     }
   }
+
+  useEffect(() => {
+    obtenerText(setTextHero)
+  }, [])
+
 
   const handleOpenEditImage = () => {
     setisOpenEditImg(!isOpenEditImg)
   }
+
+  const parts = TextHero.split("la chipa");
 
 
   return (
@@ -56,21 +65,12 @@ const Hero1 = () => {
           {location.pathname === '/admin' && (
             <Navbar />
           )}
-          <BrickLayout  />
+          <BrickLayout />
 
           <div className={`${styles["headings-header"]} flex justify-content-center flex-column `}>
             <div className='mb-[15rem]'>
-              <div className="flex flex-row my-2 items-center">
-                <h2 className={styles["heading-header-title"]}>{TextHero}</h2>
-                {user && user.role === 'admin' && (
-                  <div className="px-3 py-2 text-right  text-xs leading-4">
-                    <button onClick={handleEditTextHero} className="px-3 py-1 border border-blue-500 text-blue-500 rounded transition duration-300 hover:bg-yellow-400 hover:text-white focus:outline-none">
-                      <FaEdit size={14} className="text-yellow-400" />
-                    </button>
-                  </div>
-                )}
 
-              </div>
+
 
               {user && user.role === 'admin' && (
                 <div className="px-3 py-2 ml-[20rem]  text-xs leading-4">
@@ -82,8 +82,26 @@ const Hero1 = () => {
                 </div>
               )}
 
+              <div className='mt-[10rem] absolute bottom-16'>
+                <div className="flex flex-row my-2 items-center">
+                  <h2 className={`${styles["heading-header-title"]}`}>
+                    {formatText(TextHero)}
+                  </h2>
+                  {user && user.role === 'admin' && (
+                    <div className="px-3 py-2 text-right  text-xs leading-4">
+                      <button onClick={handleEditTextHero} className="px-3 py-1 border border-blue-500 text-blue-500 rounded transition duration-300 hover:bg-yellow-400 hover:text-white focus:outline-none">
+                        <FaEdit size={14} className="text-yellow-400" />
+                      </button>
+                    </div>
+                  )}
+
+                </div>
+              </div>
+
+
+
             </div>
-            <HeaderBoxes titles_numbers={JsonHeader.informations} />
+            {/* <HeaderBoxes titles_numbers={JsonHeader.informations} /> */}
           </div>
         </ContainerCard>
 
@@ -93,3 +111,29 @@ const Hero1 = () => {
 }
 
 export default Hero1
+
+
+const formatText = (TextHero) => {
+  if (!TextHero || typeof TextHero !== 'string') {
+    return null;
+  }
+
+  const words = TextHero.split(' ');
+  const formattedWords = words.map((word, index) => {
+
+    if (index === 1) {
+      return <span key={index} style={{ color: 'var(--pink-600)' }}>{word}&nbsp;</span>;
+    } else if (index === 2) {
+      return <span key={index} style={{ color: 'var(--pink-600)' }}>{word}<br /></span>;
+    } else {
+      return <React.Fragment key={index}>{word}&nbsp;</React.Fragment>;
+    }
+  });
+  const styledText = (
+    <span>
+      {formattedWords}
+    </span>
+  );
+
+  return styledText;
+};
