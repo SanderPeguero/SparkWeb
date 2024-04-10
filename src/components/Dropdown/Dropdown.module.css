@@ -2,7 +2,7 @@
     position: relative;
 }
 .dropdown button {
-    border: 1px solid var(--green-400);
+    border: 1px solid var(--white-100);
     column-gap: 10px;
 }
 .dropdown-menu {
@@ -11,7 +11,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 160px;
-    outline: 1px solid var(--green-400);
+    outline: 1px solid var(--white-100);
     background-color: var(--dark-900);
     z-index: 10;
     border-radius: 10px;
@@ -27,7 +27,7 @@
     cursor: pointer;
 }
 .dropdown-item-menu.active {
-    background-color: var(--green-400);
+    background-color: var(--white-100);
     color: var(--dark-900);
 }
 .dropdown-item-menu:hover {
