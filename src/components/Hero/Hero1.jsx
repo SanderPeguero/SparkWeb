@@ -50,7 +50,7 @@ const Hero1 = () => {
     setisOpenEditImg(!isOpenEditImg)
   }
 
-  const parts = TextHero.split("la chipa");
+  const parts = TextHero.split("la chispa");
 
 
   return (
