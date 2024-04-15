@@ -91,7 +91,7 @@ const Navbar = () => {
       <Login />
       <SignIn />
       <EditIma images={images} />
-      <nav className={`${styles.nav} flex align-items-center`}>
+      <nav className={`${styles.nav} flex align-items-center `}>
         {/*  */}
         <a href='/'>
           <div className='flex items-center'>
@@ -118,10 +118,11 @@ const Navbar = () => {
         {
           auth == null ?
             <div className={`flex ${styles["navbar-buttons"]}`}>
-
-              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent"  className="hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
-              <Button onClick={() => setIsOpenSignUp(true)} theme="matrix" className="text-white  bg-gradient-to-r from-[#9340FF] to-[#ba36ba]">Sign up</Button>
+              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent"  className=" hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
+              <Button onClick={() => setIsOpenSignUp(true)} theme="matrix" className="hidden lg:inline-block  text-white  bg-gradient-to-r from-[#9340FF] to-[#ba36ba]">Sign up</Button>
+           
             </div>
+            
             :
             <UserMenu user={user} />
         }
@@ -142,7 +143,7 @@ const Navbar = () => {
       </nav>
       {isMobileMenuOpen && (
         <>
-          <ul className={`fixed   left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
+          <ul className={` fixed left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
             {links.map((link) => (
               <li key={link.name} className={`block px-4 py-2 ${styles["nav-item"]} ${location.pathname === link.route ? ` ${styles.active}` : ''}`}>
                 <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
