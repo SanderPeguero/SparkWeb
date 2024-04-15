@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { CgUnavailable } from "react-icons/cg";
 
-
 const featuredata = [
     {
         id: 1,
@@ -13,13 +12,42 @@ const featuredata = [
             </svg>
 
         ),
-        title: "DJ's",
-        quantity: "9",
+        title: "",
+        quantity: "Fotos",
     },
 
     {
         id: 2,
         icon: (
+
+
+            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-[#d5612c] w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                <path d="M8 17l4 4 4-4m-4-5v9"></path>
+                <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
+            </svg>
+
+        ),
+        title: "",
+        quantity: "Videos",
+    },
+
+    {
+        id: 3,
+        icon: (
+
+            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-[#2ebae5] w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+
+        ),
+        title: "",
+        quantity: "Comentarios",
+    },
+
+    {
+        id: 4,
+        icon: (
+
 
             <svg
                 fill="none"
@@ -36,35 +64,8 @@ const featuredata = [
             </svg>
 
         ),
-        title: "Sparklers",
-        quantity: "1.3K",
-    },
-
-    {
-        id: 3,
-        icon: (
-
-            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-[#e52eb4] w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                <path d="M3 18v-6a9 9 0 0118 0v6"></path>
-                <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"></path>
-            </svg>
-
-        ),
-        title: "DJ's",
-        quantity: "9",
-    },
-
-    {
-        id: 4,
-        icon: (
-
-            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-[#2ebae5] w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-
-        ),
-        title: "Security",
-        quantity: "14",
+        title: "",
+        quantity: "Nosotros",
     },
 
 ];
@@ -72,17 +73,31 @@ const featuredata = [
 function Features() {
 
     const [clickedIndex, setClickedIndex] = useState(null)
+    const [openComments, setopenComments] = useState(false)
+    const [openWe, setopenWe] = useState(false)
 
     const handleClick = (index) => {
+        console.log(index);
+        if (index === 0) {
+            if (clickedIndex === index) {
+                setClickedIndex(null)
+            } else {
+                setClickedIndex(index)
+            }
+        } else if (index === 1) {
+            if (clickedIndex === index) {
+                setClickedIndex(null)
+            } else {
+                setClickedIndex(index)
+            }
 
-        if (clickedIndex === index) {
-            setClickedIndex(null)
-        } else {
-            setClickedIndex(index)
+        } else if (index === 2) {
+            setopenComments(true)
+        } else if (index === 3) {
+            setopenWe(true)
         }
+
     }
-
-
 
     return (
         <div className="text-gray-600 body-font -mt-8 -mb-8 ">
@@ -107,7 +122,7 @@ function Features() {
                     ))}
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

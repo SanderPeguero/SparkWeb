@@ -14,13 +14,25 @@ import imgN3 from '../../../public/dummy_image/luces.avif'
 import { useState, useContext, useEffect } from 'react';
 import { ContextVariable } from "../../Context"
 const BrickLayout = () => {
-  const { listImg } = useContext(ContextVariable)
+  const { listImg, ListImages } = useContext(ContextVariable)
 
   const totalColumns = Math.ceil(listImg.length / 5);
 
   const columns = Array.from({ length: totalColumns }, (_, index) =>
-    listImg.slice(index * 3, (index + 1) * 3)
+    ListImages.slice(index * 3, (index + 1) * 3)
   );
+
+  // console.log(
+  //   columns.map((column, columnIndex) => {
+  //     console.log(`Columna ${columnIndex + 1}:`);
+  //     return column.map((image, imageIndex) => {
+  //       console.log(`  Imagen ${imageIndex + 1}:`, image);
+  //       return image; // Devuelve la imagen para mantener la estructura de datos
+  //     });
+  //   })
+  // );
+  
+
 
 
   const brickColumns = columns.map((column, columnIndex) => (
@@ -40,7 +52,7 @@ const BrickLayout = () => {
    
 
   ));
-
+  
   return (
 
     <div className={styles["brick-layout"]}>

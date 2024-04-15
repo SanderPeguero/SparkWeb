@@ -18,6 +18,7 @@ import { ContextVariable } from '../../Context'
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
+import { SaveTextHero1, obtenerText, EditarText } from '../../Scripts/UploadHero1'
 
 
 
@@ -25,7 +26,8 @@ const Hero1 = () => {
   const { locattion, setlocattion, user, isOpenEditImg, setisOpenEditImg } = useContext(ContextVariable);
   // const location = useLocation();
   const [location, setlocation] = useState(useLocation())
-  const [TextHero, setTextHero] = useState('Se la chipa de nuestras fiestas!')
+
+  const [TextHero, setTextHero] = useState('')
 
   useEffect(() => {
     setlocattion(location.pathname);
@@ -35,9 +37,14 @@ const Hero1 = () => {
   const handleEditTextHero = () => {
     const newTitle = prompt('Edit text Hero1:', TextHero);
     if (newTitle !== null) {
-      setTextHero(newTitle);
+      EditarText(newTitle, setTextHero)
     }
   }
+
+  useEffect(() => {
+    obtenerText(setTextHero)
+  }, [])
+
 
   const handleOpenEditImage = () => {
     setisOpenEditImg(!isOpenEditImg)
@@ -58,7 +65,6 @@ const Hero1 = () => {
           {location.pathname === '/admin' && (
             <Navbar />
           )}
-
           
             <BrickLayout />
           

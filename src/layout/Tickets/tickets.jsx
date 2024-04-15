@@ -12,6 +12,7 @@ import { ContextVariable } from '../../Context';
 import Purchase from './purchase';
 
 
+
 function tickets() {
 
     const FirebaseAuth = getAuth;
@@ -80,8 +81,6 @@ function tickets() {
         }
     }
 
-
-
     const purchase = true
 
     if (reserveTicket) {
@@ -97,6 +96,7 @@ function tickets() {
     }
 
     console.log("Compra " + comprarTicket)
+
 
     return (
         <>
@@ -129,6 +129,7 @@ function tickets() {
                                 </button>
                             }
 
+
                         </div>
                     </div>
                     <div className="md:ml-[9rem] mb-4 flex-col">
@@ -138,7 +139,9 @@ function tickets() {
                         </div>
                         <img src={ticket2} className='w-full md:w-[85%]' />
                         <div>
+
                             <button onClick={() => setreserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
+
                                 Reservar ahora!
                                 <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                             </button>
