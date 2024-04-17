@@ -130,30 +130,53 @@ function Purchase({ event }) {
   const db = getFirestore()
   const purchaseStart = async () => {
     const data = JSON.parse(localStorage.getItem("purchase"));
-    console.log(data)
 
-    try {
-      const docRef = await addDoc(collection(db, "events"), data);
-      console.log("Document written with ID: ", docRef.id);
-      localStorage.clear();
+    if (
+      data &&
+      data.nameOfCustomer &&
+      data.nameOfCustomer.eventDetails &&
+      data.nameOfCustomer.customerDetails &&
+      data.nameOfCustomer.paymentDetails &&
+      data.nameOfCustomer.eventDetails.eventName &&
+      data.nameOfCustomer.eventDetails.eventDate &&
+      data.nameOfCustomer.eventDetails.ticketPrice &&
+      data.nameOfCustomer.eventDetails.ticketQuantity &&
+      data.nameOfCustomer.eventDetails.ticketCode &&
+      data.nameOfCustomer.customerDetails.name &&
+      data.nameOfCustomer.customerDetails.email &&
+      data.nameOfCustomer.customerDetails.phoneNumber &&
+      data.nameOfCustomer.paymentDetails.paymentMethod &&
+      data.nameOfCustomer.paymentDetails.paymentStatus
+    ) {
+      try {
+        const docRef = await addDoc(collection(db, "events"), data);
+        console.log("Document written with ID: ", docRef.id);
+        localStorage.clear();
+        setalert({
+          ...alert,
+          open: true,
+          message: `Tu compra se ha hecho correctamente`,
+          severity: 'success'
+        });
+        openWhatsAppGroup();
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        setalert({
+          ...alert,
+          open: true,
+          message: `Tu compra no se ha podido hacer en este momento`,
+          severity: 'error'
+        });
+      }
+    } else {
       setalert({
         ...alert,
         open: true,
-        message: `Tu compra se ha hecho correctamente`,
-        severity: 'success'
-      });
-      openWhatsAppGroup()
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      setalert({
-        ...alert,
-        open: true,
-        message: `Tu compra no se ha podido hacer en este momento`,
+        message: `Por favor, asegúrate de llenar todos los campos antes de realizar la compra.`,
         severity: 'error'
       });
     }
   };
-
 
   const openWhatsAppGroup = () => {
     if (selectedOption === "Cash") {

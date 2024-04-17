@@ -38,10 +38,10 @@ function tickets() {
     // const [reserveTicket2, setreserveTicket2] = useState(false)
 
     const { reserveTicket, auth, setreserveTicket, comprarTicket, setcomprarTicket, isOpenLogIn, setIsOpenLogIn } = useContext(ContextVariable)
-   
+
     const [isAuthOpenReserva, setIsAuthOpenReserva] = useState(false)
     const [isAuthOpenCompras, setIsAuthOpenCompras] = useState(false)
-    
+
     const handleOpenReservar = (e) => {
         e.preventDefault()
         if (auth === null) {
@@ -54,27 +54,26 @@ function tickets() {
 
     useEffect(() => {
         if (isAuthOpenReserva && !isOpenLogIn && !reserveTicket) {
-            setreserveTicket(true);
+            if (auth !== null) {
+                setreserveTicket(true);
+            }
         }
-        
+
     }, [isAuthOpenReserva, isOpenLogIn, reserveTicket]);
 
     useEffect(() => {
         if (isAuthOpenCompras && !isOpenLogIn && !comprarTicket) {
-            setcomprarTicket(true);
-            // console.log("Open Comprar");
+            if (auth !== null) {
+                setcomprarTicket(true);
+            }
         }
-        // console.log("AQUI EN TICKETS Compra");
     }, [isAuthOpenCompras, isOpenLogIn, comprarTicket]);
-
-
 
     const handleOpenCompras = (e) => {
         e.preventDefault()
         if (auth === null) {
             setIsOpenLogIn(true)
             setIsAuthOpenCompras(true)
-            
         }
         else {
             setcomprarTicket(true);
@@ -91,7 +90,7 @@ function tickets() {
 
     if (comprarTicket) {
         return (
-            <Purchase event={'Sparkle Mania'}/>
+            <Purchase event={'Sparkle Mania'} />
         )
     }
 
