@@ -57,6 +57,8 @@ const images = [
   { id: 9, image: img9 },
 ];
 import { obtenerTodasLasImagenes } from './Scripts/UploadHero1'
+import Purchase from './layout/Tickets/purchase'
+import ReserveTicket from './layout/Tickets/reserveTicket'
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -195,6 +197,8 @@ function App() {
   const commonRoutes = [
     { path: '/', element: <Home /> },
     { path: '/boletas', element: <Tickets /> },
+    { path: '/comprar', element: <Purchase /> },
+    { path: '/reservar', element: <ReserveTicket /> },
     { path: '/activacion', element: <Activation /> },
     { path: '/emailConfi', element: <EmailConfirmation /> },
     { path: '/login', element: !auth ? <Login /> : <Navigate to='/' /> },
@@ -205,6 +209,8 @@ function App() {
   const adminRoutes = [
     { path: '/', element: <Home /> },
     { path: '/boletas', element: <Tickets /> },
+    { path: '/comprar', element: <Purchase /> },
+    { path: '/reservar', element: <ReserveTicket /> },
     { path: '/activacion', element: <Activation /> },
     { path: '/ticketsdash', element: <Screen /> },
     { path: '/dashboardsparkle', element: <Dashboard /> },

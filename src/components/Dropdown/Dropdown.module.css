@@ -22,7 +22,7 @@
 }
 .dropdown-item-menu {
     padding: 15px;
-    color: var(--white-100);
+    color: var(--pink-600);
     transition: .4s;
     cursor: pointer;
 }

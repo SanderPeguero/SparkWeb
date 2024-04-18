@@ -37,9 +37,30 @@ const images = [
 
 
 const Navbar = () => {
-  const { setlocattion, auth, user, setIsOpenLogIn, setIsOpenSignUp, setGalleryVisible, GalleryVisible } = useContext(ContextVariable);
-  // console.log(user?.role)
-  // /activacion
+  const { setlocattion, locattion, auth, user, setIsOpenLogIn, setIsOpenSignUp, setGalleryVisible, GalleryVisible } = useContext(ContextVariable);
+
+  const Location = useLocation();
+ // route: `${user && user.role === 'admin' ? `${Location.pathname === '/admin/reservar' ? '/admin/reservar' : '/admin/boletas'}` : `${Location.pathname === '/reservar' ? '/reservar' : '/boletas'}`}`
+  
+  const getBoletasRutasAdmin = () => {
+    if (Location.pathname === '/admin/comprar') {
+      return '/admin/comprar';
+    } else if (Location.pathname === '/admin/reservar') {
+      return '/admin/reservar';
+    } else {
+      return '/admin/boletas';
+    }
+  };
+  const getBoletasRutasCommon = () => {
+    if (Location.pathname === '/comprar') {
+      return '/comprar';
+    } else if (Location.pathname === '/reservar') {
+      return '/reservar';
+    } else {
+      return '/boletas';
+    }
+  };
+
   const links = [
     {
       name: 'Inicio',
@@ -47,7 +68,7 @@ const Navbar = () => {
     },
     {
       name: 'Boletas',
-      route: `${user && user.role === 'admin' ? '/admin/boletas' : '/boletas'}`
+      route: `${user && user.role === 'admin' ? `${getBoletasRutasAdmin()}` : `${getBoletasRutasCommon()}`}`
 
     },
 
@@ -56,32 +77,36 @@ const Navbar = () => {
       route: `${user && user.role === 'admin' ? '/admin/activacion' : '/activacion'}`
     },
 
-    // {
-    //   name: 'Galeria',
-    //   route: `${user && user.role === 'admin' ? '/admin/allImage' : '/allImage'}`
-    // },
+
 
   ]
 
+
+
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const logout = () => {
     localStorage.clear();
-    window.location.href = ''
+    window.Location.href = ''
   };
-  
+
   const history = useNavigate()
   const handleGalleryVisible = () => {
-    if(location.pathname !== '/' && location.pathname !== '/admin'){
+    if (Location.pathname !== '/' && Location.pathname !== '/admin') {
       history('/')
       setGalleryVisible(true)
-    }else {
+    } else {
       setGalleryVisible(true)
     }
+  }
+
+  const Obtenerruta = (Ruta) => {
+    console.log("Ruta obtenidad")
+    console.log(Ruta)
   }
 
   return (
@@ -103,7 +128,7 @@ const Navbar = () => {
       <h1 className={styles["nav-title"]} >Grupo Spark</h1> */}
         <ul className={`flex align-items-center ${styles["navbar-nav"]}`}>
           {links.map((link) => (
-            <li key={link.name} className={`${styles["nav-item"]} ${location.pathname === link.route ? `ml-2 ${styles.active}` : ''}`}>
+            <li key={link.name} className={`${styles["nav-item"]} ${Location.pathname === link.route ? `ml-2 ${styles.active}` : ''}`}>
               <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
                 {link.name}
               </Link>
@@ -119,7 +144,7 @@ const Navbar = () => {
           auth == null ?
             <div className={`flex ${styles["navbar-buttons"]}`}>
 
-              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent"  className="hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
+              <Button onClick={() => setIsOpenLogIn(true)} theme="transparent" className="hover:bg-gradient-to-r hover:from-[#9340FF] hover:to-[#ba36ba]">Login</Button>
               <Button onClick={() => setIsOpenSignUp(true)} theme="matrix" className="text-white  bg-gradient-to-r from-[#9340FF] to-[#ba36ba]">Sign up</Button>
             </div>
             :
@@ -144,7 +169,7 @@ const Navbar = () => {
         <>
           <ul className={`fixed   left-0 right-0 bg-gray-900 py-2 flex flex-col items-center  z-50 `}>
             {links.map((link) => (
-              <li key={link.name} className={`block px-4 py-2 ${styles["nav-item"]} ${location.pathname === link.route ? ` ${styles.active}` : ''}`}>
+              <li key={link.name} className={`block px-4 py-2 ${styles["nav-item"]} ${Location.pathname === link.route ? ` ${styles.active}` : ''}`}>
                 <Link className='text-white' to={link.route} onClick={() => setlocattion(link.route)}>
                   {link.name}
                 </Link>

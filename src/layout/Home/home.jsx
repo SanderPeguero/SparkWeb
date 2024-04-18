@@ -22,29 +22,19 @@ import { obtenerTodasLasImgAll } from '../../Scripts/UploadAllImg.js';
 const ddItems = [
     {
         id: 1,
-        title: "All Images",
+        title: "Lamentably",
         active: true
     },
     {
         id: 2,
-        title: "Topic Images",
+        title: "SparkleMania",
         active: false
     },
     {
         id: 3,
-        title: "Nature Images",
+        title: "Amay and Spark",
         active: false
     },
-    {
-        id: 4,
-        title: "NFT Images",
-        active: false
-    },
-    {
-        id: 5,
-        title: "Space Images",
-        active: false
-    }
 ]
 
 function home() {
@@ -102,23 +92,14 @@ function home() {
             <div ref={galleryRef} className="flex justify-content-center" style={{ marginTop: "50px", padding: '50px' }}>
                 <ContainerCard>
                     <div className={`${styles["gallery-setting"]} flex justify-content-between align-items-center`}>
-                        <h1>All images</h1>
-                        <Dropdown title="All Images" items={ddItems} />
+                        <h1 className=''>Todas las imagenes</h1>
+                        <Dropdown title="Todas las imágenes" items={ddItems} />
                         {/* <Dropdown title="All Images" items={ddItems} liftingDdTextUp={takeDdTitle} /> */}
                     </div>
                     <AllImagesLayout images={categoryImage} setCategoryImage={setCategoryImage} />
                 </ContainerCard>
             </div>
             <Features />
-            {/* <AllImagesLayout/> */}
-            {/* <Hero2 /> */}
-            {/* <Contacto /> */}
-            {/* <Analytics /> */}
-            {/* <Newsletter />  */}
-
-            {/* <Cards /> */}
-            {/* <MapComponent /> */}
-            {/* <Footer />  */}
         </>
     )
 }

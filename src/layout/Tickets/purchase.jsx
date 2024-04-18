@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { ContextVariable } from '../../Context';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SparkleMania from "../../assets/TicketMania.png"
 
 // Import the functions you need from the SDKs you need
@@ -12,8 +13,9 @@ import { getFirestore } from 'firebase/firestore';
 
 function Purchase({ event }) {
 
-  const { alert, setalert, user } = useContext(ContextVariable)
-
+  const { alert, setalert, user, setlocattion } = useContext(ContextVariable)
+  const Location = useLocation()
+  const navigate = useNavigate()
   const [Email, setEmail] = useState('')
   const [number, setnumber] = useState('')
   const [selectedOption, setSelectedOption] = useState('');
@@ -198,10 +200,16 @@ function Purchase({ event }) {
     }
   };
 
+  const BackRoute = () => {
+    setlocattion(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
+    navigate(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
+  }
+
 
 
   return (
     <>
+  <div onClick={() => BackRoute()} className='ml-8 text-white flex flex-row'><div className='hover:underline cursor-pointer'>Boletas</div>{Location.pathname}</div>
       <div className="px-4 mb-8 py-8 rounded-3xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
         <div className="flex flex-col items-center  w-full mb-10 lg:flex-row">
           <div className="md:mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">

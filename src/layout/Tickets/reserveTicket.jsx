@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react'
-
+import { useState, useContext, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 // Import the functions you need from the SDKs you need
 import { collection, addDoc, getDocs, doc } from "firebase/firestore";
 // import { ref, onValue } from 'firebase/database'
@@ -11,8 +11,9 @@ import { ContextVariable } from '../../Context';
 
 function ReserveTicket({ event, purchase }) {
 
-    const { alert, setalert } = useContext(ContextVariable)
-
+    const { alert, setalert, user, setlocattion } = useContext(ContextVariable)
+    const Location = useLocation()
+    const navigate = useNavigate()
     const [name, setname] = useState('')
     const [lastName, setlastName] = useState('')
     const [email, setemail] = useState('')
@@ -20,6 +21,13 @@ function ReserveTicket({ event, purchase }) {
     const [guest, setguest] = useState(false)
     const [address, setaddress] = useState('')
     const [number, setnumber] = useState('')
+
+    useEffect(() => {
+        if (user) {
+          setemail(user?.email)
+          setnumber(user?.phone)
+        }
+      }, [user])
 
     const db = getFirestore()
     const ref = collection(db, 'Sparklers')
@@ -60,50 +68,19 @@ function ReserveTicket({ event, purchase }) {
 
     }
 
+    const BackRoute = () => {
+        setlocattion(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
+        navigate(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
+      }
+    
+
 
     return (
         <>
+              <div onClick={() => BackRoute()} className='ml-8 text-white flex flex-row'><div className='hover:underline cursor-pointer'>Boletas</div>{Location.pathname}</div>
             <div className="flex items-center justify-center p-12">
                 <div className="mx-auto w-full max-w-[550px]">
                     <form>
-                        <div className="-mx-3 flex flex-wrap">
-                            <div className="w-full px-3 sm:w-1/2">
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="fName"
-                                        className="mb-3 block text-base font-medium text-[#ffffff]"
-                                    >
-                                        Nombre
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="Nomre"
-                                        id="fName"
-                                        placeholder="Nombre"
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        onChange={(e) => setname(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-                            <div className="w-full px-3 sm:w-1/2">
-                                <div className="mb-5">
-                                    <label
-                                        htmlFor="lName"
-                                        className="mb-3 block text-base font-medium text-[#ffffff]"
-                                    >
-                                        Apellidos
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="lName"
-                                        id="lName"
-                                        placeholder="Apellidos"
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        onChange={(e) => setlastName(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-                        </div>
                         <div className="mb-5">
                             <label
                                 htmlFor="date"
@@ -118,22 +95,6 @@ function ReserveTicket({ event, purchase }) {
                                 placeholder='email@email.com'
                                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                                 onChange={(e) => setemail(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-5">
-                            <label
-                                htmlFor="guest"
-                                className="mb-3 block text-base font-medium text-[#ffffff]"
-                            >
-                                Dirección
-                            </label>
-                            <input
-                                type="text"
-                                name="guest"
-                                id="guest"
-                                min="0"
-                                className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                onChange={(e) => setaddress(e.target.value)}
                             />
                         </div>
 
@@ -159,12 +120,12 @@ function ReserveTicket({ event, purchase }) {
                                 <div className="mb-5">
                                     <label
                                         htmlFor="time"
-                                        className="mb-3 block text-base font-medium text-[#ffffff]"
+                                        className="mb-3 w-full block text-base font-medium text-[#ffffff]"
                                     >
-                                        Como te enteraste de este evento?
+                                        Cantidad de invitado
                                     </label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         name="how"
                                         id="how"
                                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -172,7 +133,7 @@ function ReserveTicket({ event, purchase }) {
                                     />
                                 </div>
                             </div>
-                            <div className="w-full px-3 sm:w-1/2">
+                            {/* <div className="w-full px-3 sm:w-1/2">
                                 <div className="md:mt-4 mb-5">
                                     <label className="mb-3 block text-base font-medium text-[#ffffff]">
                                         Piensas llevar invitados?
@@ -210,7 +171,7 @@ function ReserveTicket({ event, purchase }) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
 
