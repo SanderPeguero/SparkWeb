@@ -21,18 +21,17 @@ const style = {
 export default function BasicModal({ ticket, open, onClose }) {
 
   const db = getFirestore()
-
   if (ticket) {
 
-    const ticketRef = doc(db, "Tickets", ticket.key);
+    // const ticketRef = doc(db, "Tickets", ticket.key);
 
-    console.log(ticket)
+    // console.log(ticket)
 
-    const set = async () => {
-      await updateDoc(ticketRef, {
-        capital: true
-      })
-    }
+    // const set = async () => {
+    //   await updateDoc(ticketRef, {
+    //     capital: true
+    //   })
+    // }
 
     return (
       <div>
@@ -63,10 +62,10 @@ export default function BasicModal({ ticket, open, onClose }) {
                       readOnly
                       type="text"
                       name="Nombre"
-                      value={ticket.ticketId}
+                      // value={ticket.ticketId}
                       id="fName"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      onChange={(e) => setname(e.target.value)}
+                      // onChange={(e) => setname(e.target.value)}
                     />
                   </div>
                 </div>
@@ -81,10 +80,10 @@ export default function BasicModal({ ticket, open, onClose }) {
                     <input
                       type="text"
                       name="Nombre"
-                      value={ticket.name}
+                      // value={ticket.name}
                       id="fName"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      onChange={(e) => setname(e.target.value)}
+                      // onChange={(e) => setname(e.target.value)}
                     />
                   </div>
                 </div>
@@ -102,10 +101,10 @@ export default function BasicModal({ ticket, open, onClose }) {
                     <input
                       type="text"
                       name="date"
-                      value={ticket.paid}
+                      // value={ticket.paid}
                       id="date"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      onChange={(e) => setemail(e.target.value)}
+                      // onChange={(e) => setemail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -120,11 +119,11 @@ export default function BasicModal({ ticket, open, onClose }) {
                     <input
                       type="tel"
                       name="number"
-                      value={ticket.price}
+                      // value={ticket.price}
                       id="number"
                       // placeholder="809-000-0000"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      onChange={(e) => setnumber(e.target.value)}
+                      // onChange={(e) => setnumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -139,11 +138,11 @@ export default function BasicModal({ ticket, open, onClose }) {
                     <input
                       type="tel"
                       name="number"
-                      value={ticket.discount}
+                      // value={ticket.discount}
                       id="number"
                       // placeholder="809-000-0000"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      onChange={(e) => setnumber(e.target.value)}
+                      // onChange={(e) => setnumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -160,10 +159,10 @@ export default function BasicModal({ ticket, open, onClose }) {
                     <input
                       type="text"
                       name="date"
-                      value={ticket.dateOfPurchase}
+                      // value={ticket.dateOfPurchase}
                       id="date"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                      onChange={(e) => setemail(e.target.value)}
+                      // onChange={(e) => setemail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -179,7 +178,7 @@ export default function BasicModal({ ticket, open, onClose }) {
                       readOnly
                       type="text"
                       name="number"
-                      value={ticket.submitDate.toDate().toDateString()}
+                      // value={ticket.submitDate.toDate().toDateString()}
                       id="number"
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                     />

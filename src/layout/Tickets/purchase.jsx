@@ -2,14 +2,8 @@ import { useState, useContext, useEffect } from 'react'
 import { ContextVariable } from '../../Context';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SparkleMania from "../../assets/TicketMania.png"
-
-// Import the functions you need from the SDKs you need
 import { collection, addDoc, getDocs, doc } from "firebase/firestore";
-// import { ref, onValue } from 'firebase/database'
-// import { db } from '../../firebase/firebase'
 import { getFirestore } from 'firebase/firestore';
-
-
 
 function Purchase({ event }) {
 
@@ -26,8 +20,8 @@ function Purchase({ event }) {
   ];
 
   function generateTicket() {
-    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Caracteres permitidos
-    const ticketLength = 5; // Longitud del ticket
+    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const ticketLength = 5
 
     let ticket = '';
     for (let i = 0; i < ticketLength; i++) {
@@ -41,17 +35,13 @@ function Purchase({ event }) {
 
   useEffect(() => {
     if (user) {
-      console.log(user)
       setEmail(user?.email)
       setnumber(user?.phone)
-
-
     }
   }, [user])
 
   const [load, setLoad] = useState(false)
   useEffect(() => {
-    console.log("Datos de cargar")
     setLoad(true)
     setEventName(event)
     const eventDateStr = "21/10/23";
@@ -69,10 +59,7 @@ function Purchase({ event }) {
     setPaymentStatus('Pending')
   }, [selectedOption, Email])
 
-
-
   useEffect(() => {
-    console.log(selectedOption)
     const eventData = {
       nameOfCustomer: {
         eventDetails: {
@@ -95,11 +82,7 @@ function Purchase({ event }) {
     };
 
     localStorage.setItem("purchase", JSON.stringify(eventData));
-    console.log("Datos guardado en la base de datos")
-    console.log(JSON.parse(localStorage.getItem("purchase")));
   }, [load === true, selectedOption])
-
-
 
   const handleEditEmail = () => {
     const newEmail = prompt('Edit Email:', Email);
@@ -115,8 +98,6 @@ function Purchase({ event }) {
     }
   }
 
-
-
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [ticketPrice, setTicketPrice] = useState('');
@@ -128,9 +109,9 @@ function Purchase({ event }) {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [paymentStatus, setPaymentStatus] = useState('');
 
-
   const db = getFirestore()
-  const purchaseStart = async () => {
+  const purchaseStart = async (e) => {
+    e.preventDefault()
     const data = JSON.parse(localStorage.getItem("purchase"));
 
     if (
@@ -205,11 +186,9 @@ function Purchase({ event }) {
     navigate(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
   }
 
-
-
   return (
     <>
-  <div onClick={() => BackRoute()} className='ml-8 text-white flex flex-row'><div className='hover:underline cursor-pointer'>Boletas</div>{Location.pathname}</div>
+      <div onClick={() => BackRoute()} className='ml-8 text-white flex flex-row'><div className='hover:underline cursor-pointer'>Boletas</div>{Location.pathname}</div>
       <div className="px-4 mb-8 py-8 rounded-3xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
         <div className="flex flex-col items-center  w-full mb-10 lg:flex-row">
           <div className="md:mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
@@ -289,7 +268,7 @@ function Purchase({ event }) {
               </form>
             </div>
             <div className='space-x-4 mt-8 mb-8'>
-              <button onClick={purchaseStart} className="group relative h-12 w-full md:w-48 overflow-hidden rounded-xl bg-purple-500 text-lg font-bold text-white">
+              <button onClick={(e) => purchaseStart(e)} className="group relative h-12 w-full md:w-48 overflow-hidden rounded-xl bg-purple-500 text-lg font-bold text-white">
                 Comprar
                 <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
               </button>
@@ -305,49 +284,3 @@ function Purchase({ event }) {
 }
 
 export default Purchase
-
-
-const InputMenu = ({ isOpenMenu, setIsOpenMenu }) => {
-
-  return (
-    <>
-
-      {/* <>
-      <button onClick={() => setIsOpenMenu(!isOpenMenu)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
-        Open Menu
-        <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-      </button>
-      {isOpenMenu && (
-
-        <ul
-          role="menu"
-          data-popover="menu"
-          data-popover-placement="bottom"
-          className="absolute z-10 min-w-[180px] overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none"
-        >
-          <li
-            role="menuitem"
-            className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
-          >
-            Menu Item 1
-          </li>
-          <li
-            role="menuitem"
-            className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
-          >
-            Menu Item 2
-          </li>
-          <li
-            role="menuitem"
-            className="block w-full cursor-pointer select-none rounded-md px-3 pt-[9px] pb-2 text-start leading-tight transition-all hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
-          >
-            Menu Item 3
-          </li>
-        </ul>
-      )}
-
-
-    </> */}
-    </>
-  )
-}

@@ -10,7 +10,7 @@
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 160px;
+    width: 200px;
     outline: 1px solid var(--white-100);
     background-color: var(--dark-900);
     z-index: 10;

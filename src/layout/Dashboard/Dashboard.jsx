@@ -10,7 +10,6 @@ import ModalStatusPaid from "../../components/ModalStatusPaid/ModalStatusPaid";
 function Dashboard() {
 
     const { alert, setalert } = useContext(ContextVariable)
-    // const { modal, setmodal } = useContext(ContextVariable)
     const [tickets, settickets] = useState([])
     const [search, setSearch] = useState('')
 
@@ -51,9 +50,8 @@ function Dashboard() {
             docsSnap.forEach(doc => {
 
                 const data = doc.data();
-                const eventId = doc.id; // Obtener el ID del documento
-                // Puedes utilizar eventId como necesites aquí
-                data.eventId = eventId; // Agregar el ID del documento a los datos
+                const eventId = doc.id; 
+                data.eventId = eventId; 
                 eventos.push(data);
             });
             setTickets2(eventos)
@@ -77,9 +75,6 @@ function Dashboard() {
     }, [loadStatus])
 
 
-
-
-
     const get = async () => {
 
         const ref = collection(db, 'Tickets')
@@ -89,7 +84,6 @@ function Dashboard() {
         var ti = []
 
         docsSnap.forEach(async doc => {
-            // console.log(doc._key.path.segments[6])
 
             const activations = getActivationStatus(doc.data().ticketId)
 
@@ -106,7 +100,6 @@ function Dashboard() {
     const getActivationStatus = async (ticketId) => {
 
         const command = query(collection(db, 'SparkleManiaActivations'), where('ticketId', '==', ticketId))
-        // console.log(res)
 
         const querySnapshot = await getDocs(command)
 
