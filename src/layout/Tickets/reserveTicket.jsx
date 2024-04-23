@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { collection, addDoc, getDocs, doc } from "firebase/firestore";
 import { getFirestore } from 'firebase/firestore';
 import { ContextVariable } from '../../Context';
+import { SaveReservar } from '../../Scripts/Tickets/Reserved';
 
 function ReserveTicket({ event, purchase }) {
 
@@ -27,38 +28,62 @@ function ReserveTicket({ event, purchase }) {
     const db = getFirestore()
     const ref = collection(db, 'Sparklers')
 
+    console.log(user)
+
     const upload = async () => {
 
-        if (name != '' && lastName != '' && lastName != '' && address != '' && email != '' && how != '' && number != "") {
-            try {
-                const docRef = await addDoc(collection(db, "TicketReservations"), {
-                    name: name,
-                    lastName: lastName,
-                    email: email,
-                    address: address,
-                    number: number,
-                    how: how,
-                    guest: guest,
-                    event: event,
-                    submitDate: new Date()
-                });
-                console.log("Document written with ID: ", docRef.id)
+        if (email != '' && number != '' && how != '') {
+            if (user?.email === email) {
+                let data = {
+                    Name: user?.name,
+                    Email: user?.email,
+                    Number: number,
+                    Cantidad: how,
+                    Status: "Reserved"
+                }
+
+                SaveReservar(data)
+            }else {
                 setalert({
                     ...alert,
                     open: true,
-                    message: `Tu reserva se ha hecho correctamente`,
-                    severity: 'success'
+                    message: `El correo no coincide`,
+                    severity: 'warning'
                 });
-            } catch (e) {
-                setalert({
-                    ...alert,
-                    open: true,
-                    message: `Tu reserva no se ha podido hacer en este momento`,
-                    severity: 'error'
-                });
-                console.error("Error adding document: ", e)
             }
+
         }
+
+        // if (name != '' && lastName != '' && lastName != '' && address != '' && email != '' && how != '' && number != "") {
+        //     try {
+        //         const docRef = await addDoc(collection(db, "TicketReservations"), {
+        //             name: name,
+        //             lastName: lastName,
+        //             email: email,
+        //             address: address,
+        //             number: number,
+        //             how: how,
+        //             guest: guest,
+        //             event: event,
+        //             submitDate: new Date()
+        //         });
+        //         console.log("Document written with ID: ", docRef.id)
+        //         setalert({
+        //             ...alert,
+        //             open: true,
+        //             message: `Tu reserva se ha hecho correctamente`,
+        //             severity: 'success'
+        //         });
+        //     } catch (e) {
+        //         setalert({
+        //             ...alert,
+        //             open: true,
+        //             message: `Tu reserva no se ha podido hacer en este momento`,
+        //             severity: 'error'
+        //         });
+        //         console.error("Error adding document: ", e)
+        //     }
+        // }
 
     }
 

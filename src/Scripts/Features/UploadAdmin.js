@@ -44,7 +44,6 @@ export const SaveFeature = async (data) => {
 
 export const EditFeature = async (data, id, setFeatureData, FieldName) => {
     const db = getFirestore();
-
     try {
         const querySnapshot = await getDocs(query(collection(db, 'Feature'), where('Feature.Layout.Id', '==', id)))
 

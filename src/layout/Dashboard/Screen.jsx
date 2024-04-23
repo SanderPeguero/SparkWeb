@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from "react";
 import { ContextVariable } from '../../Context';
 import { collection, addDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 import ModalStatusPaid from "../../components/ModalStatusPaid/ModalStatusPaid";
+import BasicModal from "./Modal";
+import { getPurchase } from "../../Scripts/Tickets/Tickets";
 
 
 function Screen() {
@@ -75,27 +77,26 @@ function Screen() {
     }
 
     const getpurchase = async () => {
-        try {
-            const ref = collection(db, 'events');
+        getPurchase(setTickets2)
+        // try {
+        //     const ref = collection(db, 'events');
 
-            const docsSnap = await getDocs(ref);
+        //     const docsSnap = await getDocs(ref);
 
 
-            const eventos = [];
-            docsSnap.forEach(doc => {
+        //     const eventos = [];
+        //     docsSnap.forEach(doc => {
 
-                const data = doc.data();
-                const eventId = doc.id; // Obtener el ID del documento
-                // Puedes utilizar eventId como necesites aquí
-                data.eventId = eventId; // Agregar el ID del documento a los datos
-                eventos.push(data);
-            });
-            setTickets2(eventos)
+        //         const data = doc.data();
+        //         const eventId = doc.id; 
+        //         data.eventId = eventId; 
+        //         eventos.push(data);
+        //     });
+        //     setTickets2(eventos)
 
-            console.log("Datos de los eventos:", eventos);
-        } catch (error) {
-            console.error("Error al obtener los datos de la colección 'events':", error);
-        }
+        // } catch (error) {
+        //     console.error("Error al obtener los datos de la colección 'events':", error);
+        // }
     };
 
     const handleOpenStatus = (ticket) => {
@@ -124,6 +125,7 @@ function Screen() {
 
     return (
         <div>
+            <BasicModal ticket={modalTicket} open={open} onClose={handleClose} setloadStatus={setloadStatus}/>
             <ModalStatusPaid open={OpenStatusPaid} onClose={handleCloseStatus} StatusTicket={StatusTicket} setloadStatus={setloadStatus} />
             {/* comments 1 */}
             <div className="flex overflow-hidden bg-white pt-16">

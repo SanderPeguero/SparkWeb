@@ -121,7 +121,7 @@ function Dashboard() {
 
     return (
         <>
-            <Modal open={open} onClose={handleClose} ticket={modalTicket} />
+            {/* <Modal open={open} onClose={handleClose} ticket={modalTicket} /> */}
             <ModalStatusPaid open={OpenStatusPaid} onClose={handleCloseStatus} StatusTicket={StatusTicket} setloadStatus={setloadStatus} />
             <div className="flex items-center justify-center min-h-screen bg-[#0000003f]">
                 <div className="col-span-12">

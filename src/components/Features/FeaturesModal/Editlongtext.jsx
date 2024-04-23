@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-const EditLongTextModal = ({ isOpen, onClose, initialValue, what }) => {
+const EditLongTextModal = ({ isOpen, onClose, initialValue, what, id }) => {
 
     const [textValue, setTextValue] = useState('');
     useEffect(() => {
-      setTextValue(initialValue);
+        setTextValue(initialValue);
     }, [initialValue])
-    
+
     const handleInputChange = (event) => {
         setTextValue(event.target.value);
     };
@@ -42,8 +42,7 @@ const EditLongTextModal = ({ isOpen, onClose, initialValue, what }) => {
                     <div className='flex flex-col w-full'>
                         <div className='m-4'>
                             <div className='mb-4 font-semibold text-white'>
-                                Edit long text {what}
-
+                                {what === "Editar Imagen" ? "Editar Imagen en svg" : `Edit long text ${what}`}
                             </div>
                             <div>
                                 <textarea
@@ -53,7 +52,18 @@ const EditLongTextModal = ({ isOpen, onClose, initialValue, what }) => {
                                     className=" w-full "
                                 />
                             </div>
+                            <div className=''>
+                                {what === "Editar Imagen" &&
+                                    <div className='border-2 border-gray-200 px-4 py-6 rounded-lg w-24 h-24'>
+                                        <div
+                                            className={`w-12 h-12 mb-3 inline-block ${id === 1 ? 'text-[#d5612c]' : id === 2 ? 'text-[#d5612c]' : id === 3 ? 'text-[#2ebae5] ' : 'text-[#1c901c] '}`}
+                                            dangerouslySetInnerHTML={{ __html: textValue }} />
+                                    </div>
+
+                                }
+                            </div>
                         </div>
+
                         <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <button
                                 onClick={handleSubmit}
