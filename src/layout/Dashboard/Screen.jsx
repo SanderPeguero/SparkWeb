@@ -4,11 +4,12 @@ import { collection, addDoc, getDocs, getFirestore, query, where } from "firebas
 import ModalStatusPaid from "../../components/ModalStatusPaid/ModalStatusPaid";
 import BasicModal from "./Modal";
 import { getPurchase } from "../../Scripts/Tickets/Tickets";
+import FormEvent from "../../components/Form/FormEvent";
 
 
 function Screen() {
 
-    const { alert, setalert } = useContext(ContextVariable)
+    const { alert, setalert, isOpenModalEvent, setisOpenModalEvent } = useContext(ContextVariable)
     // const { modal, setmodal } = useContext(ContextVariable)
     const [tickets, settickets] = useState([])
     const [tickets2, setTickets2] = useState([])
@@ -121,17 +122,38 @@ function Screen() {
     }, [loadStatus])
 
     const handleCloseStatus = () => setOpenStatusPaid(false)
+    const handleOpenModalEvent = () => setisOpenModalEvent(!isOpenModalEvent)
+
+    function obtenerURLAvatar(nombre) {
+        if (!nombre) return ''
+    
+        const iniciales = nombre.split(' ').map(palabra => palabra.charAt(0)).join('').toUpperCase();
+    
+        return `https://ui-avatars.com/api/?name=${iniciales}&background=%23ba36ba`
+    }
 
 
     return (
         <div>
-            <BasicModal ticket={modalTicket} open={open} onClose={handleClose} setloadStatus={setloadStatus}/>
+            <BasicModal ticket={modalTicket} open={open} onClose={handleClose} setloadStatus={setloadStatus} />
             <ModalStatusPaid open={OpenStatusPaid} onClose={handleCloseStatus} StatusTicket={StatusTicket} setloadStatus={setloadStatus} />
+            <FormEvent />
             {/* comments 1 */}
             <div className="flex overflow-hidden bg-white pt-16">
-                {/* comments 2 */}
+               
                 <div className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+                
                 <div id="main-content" className="h-full w-full bg-gray-50 relative overflow-y-auto ">
+
+                    <div className="flex justify-end ">
+                        <button onClick={() => handleOpenModalEvent()}  className="mr-8 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba]  bg-gradient-to-r from-[#9340FF] to-[#FF3C5F] text-lg font-bold text-white">
+
+                            New evento +
+                            <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                        </button>
+                    </div>
+
+ 
                     <main>
                         <div className="pt-6 px-4">
                             <div className="my-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -232,10 +254,10 @@ function Screen() {
                                                         <tr className="bg-gray-800" key={index}>
                                                             <td className="p-3">
                                                                 <div className="flex align-items-center">
-                                                                    <img className="rounded-full h-12 w-12  object-cover" src="https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleMania.png?alt=media&token=9c4d540b-894d-4f63-bfe2-36242de104ca" alt="User Image" />
+                                                                <img className="rounded-full h-10 w-10  object-cover" src={obtenerURLAvatar(ticket.nameOfCustomer.eventDetails.eventName)} alt="User Image" />
 
                                                                     <div className="ml-3">
-                                                                        <div className="">{ticket.nameOfCustomer.eventDetails.ticketCode}</div>
+                                                                        <div className="">{ticket.nameOfCustomer.eventDetails.ticketCode.TicketNumber}</div>
                                                                         <div className="text-gray-500">{ticket.nameOfCustomer.customerDetails.name}</div>
                                                                     </div>
                                                                 </div>
@@ -248,13 +270,13 @@ function Screen() {
                                                                 </button>
                                                             </td>
                                                             <td className="p-3">
-                                                            {ticket.nameOfCustomer.eventDetails.ticketPrice}
+                                                                {ticket.nameOfCustomer.eventDetails.ticketPrice}
                                                             </td>
                                                             <td className="p-3">
                                                                 {/* {ticket.discount} */}
                                                             </td>
                                                             <td className="p-3">
-                                                            {ticket.nameOfCustomer.customerDetails.name}
+                                                                {ticket.nameOfCustomer.customerDetails.name}
                                                             </td>
                                                             <td className="p-3">
                                                                 {/* {ticket.dateOfPurchase} */}

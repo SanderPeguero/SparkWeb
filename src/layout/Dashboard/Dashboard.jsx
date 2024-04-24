@@ -6,10 +6,11 @@ import Modal from './Modal'
 
 import './Dashboard.css'
 import ModalStatusPaid from "../../components/ModalStatusPaid/ModalStatusPaid";
+import { GetReservedList } from "../../Scripts/Tickets/Reserved";
 
 function Dashboard() {
 
-    const { alert, setalert } = useContext(ContextVariable)
+    const { alert, setalert, ListReservar, setListReservar } = useContext(ContextVariable)
     const [tickets, settickets] = useState([])
     const [search, setSearch] = useState('')
 
@@ -18,6 +19,7 @@ function Dashboard() {
     const [OpenStatusPaid, setOpenStatusPaid] = useState(false)
     const [StatusTicket, setStatusTicket] = useState(null)
     const [loadStatus, setloadStatus] = useState(false)
+    
     const handleOpen = (ticket) => {
         setmodalTicket(ticket)
         setOpen(true)
@@ -39,6 +41,10 @@ function Dashboard() {
 
     const db = getFirestore()
     const [tickets2, setTickets2] = useState([])
+
+    const getReservar = async () => {
+        GetReservedList(setListReservar)
+    }
     const getpurchase = async () => {
         try {
             const ref = collection(db, 'events');
@@ -56,7 +62,6 @@ function Dashboard() {
             });
             setTickets2(eventos)
 
-            console.log("Datos de los eventos:", eventos);
         } catch (error) {
             console.error("Error al obtener los datos de la colección 'events':", error);
         }
@@ -64,6 +69,13 @@ function Dashboard() {
 
     useEffect(() => {
         getpurchase()
+        getReservar()
+    }, [])
+
+    useEffect(() => {
+      console.log(ListReservar.map((data) => (
+        console.log(data.data.TicketNumber)
+      )))
     }, [])
 
     useEffect(() => {
@@ -119,6 +131,14 @@ function Dashboard() {
 
     }, []);
 
+    function obtenerURLAvatar(nombre) {
+        if (!nombre) return ''
+    
+        const iniciales = nombre.split(' ').map(palabra => palabra.charAt(0)).join('').toUpperCase();
+    
+        return `https://ui-avatars.com/api/?name=${iniciales}&background=%23ba36ba`
+    }
+
     return (
         <>
             {/* <Modal open={open} onClose={handleClose} ticket={modalTicket} /> */}
@@ -154,7 +174,8 @@ function Dashboard() {
                                     {/* <th className="p-3 text-left">Name</th> */}
                                     <th className="p-3 text-left">Paid</th>
                                     <th className="p-3 text-left">Price</th>
-                                    <th className="p-3 text-left">Discount</th>
+                                    <th className="p-3 text-left">Invitados</th>
+                                    <th className="p-3 text-left">Total</th>
                                     <th className="p-3 text-left">Seller</th>
                                     <th className="p-3 text-left">Date of Purchase</th>
                                     <th className="p-3 text-left">Submit Date</th>
@@ -163,40 +184,43 @@ function Dashboard() {
                             </thead>
                             <tbody>
                                 {
-                                    tickets2.map((ticket, index) => (
-                                        <tr className="bg-gray-800" key={index}>
+                                    ListReservar.map((ticket, index) => (
+                                        <tr className="bg-gray-800 " key={index}>
                                             <td className="p-3">
                                                 <div className="flex align-items-center">
-                                                    <img className="rounded-full h-12 w-12  object-cover" src="https://firebasestorage.googleapis.com/v0/b/sparkgroup-506bf.appspot.com/o/SparkleMania.png?alt=media&token=9c4d540b-894d-4f63-bfe2-36242de104ca" alt="User Image" />
-                                                    {/* <i className="material-icons-outlined text-base">person</i> */}
+                                                    {/* ticket.EventName */}
+                                                    <img className="rounded-full h-12 w-12  object-cover" src={obtenerURLAvatar(ticket?.data?.EventName)} alt="User Image" />
+
                                                     <div className="ml-3">
-                                                        <div className="">{ticket.nameOfCustomer.eventDetails.ticketCode}</div>
-                                                        <div className="text-gray-500">{ticket.nameOfCustomer.customerDetails.name}</div>
+                                                        <div className="">{ticket?.data?.TicketNumber?.TicketNumber}</div>
+                                                        <div className="text-gray-500">{ticket?.data?.Name}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-3">
-                                                <button onClick={() => handleOpenStatus(ticket)}>
-                                                    {ticket.nameOfCustomer.paymentDetails.paymentStatus === 'Paid' ? <span className="bg-green-400 text-gray-50 rounded-md px-2">Paid</span> : null}
-                                                    {ticket.nameOfCustomer.paymentDetails.paymentStatus === 'Pending' ? <span className="bg-yellow-400 text-gray-50  rounded-md px-2">Pending</span> : null}
-                                                    {ticket.nameOfCustomer.paymentDetails.paymentStatus === 'Unpaid' ? <span className="bg-red-400 text-gray-50 rounded-md px-2">Unpaid</span> : null}
+                                                <button >
+                                                <span className="bg-green-400 text-gray-50 rounded-md px-2">{ticket?.data?.Status}</span>
+
                                                 </button>
 
                                             </td>
                                             <td className="p-3">
-                                                {ticket.nameOfCustomer.eventDetails.ticketPrice}
+                                                {ticket?.data?.Price}
                                             </td>
                                             <td className="p-3">
-                                                {/* {ticket.discount} */}
+                                                {ticket?.data?.Tickets.length}
                                             </td>
                                             <td className="p-3">
-                                                {ticket.nameOfCustomer.customerDetails.name}
+                                                {ticket?.data?.TotalPrice}
                                             </td>
                                             <td className="p-3">
-                                                {/* {ticket.dateOfPurchase} */}
+                                                {ticket?.data?.Name}
                                             </td>
                                             <td className="p-3">
-                                                {/* {ticket.submitDate} */}
+                                                {ticket?.data?.DateofPurchase}
+                                            </td>
+                                            <td className="p-3">
+                                                {ticket?.data?.SubmitDate}
                                             </td>
                                             <td className="p-3 ">
                                                 <a href="#" className="text-gray-400 hover:text-gray-100 mr-2">

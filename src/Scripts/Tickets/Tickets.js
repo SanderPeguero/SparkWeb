@@ -4,7 +4,7 @@ import { doc, updateDoc, collection, getDocs } from "firebase/firestore";
 export const getPurchase = async (setTickets2) => {
     const db = getFirestore()
     try {
-        const ref = collection(db, 'events');
+        const ref = collection(db, 'Purchase');
 
         const docsSnap = await getDocs(ref);
 
@@ -29,7 +29,7 @@ export const UpdateName = async (newName, idDoc) => {
     try {
 
         console.log("Change: " + idDoc)
-        const eventRef = doc(db, 'events', idDoc);
+        const eventRef = doc(db, 'Purchase', idDoc);
         await updateDoc(eventRef, {
             'nameOfCustomer.customerDetails.name': newName
         });

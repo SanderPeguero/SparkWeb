@@ -33,6 +33,8 @@ import { getDatabase, ref, get } from 'firebase/database';
 import { obtenerTodasLasImagenes } from './Scripts/UploadHero1'
 import Purchase from './layout/Tickets/purchase'
 import ReserveTicket from './layout/Tickets/reserveTicket'
+import { GetReservedList } from './Scripts/Tickets/Reserved'
+import { ListEvent } from './Scripts/Evento/Evento'
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -129,13 +131,22 @@ function App() {
   const [categories, setCategories] = useState([])
   const [listImg, setListImg] = useState([])
   const [ListImages, setListImages] = useState([])
+  const [ListReservar, setListReservar] = useState([])
+  const [isOpenModalEvent, setisOpenModalEvent] = useState(false)
+  const [ListEvents, setListEvents] = useState([])
+  const [dataReservar, setDataReservar] = useState(null)
+  const [dataComprar, setDataComprar] = useState(null)
   
   useEffect(() => {
     obtenerTodasLasImagenes(setListImages)
+    GetReservedList(setListReservar)
   }, [])
 
   useEffect(() => {
-  }, [ListImages])
+    ListEvent(setListEvents)
+  }, [ListEvents])
+
+
 
 
 
@@ -194,7 +205,17 @@ function App() {
       ListImages,
       setListImages,
       categories,
-      setCategories
+      setCategories,
+      ListReservar,
+      setListReservar,
+      isOpenModalEvent,
+      setisOpenModalEvent,
+      ListEvents,
+      setListEvents,
+      dataReservar,
+      setDataReservar,
+      dataComprar,
+      setDataComprar
 
     }}>
       <div>

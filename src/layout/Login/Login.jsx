@@ -83,7 +83,7 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <hr className="mt-0 border-b-1 border-blueGray-300" />
-                        </div>
+                            </div>
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-2">
                                 <div>
                                     <div className="relative w-full mb-3 ">

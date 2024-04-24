@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SparkleMania from "../../assets/TicketMania.png"
 import { collection, addDoc, getDocs, doc } from "firebase/firestore";
 import { getFirestore } from 'firebase/firestore';
+import { EditarStatusTickets } from '../../Scripts/Evento/Evento';
 
 function Purchase({ event }) {
 
-  const { alert, setalert, user, setlocattion } = useContext(ContextVariable)
+  const { alert, setalert, user, setlocattion, dataComprar, setListEvents } = useContext(ContextVariable)
   const Location = useLocation()
   const navigate = useNavigate()
   const [Email, setEmail] = useState('')
@@ -18,6 +19,14 @@ function Purchase({ event }) {
     { value: 'Cash', label: 'Cash' },
     { value: 'Transfer', label: 'Transfer' },
   ];
+
+
+
+  useEffect(() => {
+
+    console.log(dataComprar)
+  }, [])
+
 
   function generateTicket() {
     const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -41,23 +50,51 @@ function Purchase({ event }) {
   }, [user])
 
   const [load, setLoad] = useState(false)
+  function SeleccionarTickets(CantidadTickets) {
+    const ticketsDisponibles = [];
+    let ticketsSeleccionados = 0;
+    let ticketSeleccionado = null; // Inicializamos como null
+
+    dataComprar.Tickets.forEach(ticket => {
+      if (ticket.Status === "Disponible" && ticketsSeleccionados < CantidadTickets) {
+
+        if (CantidadTickets === 1) {
+          ticketSeleccionado = ticket;
+          return;
+        } else {
+          ticketsDisponibles.push(ticket);
+          ticketsSeleccionados++;
+        }
+      }
+    });
+    if (ticketSeleccionado !== null) {
+      return ticketSeleccionado;
+    }
+
+    return ticketsDisponibles;
+  }
+
+
   useEffect(() => {
-    setLoad(true)
-    setEventName(event)
-    const eventDateStr = "21/10/23";
-    const [day, month, year] = eventDateStr.split('/');
-    const eventDate = new Date(`20${year}`, month - 1, day);
-    setEventDate(eventDate)
-    setCustomerName(user?.name)
-    setTicketPrice(400)
-    setTicketQuantity(1)
-    const ticket = generateTicket();
-    setTicketCode(ticket)
-    setCustomerEmail(Email)
-    setCustomerPhoneNumber(user?.phone)
-    setPaymentMethod(selectedOption)
-    setPaymentStatus('Pending')
-  }, [selectedOption, Email])
+    if (dataComprar) {
+      setLoad(true)
+      setEventName(dataComprar.EventName)
+      // const eventDateStr = "21/10/23";
+      // const [day, month, year] = eventDateStr.split('/');
+      // const eventDate = new Date(`20${year}`, month - 1, day);
+      setEventDate(dataComprar.EvenetDate)
+      setCustomerName(user?.name)
+      setTicketPrice(dataComprar.PriceTickets)
+      setTicketQuantity(1)
+      const ticket = SeleccionarTickets(1);
+      setTicketCode(ticket)
+      setCustomerEmail(Email)
+      setCustomerPhoneNumber(user?.phone)
+      setPaymentMethod(selectedOption)
+      setPaymentStatus('Pending')
+    }
+
+  }, [selectedOption, Email, dataComprar])
 
   useEffect(() => {
     const eventData = {
@@ -132,16 +169,31 @@ function Purchase({ event }) {
       data.nameOfCustomer.paymentDetails.paymentStatus
     ) {
       try {
-        const docRef = await addDoc(collection(db, "events"), data);
+        const docRef = await addDoc(collection(db, "Purchase"), data);
         console.log("Document written with ID: ", docRef.id);
-        localStorage.clear();
-        setalert({
-          ...alert,
-          open: true,
-          message: `Tu compra se ha hecho correctamente`,
-          severity: 'success'
-        });
-        openWhatsAppGroup();
+        // ListTickets, idDoc, setListEvents
+        if (EditarStatusTickets(data.nameOfCustomer.eventDetails.ticketCode, dataComprar.Iddoc, setListEvents)) {
+          localStorage.clear();
+          setalert({
+            ...alert,
+            open: true,
+            message: `Tu compra se ha hecho correctamente`,
+            severity: 'success'
+          });
+          setlocattion(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
+          navigate(`${user.role === 'admin' ? '/admin/boletas' : '/boletas'}`)
+          openWhatsAppGroup();
+        } else {
+          setalert({
+            ...alert,
+            open: true,
+            message: `Tu compra no se ha podido hacer en este momento`,
+            severity: 'error'
+          });
+        }
+
+
+
       } catch (error) {
         console.error("Error adding document: ", error);
         setalert({
@@ -274,7 +326,7 @@ function Purchase({ event }) {
               </button>
             </div>
           </div>
-          <img className='w-full md:w-[70%]' src={SparkleMania} />
+          <img className='w-full md:w-[70%]' src={dataComprar?.EventImage} />
         </div>
       </div>
 
