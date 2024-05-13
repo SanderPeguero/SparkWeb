@@ -2,7 +2,7 @@ App
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { doc, getDoc, getFirestore } from "firebase/firestore"
-import { HashRouter as Router, Route, Routes, Navigate, useNavigate  } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'
 
 //MUI
 import MuiAlert from '@mui/material/Alert'
@@ -30,33 +30,11 @@ import ContainerCard from './components/ContainerCard/ContainerCard'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 import { getDatabase, ref, get } from 'firebase/database';
-
-//Images Hero 1
-
-import img1 from '../public/dummy_image/1.jpg';
-import img2 from '../public/dummy_image/dj.avif';
-import img3 from '../public/dummy_image/djrecord.webp';
-import img4 from '../public/dummy_image/4.jpg';
-import img5 from '../public/dummy_image/luces.avif';
-import img6 from '../public/dummy_image/6.jpg';
-import img7 from '../public/dummy_image/7.jpg';
-import img8 from '../public/dummy_image/8.jpg';
-import img9 from '../public/dummy_image/9.jpg';
-
-
-
-const images = [
-  { id: 1, image: img1 },
-  { id: 2, image: img2 },
-  { id: 3, image: img3 },
-  { id: 4, image: img4 },
-  { id: 5, image: img5 },
-  { id: 6, image: img6 },
-  { id: 7, image: img7 },
-  { id: 8, image: img8 },
-  { id: 9, image: img9 },
-];
 import { obtenerTodasLasImagenes } from './Scripts/UploadHero1'
+import Purchase from './layout/Tickets/purchase'
+import ReserveTicket from './layout/Tickets/reserveTicket'
+import { GetReservedList } from './Scripts/Tickets/Reserved'
+import { ListEvent } from './Scripts/Evento/Evento'
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -78,7 +56,6 @@ function App() {
         getUser(user)
 
       } else {
-        // User is signed out
         setauth(null)
       }
     })
@@ -113,29 +90,6 @@ function App() {
     }
 
   }
-
-  // const getUser = async (data) => {
-  //   try {
-  //     // Obtener una referencia a la base de datos en tiempo real de Firebase
-  //     const database = getDatabase();
-  
-  //     // Obtener los datos del usuario desde la base de datos en tiempo real
-  //     const userRef = ref(database, `Users/${data.uid}`);
-  //     const dataSnapshot = await get(userRef);
-  
-  //     if (dataSnapshot.exists()) {
-  //       // Convertir los datos del usuario a un objeto JavaScript
-  //       const userData = dataSnapshot.val();
-  //       console.log(userData)
-  //       // Establecer los datos del usuario en el estado
-  //       setuser(userData);
-  //     } else {
-  //       console.log("No such user document!");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error getting user data: ", error);
-  //   }
-  // };
 
   useEffect(() => {
     setState({
@@ -174,20 +128,28 @@ function App() {
   const [comprarTicket, setcomprarTicket] = useState(false)
   const [isOpenEditImg, setisOpenEditImg] = useState(false)
   const [GalleryVisible, setGalleryVisible] = useState(false)
-
+  const [categories, setCategories] = useState([])
   const [listImg, setListImg] = useState([])
   const [ListImages, setListImages] = useState([])
+  const [ListReservar, setListReservar] = useState([])
+  const [isOpenModalEvent, setisOpenModalEvent] = useState(false)
+  const [ListEvents, setListEvents] = useState([])
+  const [dataReservar, setDataReservar] = useState(null)
+  const [dataComprar, setDataComprar] = useState(null)
+  
   useEffect(() => {
-      setListImg(images)
-     obtenerTodasLasImagenes(setListImages)
-     
+    obtenerTodasLasImagenes(setListImages)
+    GetReservedList(setListReservar)
   }, [])
 
   useEffect(() => {
-  }, [ListImages])
-  
+    ListEvent(setListEvents)
+  }, [ListEvents])
 
-  
+
+
+
+
   const { vertical, horizontal, open } = state;
 
   const [locattion, setlocattion] = useState(null)
@@ -195,6 +157,8 @@ function App() {
   const commonRoutes = [
     { path: '/', element: <Home /> },
     { path: '/boletas', element: <Tickets /> },
+    { path: '/comprar', element: <Purchase /> },
+    { path: '/reservar', element: <ReserveTicket /> },
     { path: '/activacion', element: <Activation /> },
     { path: '/emailConfi', element: <EmailConfirmation /> },
     { path: '/login', element: !auth ? <Login /> : <Navigate to='/' /> },
@@ -205,6 +169,8 @@ function App() {
   const adminRoutes = [
     { path: '/', element: <Home /> },
     { path: '/boletas', element: <Tickets /> },
+    { path: '/comprar', element: <Purchase /> },
+    { path: '/reservar', element: <ReserveTicket /> },
     { path: '/activacion', element: <Activation /> },
     { path: '/ticketsdash', element: <Screen /> },
     { path: '/dashboardsparkle', element: <Dashboard /> },
@@ -212,16 +178,15 @@ function App() {
   ];
 
 
-  const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({...route, path: `/admin${route.path}`})) : [])];
-console.log(locattion)
+  const routes = [...commonRoutes, ...(user && user.role === 'admin' ? adminRoutes.map(route => ({ ...route, path: `/admin${route.path}` })) : [])];
   return (
-    <ContextVariable.Provider value={{ 
-      user, 
-      alert, 
-      setalert, 
-      auth, 
-      setauth, 
-      locattion, 
+    <ContextVariable.Provider value={{
+      user,
+      alert,
+      setalert,
+      auth,
+      setauth,
+      locattion,
       setlocattion,
       isOpenLogIn,
       setIsOpenLogIn,
@@ -238,9 +203,21 @@ console.log(locattion)
       GalleryVisible,
       setGalleryVisible,
       ListImages,
-      setListImages
-     
-      }}>
+      setListImages,
+      categories,
+      setCategories,
+      ListReservar,
+      setListReservar,
+      isOpenModalEvent,
+      setisOpenModalEvent,
+      ListEvents,
+      setListEvents,
+      dataReservar,
+      setDataReservar,
+      dataComprar,
+      setDataComprar
+
+    }}>
       <div>
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
@@ -256,34 +233,15 @@ console.log(locattion)
         <Router>
 
           <header>
-            {/* {locattion !== '/' && <Navbar auth={auth} user={user} />} */}
             {locattion !== "/" && locattion !== "/admin" && (
               <Navbar auth={auth} user={user} />
             )}
           </header>
           <main className=''>
             <Routes>
-            {routes.map((route, index) => (
+              {routes.map((route, index) => (
                 <Route key={index} {...route} />
               ))}
-              {/* <Route exact path='/' element={<Home />} />
-              <Route exact path='/boletas' element={<Tickets />} />
-              <Route exact path='/activacion' element={<Activation />} />
-              <Route exact path='/emailConfi' element={<EmailConfirmation />} />
-              <Route exact path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
-              <Route exact path='/signin' element={!auth ? <SignIn /> : <Navigate to='/' />} />
-              {
-                user ? user.role == 'admin' ?
-                  (
-                    <>
-                      <Route exact path='/ticketsdash' element={<Screen />} />
-                      <Route exact path='/dashboardsparkle' element={<Dashboard />} />
-                      <Route exact path='/activationsdash' element={<ActivationsDash />} />
-                    </>
-                  )
-                  : <Route path='*' element={<Navigate to='/' />} />
-                  : <Route path='*' element={<Navigate to='/' />} />
-              } */}
             </Routes>
             <Footer />
           </main>

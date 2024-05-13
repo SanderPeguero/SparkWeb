@@ -34,22 +34,43 @@ export const EditImageAll = async (fileImg, id, setImages) => {
     const storage = getStorage();
 
     try {
-         const querySnapshot = await getDocs(query(collection(db, 'AllImg'), where('Id', '==', id)))
+        const querySnapshot = await getDocs(query(collection(db, 'AllImg'), where('Id', '==', id)))
 
-         querySnapshot.forEach(async (docSnapshot) => {
+        querySnapshot.forEach(async (docSnapshot) => {
 
-             const docRef = doc(db, "AllImg", docSnapshot.id)
+            const docRef = doc(db, "AllImg", docSnapshot.id)
 
-             const storageRef = refImg(storage, 'AllImg/' + fileImg.name)
+            const storageRef = refImg(storage, 'AllImg/' + fileImg.name)
 
-             await uploadBytes(storageRef, fileImg)
+            await uploadBytes(storageRef, fileImg)
 
-             const url = await getDownloadURL(storageRef)
-             
-             await updateDoc(docRef, { Url: url })
+            const url = await getDownloadURL(storageRef)
 
-             obtenerTodasLasImgAll(setImages)
-         });
+            await updateDoc(docRef, { Url: url })
+
+            obtenerTodasLasImgAll(setImages)
+        });
+
+    } catch (error) {
+
+    }
+}
+
+export const AddCategoriesAllImag = async (categories, id) => {
+
+    const db = getFirestore();
+
+    const storage = getStorage();
+
+    try {
+        const querySnapshot = await getDocs(query(collection(db, 'AllImg'), where('Id', '==', id)))
+
+        querySnapshot.forEach(async (docSnapshot) => {
+
+            const docRef = doc(db, "AllImg", docSnapshot.id)
+
+            await updateDoc(docRef, { Categories: categories })
+        });
 
     } catch (error) {
 
@@ -74,7 +95,6 @@ export const obtenerTodasLasImgAll = async (setImages) => {
 
             images.push(data);
         })
-
         setImages(images)
 
     } catch (error) {
@@ -82,24 +102,57 @@ export const obtenerTodasLasImgAll = async (setImages) => {
     }
 };
 
-export const DeleteImgAll = async ( id, setImages) => {
+export const DeleteImgAll = async (id, setImages) => {
 
     const db = getFirestore();
 
     try {
-         const querySnapshot = await getDocs(query(collection(db, 'AllImg'), where('Id', '==', id)))
+        const querySnapshot = await getDocs(query(collection(db, 'AllImg'), where('Id', '==', id)))
 
-         querySnapshot.forEach(async (docSnapshot) => {
+        querySnapshot.forEach(async (docSnapshot) => {
 
-             const docRef = doc(db, "AllImg", docSnapshot.id)
-             
-             await updateDoc(docRef, { Url: null })
+            const docRef = doc(db, "AllImg", docSnapshot.id)
 
-             obtenerTodasLasImgAll(setImages)
+            await updateDoc(docRef, { Url: null })
 
-         });
+            obtenerTodasLasImgAll(setImages)
+
+        });
 
     } catch (error) {
 
     }
+}
+
+export const AddCategory = async (id, category, setCategories) => {
+    const db = getFirestore();
+
+    try {
+        const docRef = await addDoc(collection(db, 'Categories'), {
+            Id: id,
+            Name: category
+        })
+
+        obtenerCategorias(setCategories)
+    } catch (error) { }
+}
+
+export const obtenerCategorias = async (setCategories) => {
+    const db = getFirestore()
+    try {
+        const querySnapshot = await getDocs(collection(db, 'Categories'))
+
+        const categories = []
+
+        categories.push({ id: 0, Name: "Todas las imágenes" });
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            categories.push(data);
+        });
+        
+
+        setCategories(categories)
+
+    } catch (error) { }
 }

@@ -1,85 +1,87 @@
 import { useContext, useEffect, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import ticket from '../../assets/TicketMania.png'
 import ticket2 from '../../assets/Ticket2003.png'
-
-
 import ReserveTicket from './reserveTicket';
-import { getAuth } from "firebase/auth"
 import { ContextVariable } from '../../Context';
-
-
 import Purchase from './purchase';
-
-
+import { ListEvent } from '../../Scripts/Evento/Evento';
+import { FaEdit } from 'react-icons/fa';
+import FormEvent from '../../components/Form/FormEvent';
 
 function tickets() {
+    const { ListEvents, setListEvents, setDataReservar, dataReservar, dataComprar, setDataComprar } = useContext(ContextVariable)
+    const { user,
+        reserveTicket,
+        setlocattion,
+        auth,
+        setreserveTicket,
+        comprarTicket,
+        setcomprarTicket,
+        isOpenLogIn,
+        setIsOpenLogIn,
+        isOpenModalEvent,
+        setisOpenModalEvent
+    } = useContext(ContextVariable)
 
-    const FirebaseAuth = getAuth;
-
-    // utilizar la variable auth y pasar la variable para abrir la reservar a traves del contexto y
-    //  importar el useContext y el ContextVariable
-    // Puede guiarte del ejemplo en el Login
-
-
-    // const get = async () => {
-    //     const docsSnap = await getDocs(ref);
-
-    //     docsSnap.forEach(doc => {
-    //         console.log(doc.data());
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     get()
-    // }, []);
-
-    // const [reserveTicket, setreserveTicket] = useState(false)
-    // const [reserveTicket2, setreserveTicket2] = useState(false)
-
-    const { reserveTicket, auth, setreserveTicket, comprarTicket, setcomprarTicket, isOpenLogIn, setIsOpenLogIn } = useContext(ContextVariable)
-   
     const [isAuthOpenReserva, setIsAuthOpenReserva] = useState(false)
     const [isAuthOpenCompras, setIsAuthOpenCompras] = useState(false)
-    
-    const handleOpenReservar = (e) => {
+    const [EventData, setEventData] = useState(null)
+    const navigate = useNavigate()
+
+
+
+
+    const handleOpenReservar = (e, event) => {
         e.preventDefault()
         if (auth === null) {
             setIsOpenLogIn(true)
             setIsAuthOpenReserva(true)
         } else {
-            setreserveTicket(true)
+            setDataReservar(event)
+            setlocattion(`${user.role === 'admin' ? '/admin/reservar' : '/reservar'}`)
+            navigate(`${user.role === 'admin' ? '/admin/reservar' : '/reservar'}`)
         }
     }
 
     useEffect(() => {
-        if (isAuthOpenReserva && !isOpenLogIn && !reserveTicket) {
-            setreserveTicket(true);
+        if (isAuthOpenReserva && !isOpenLogIn && !reserveTicket && !comprarTicket) {
+            if (auth !== null) {
+                setreserveTicket(true);
+            }
         }
-        
+
     }, [isAuthOpenReserva, isOpenLogIn, reserveTicket]);
 
     useEffect(() => {
-        if (isAuthOpenCompras && !isOpenLogIn && !comprarTicket) {
-            setcomprarTicket(true);
-            // console.log("Open Comprar");
+        if (isAuthOpenCompras && !isOpenLogIn && !comprarTicket && !reserveTicket) {
+            if (auth !== null) {
+                setcomprarTicket(true);
+            }
         }
-        // console.log("AQUI EN TICKETS Compra");
     }, [isAuthOpenCompras, isOpenLogIn, comprarTicket]);
 
-
-
-    const handleOpenCompras = (e) => {
+    const handleOpenCompras = (e, event) => {
         e.preventDefault()
         if (auth === null) {
             setIsOpenLogIn(true)
             setIsAuthOpenCompras(true)
-            
         }
         else {
-            setcomprarTicket(true);
+            setDataComprar(event)
+            setlocattion(`${user.role === 'admin' ? '/admin/comprar' : '/comprar'}`)
+            navigate(`${user.role === 'admin' ? '/admin/comprar' : '/comprar'}`)
         }
     }
+
+    useEffect(() => {
+        ListEvent(setListEvents)
+
+    }, [])
+
+
+
+
 
     const purchase = true
 
@@ -91,62 +93,81 @@ function tickets() {
 
     if (comprarTicket) {
         return (
-            <Purchase event={'Sparkle Mania'}/>
+            <Purchase event={'Sparkle Mania'} />
         )
     }
 
-    console.log("Compra " + comprarTicket)
-
+    const handleEditEvent = (event) => {
+        if (event) {
+            setEventData(event)
+            setisOpenModalEvent(!isOpenModalEvent)
+        }
+    }
 
     return (
         <>
-            {/* <!-- post card --> */}
-
-
+            <FormEvent event={EventData} />
             <div className="flex bg-[#3d36ba0a] shadow-lg rounded-lg mx-4 md:mx-auto mb-[8rem]">
-                {/* <!--horizantil margin is just for display--> */}
                 <div className="flex flex-col items-start px-4 py-6">
-                    <div className="md:ml-[9rem] mb-4 flex-col">
-                        <div className='my-4'>
-                            <h1 className="text-2xl md:text-4xl text-white font-semibold">Sparkle Mania</h1>
-                            <div className="text-white mt-2">21/10/23</div>
-                        </div>
-                        <img src={ticket} className='w-full md:w-[85%]' />
-                        <div>
+                    {ListEvents.map((event, index) => (
+                        event.EventStatus === "Comprar ya" ? (
+                            <div key={index} className="md:ml-[9rem] mb-4 flex-col">
+                                {user && user.role === 'admin' && (
 
-                            {purchase ?
-                                <>
-                                    <button onClick={(e) => handleOpenCompras(e)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
+                                    <div className="px-3 py-2 text-right text-xs leading-4 mr-0 md:mr-[12rem] ">
+                                        <button onClick={() => handleEditEvent(event)} className="group relative text-sm px-4 py-2 text-white rounded-2xl bg-[#ba36ba]  bg-gradient-to-r from-[#9340FF] to-[#FF3C5F]">
+                                            Editar Eventos
+                                            <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                                        </button>
+                                    </div>
+                                )}
+                                <div className='my-4'>
+                                    <h1 className="text-2xl md:text-4xl text-white font-semibold">{event.EventName}</h1>
+                                    <div className="text-white mt-2">{event.EvenetDate}</div>
+                                </div>
+
+                                <img src={event.EventImage} className='w-full md:w-[85%]' />
+                                <div>
+
+                                    <button onClick={(e) => handleOpenCompras(e, event)} className="ml-3 group relative h-12 w-48 overflow-hidden rounded-xl bg-[#ba36ba] text-lg font-bold text-white my-4 bg-gradient-to-r from-[#9340FF] to-[#FF3C5F w-[200px]">
                                         Compra ya!
                                         <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                                     </button>
-                                </>
-                                :
 
-                                <button onClick={(e) => reserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
-                                    Reservar ahora!
-                                    <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                                </button>
-                            }
+                                </div>
+                            </div>
+                        ) : (
+                            event.EventStatus === "Reservar" && (
+                                <div key={index} className="md:ml-[9rem] mb-4 flex-col">
+                                    {user && user.role === 'admin' && (
+
+                                        <div className="px-3 py-2 text-right text-xs leading-4 mr-0 md:mr-[12rem] ">
+                                            <button onClick={() => handleEditEvent(event)} className="group relative text-sm px-4 py-2 text-white rounded-2xl bg-[#ba36ba]  bg-gradient-to-r from-[#9340FF] to-[#FF3C5F]">
+                                                Editar Eventos
+                                                <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                                            </button>
+                                        </div>
+                                    )}
+                                    <div className='my-4'>
+                                        <h1 className="text-2xl md:text-4xl text-white font-semibold">{event.EventName}</h1>
+                                        <div className="text-white mt-2">{event.EvenetDate}</div>
+                                    </div>
+                                    <img src={event.EventImage} className='w-full md:w-[85%]' />
+                                    <div>
+
+                                        <button onClick={(e) => handleOpenReservar(e, event)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
+
+                                            Reservar ahora!
+                                            <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                        )
+                    ))}
 
 
-                        </div>
-                    </div>
-                    <div className="md:ml-[9rem] mb-4 flex-col">
-                        <div className='my-4'>
-                            <h1 className="text-2xl md:text-4xl text-white font-semibold">2003</h1>
-                            <div className="text-white mt-2">23/12/23</div>
-                        </div>
-                        <img src={ticket2} className='w-full md:w-[85%]' />
-                        <div>
 
-                            <button onClick={() => setreserveTicket(true)} className="group relative h-12 w-48 overflow-hidden rounded-xl bg-[#3d36ba] text-lg font-bold text-white my-4">
-
-                                Reservar ahora!
-                                <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
 

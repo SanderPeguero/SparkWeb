@@ -39,7 +39,7 @@ const ModalStatusPaid = ({ open, onClose, StatusTicket, setloadStatus }) => {
             try {
 
                 console.log("Change: " + idDoc)
-                const eventRef = doc(db, 'events', idDoc);
+                const eventRef = doc(db, 'Purchase', idDoc);
                 await updateDoc(eventRef, {
                     'nameOfCustomer.paymentDetails.paymentStatus': newStatusChange
                 });
@@ -90,7 +90,7 @@ const ModalStatusPaid = ({ open, onClose, StatusTicket, setloadStatus }) => {
             >
                 <Box sx={style}>
                     <div className='text-center text-white text-lg mb-3'>
-                        {StatusTicket?.nameOfCustomer.eventDetails.ticketCode}
+                        {StatusTicket?.nameOfCustomer.eventDetails.ticketCode.TicketNumber}
                     </div>
                     <div className='text-center text-white  text-sm'>
                         {StatusTicket?.nameOfCustomer.customerDetails.name}

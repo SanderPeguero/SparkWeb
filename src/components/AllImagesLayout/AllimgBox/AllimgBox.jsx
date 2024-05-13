@@ -8,28 +8,12 @@ import { PropTypes } from 'prop-types';
 const AllimgBox = ({ wallSrc, userProf }) => {
   return (
     <div className={styles["my-masonry"]}>
-        <img src={wallSrc} style={{ width: "100%" }} alt="" />
-        {/* <div className={`${styles["my-masnry-description"]} flex`}> */}
-          <div className={`${styles["my-masnry-user-box"]} flex align-items-center`}>
-            {/* <div className={styles["my-masnry-user-prof"]}> */}
-              {/* <img src={userProf} alt="" /> */}
-            </div>
-            {/* <div className={`${styles["my-masnry-user-prof-desc"]} flex flex-column`}>
-              <h1>{userName}</h1>
-              <h3>{userJob}</h3>
-            </div> */}
-          {/* </div> */}
-        </div>
-    // </div>
+      <img src={wallSrc} style={{ width: "100%" }} alt="" />
+      <div className={`${styles["my-masnry-user-box"]} flex align-items-center`}>
+      </div>
+    </div>
+
   )
 }
-
-// validate MasonryBox component
-// AllimgBox.propTypes = {
-//   wallSrc: PropTypes.string.isRequired,
-//   userProf: PropTypes.string.isRequired,
-//   userName: PropTypes.string.isRequired,
-//   userJob: PropTypes.string.isRequired,
-// }
 
 export default AllimgBox

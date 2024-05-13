@@ -150,7 +150,6 @@ export default function PrimarySearchAppBar({ user }) {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" className='bg-transparent shadow-none pl-4 pt-1'>
                 <Toolbar>
-                    {/* Sidebar code */}
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -178,7 +177,6 @@ export default function PrimarySearchAppBar({ user }) {
                         >
                             <AccountCircle />
                             <p className="text-[1rem] pl-2">{user ? user.name : ''}</p>
-                            {/* <div className="pl-2 pt-[0.80rem]">Sander Peguero</div> */}
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
