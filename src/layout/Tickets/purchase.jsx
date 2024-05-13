@@ -242,9 +242,9 @@ function Purchase({ event }) {
     <>
       <div onClick={() => BackRoute()} className='ml-8 text-white flex flex-row'><div className='hover:underline cursor-pointer'>Boletas</div>{Location.pathname}</div>
       <div className="px-4 mb-8 py-8 rounded-3xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
-        <div className="flex flex-col items-center  w-full mb-10 lg:flex-row">
-          <div className="md:mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
-            <div className="max-w-xl mr-8">
+        <div className="flex flex-col items-center  w-full mb-8 lg:flex-row">
+          <div className=" md:mb-15 lg:mb-0 lg:max-w-lg lg:pr-5" >
+            <div className="max-w-xl mr-lg">
               <h2 className="font-sans text-3xl sm:mt-0 mt-6 font-medium tracking-tight text-purple-500 sm:text-4xl sm:leading-none max-w-lg mb-3">
                 Hey Keyla <span className="text-gray-400 text-[1rem]">Únete a la chispa!</span>
               </h2>
@@ -255,9 +255,11 @@ function Purchase({ event }) {
                 3. Comprar la boleta <br />
                 esperar la confirmación en el correo <br />
               </div>
-              <form className='mt-8'>
+
+              <form className='mt-8 '>
+
                 <div className="-mx-3 flex flex-wrap">
-                  <div className="w-full px-3 sm:w-1/2">
+                  <div className="flex w-full flex-col lg:flex-row ">
                     <div className="mb-4" onClick={handleEditEmail}>
                       <label
                         htmlFor="fName"
@@ -277,7 +279,7 @@ function Purchase({ event }) {
 
 
 
-                    <div className="mb-4" onClick={handleEditPhone}>
+                    {/* <div className="mb-4" onClick={handleEditPhone}>
                       <label
                         htmlFor="time"
                         className="w-[10rem] mb-3 block text-base font-medium text-[#ffffff]"
@@ -291,9 +293,10 @@ function Purchase({ event }) {
                         name="number"
                         id="number"
                         className="rounded-md border border-[#e0e0e0] bg-white py-3 px-3 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                    </div>
-                    <div>
-                      <div className=" ">
+                    </div> */}
+
+                    {/* <div>
+                      <div className="">
                         <label
                           className="w-[10rem] mb-3 block text-base font-medium text-[#ffffff]"
                         >
@@ -314,20 +317,35 @@ function Purchase({ event }) {
                           ))}
                         </select>
                       </div>
+                    </div> */}
+
+
+                    {/*   space-x-4  */}
+
+                   
+                    <div className='mx-6 mt-11 mb-6 lg:ml-[29rem] '>
+                      <button onClick={purchaseStart} className="group relative  h-12 w-full md:w-48 overflow-hidden rounded-xl bg-purple-500 text-lg font-bold text-white">
+                        Comprar
+                        <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                      </button>
                     </div>
+                    
+
                   </div>
                 </div>
               </form>
             </div>
-            <div className='space-x-4 mt-8 mb-8'>
-              <button onClick={(e) => purchaseStart(e)} className="group relative h-12 w-full md:w-48 overflow-hidden rounded-xl bg-purple-500 text-lg font-bold text-white">
+
+            {/* <div className='space-x-4 mt-4 mb-4 '>
+              <button onClick={purchaseStart} className="group relative h-12 w-full md:w-48 overflow-hidden rounded-xl bg-purple-500 text-lg font-bold text-white">
                 Comprar
                 <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
               </button>
-            </div>
+            </div> */}
+
           </div>
-          <img className='w-full md:w-[70%]' src={dataComprar?.EventImage} />
         </div>
+        <img className='-my-20 w-full md:w-[70%]' src={dataComprar?.EventImage} />
       </div>
 
     </>
