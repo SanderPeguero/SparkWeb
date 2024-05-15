@@ -12,7 +12,9 @@ import Button from "../Button/Button"
 import { ContextVariable } from "../../Context";
 import { MdCategory } from "react-icons/md";
 import { AddCategory } from "../../Scripts/UploadAllImg";
-import { TbCategoryPlus } from "react-icons/tb";
+// import { TbCategoryPlus } from "react-icons/tb";
+// import { TbCategory } from "react-icons/tb";
+import categoryPlus from '../../assets/categoryPlus.svg'
 // Dropdown Component
 const Dropdown = ({  title, liftingDdTextUp }) => {
   const { user, setCategories, categories } = useContext(ContextVariable)
@@ -45,7 +47,8 @@ const Dropdown = ({  title, liftingDdTextUp }) => {
     {user && user.role === 'admin' && (
       <div className="px-3 py-2 text-right  text-xs leading-4">
         <button onClick={() => handleAddCategory()} className="px-3 py-1 border border-blue-500 text-blue-500 rounded transition duration-300 hover:bg-[#ba36ba] hover:text-white focus:outline-none">
-          <TbCategoryPlus size={25} className="text-white" />
+          {/* <TbCategory size={25} className="text-white" /> */}
+          <img src={categoryPlus} className="h-6 w-6" />
         </button>
       </div>
     )}
